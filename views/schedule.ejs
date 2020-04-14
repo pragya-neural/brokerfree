@@ -1,0 +1,64 @@
+<%- include('user-header'); %>
+<%- include('user-sidemenu'); %>
+<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                Property Entry : 100%
+                <div id="progress-bar" style="width:100%;"></div>
+                 
+            </div>
+        </div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div id="add-listing">
+				<!-- Section -->
+					<div class="add-listing-section margin-top-30">
+						<!-- Headline -->
+						<div class="add-listing-headline">
+							<h3><i class="fa fa-calendar-check-o"></i> Make House Visit Free By Providing us Your Availablity</h3>
+						</div>
+						
+						<!-- Row -->
+						<div class="row with-forms">
+							<div class="col-md-6">
+								<h5>Availability <span>*</span></h5>
+								<select>
+									<option>Select Availability</option>
+									<option>Everyday (Monday - Sunday)</option>
+									<option>Weekdays (Monday - Friday)</option>
+									<option>Weekends (Saturday - Sunday)</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="row with-forms">
+
+							<div class="col-md-6">
+								<h5>Start Time <span>*</span></h5>
+								<input type="time" name="s_date">
+							</div>
+
+							<div class="col-md-6">
+								<h5>End Time<span>*</span></h5>
+								<input type="time" name="e_date">
+							</div>
+							
+						</div>
+						
+						<div class="row with-forms">
+
+							<button type="submit" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
+							
+						</div>
+				
+
+					</div>
+					<!-- Section / End -->					
+					</div>
+					<!-- Section / End -->
+				</div>
+			</div>
+<%- include('user-footer'); %>

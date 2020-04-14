@@ -1,0 +1,111 @@
+<%- include('user-header'); %>
+<%- include('user-sidemenu'); %>
+	<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+		<div class="row">
+			<!-- Listings -->
+			<div class="col-lg-12 col-md-12">
+				<div class="dashboard-list-box margin-top-30">
+					<h4>You Have already Posted 2 Property on Nobrokerr</h4>
+					<ul>
+					<div class="col-md-6 propety">
+						<li>
+							<div class="list-box-listing">
+								<div class="list-box-listing-img"><a href="#"><img src="../images/property1.jpg" alt=""></a></div>
+								<div class="list-box-listing-content">
+									<div class="inner">
+										<h3>2 BHK For Rent In Arunoday Chs, Arunoday CHS</h3>
+										<span>10, Chakala Rd, Tarun Bharat Society, Andheri East</span><br>
+										<button class="button pull-left"><i class="fa fa-pencil"></i>Edit</button>
+										<button class="button gray pull-right">Mark Rented Out </button>
+									</div>
+								</div>
+							</div>
+						</li>
+					</div>
+					<div class="col-md-6 propety">
+						<li>
+							<div class="list-box-listing">
+								<div class="list-box-listing-img"><a href="#"><img src="../images/property1.jpg" alt=""></a></div>
+								<div class="list-box-listing-content">
+									<div class="inner">
+										<h3>2 BHK For Rent In Arunoday Chs, Arunoday CHS</h3>
+										<span>10, Chakala Rd, Tarun Bharat Society, Andheri East</span><br>
+										<button class="button pull-left"><i class="fa fa-pencil"></i>Edit</button>
+										<button class="button grey pull-right">Request Activation </button>
+									</div>
+								</div>
+							</div>
+						</li>
+					</div>
+					</ul>
+					
+					<hr class="line_property">
+					
+					<ul>
+					<div class="col-md-12 propety">
+						<li>
+							<div class="list-box-listing">
+								<div class="list-box-listing-content">
+									<div class="inner">
+										<h3>New Property ?</h3>
+										<h3>Post Your Poperty For Free</h3>
+										<span>Find Tenant and Buyer <br>Without Any Brokerage with NoBrokker.
+										</span><br>
+										
+										<!-- Row -->
+							<div class="row with-forms">
+							<form>		
+								<!-- City -->
+								<div class="col-md-8">
+									<div class="notification error closeable" style="display: none;">
+										<p><span>Error!</span> Please fill in all the fields required.</p>
+										<a class="close"></a>
+									</div>
+									<h5>Type</h5>
+									<select class="chosen-select-no-single" name="pro_type" id="pro_type">
+										<%for(var a=0;a<obj.pro_type.length;a++){%>
+										<option value="<%=obj.pro_type[a].property_type_id%>"><%=obj.pro_type[a].property_type%></option>
+										<% } %>
+									</select>
+									
+								</div>
+
+								<!-- Address -->
+							  <div class="col-md-12">
+								<h5>Purpose Type</h5>
+                                    <p>
+										<%for(var b=0;b<obj.purpose.length;b++){ %>
+										<input type="radio" name="RadioGroup1" value="<%=obj.purpose[b].property_purpose_id%>" id="RadioGroup1_<%=b%>"> <%=obj.purpose[b].property_purpose_name%>  
+										<% } %>
+                                      <br>
+                                    </p>
+                                
+							  </div>
+							</form>
+						  </div>
+							<!-- Row / End -->
+										<button type="button" class="button" id="sbt_btn"><i class="fa fa-edit"></i>Post Property</button>
+									</div>
+								</div>
+								<div class="list-box-listing-img" style="max-width: 385px;"><a href="#"><img src="../images/sale.jpg" alt=""></a></div>
+							</div>
+						</li>
+					</div>
+						
+					</ul>
+				</div>
+			</div>
+<script>
+	$('document').ready(function(){
+	$('#sbt_btn').on('click',function(){
+		var pro_type = $('#pro_type option:selected').val();
+		var purpose = $("input[name='RadioGroup1']:checked").val();
+		if (isNaN(purpose)) {
+     	 $('.error').removeAttr("style");
+		}
+	});
+	});
+</script>
+            <%- include('user-footer'); %>

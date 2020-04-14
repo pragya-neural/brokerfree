@@ -1,0 +1,76 @@
+<%- include('user-header'); %>
+<%- include('user-sidemenu'); %>
+<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+        <!-- Notice -->
+            <div class="row">
+                <div class="col-md-12">
+                    <br>Property Entry : 15%
+                    <div id="progress-bar" style="width:15%;"></div>
+                     
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-lg-12">
+    
+                    <div id="add-listing">
+    
+                        <!-- Section -->
+                        <div class="add-listing-section">
+    
+                            <!-- Headline -->
+                            <div class="add-listing-headline">
+                                <h3><i class="im im-icon-Blueprint"></i>Provide Locality Details</h3>
+                            </div>
+    
+                            <!-- Row -->
+                            <div class="row with-forms">
+    
+                                <!-- Phone -->
+                                <div class="col-md-4">
+                                    <h5>State <span>*</span></h5>
+                                    <select name="state">
+                                        <option>Select State</option>
+                                        <option>Delhi</option>
+                                        <option>Uttar Pradesh</option>
+                                        <option>Haryana</option>
+                                        <option>Rajesthan</option>
+                                    </select>
+                                </div>
+                                <!-- Website -->
+                                <div class="col-md-4">
+                                    <h5>Location <span>*</span></h5>
+                                    <input type="text" placeholder="location">
+                                </div>
+    
+                                <!-- Email Address -->
+                                <div class="col-md-4">
+                                    <h5>Street/ Area <span>*</span></h5>
+                                    <input type="text" placeholder="Street/ Area">
+                                </div>
+                                
+    
+                            </div>
+                            <!-- Row / End -->
+                            
+                            <!-- Row -->
+                            <div class="row with-forms">
+    
+                                <!-- Phone -->
+                                <div class="col-md-8">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14282.442426467791!2d80.28786854446584!3d26.50047969456418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c3823592d25c7%3A0xcc0b8bf36ec3fd35!2sNeural%20Info%20Solutions%20Private%20Limited!5e0!3m2!1sen!2sin!4v1583232996683!5m2!1sen!2sin" width="600" height="350" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                </div>
+    
+                            </div>
+                            <!-- Row / End -->
+                            
+                            <button type="submit" onClick="move1()" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
+                            
+                        </div>
+                        <!-- Section / End -->
+    
+                    </div>
+                </div>
+                <%- include('user-footer'); %>

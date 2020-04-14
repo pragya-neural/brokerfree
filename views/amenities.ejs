@@ -1,0 +1,159 @@
+<%- include('user-header'); %>
+<%- include('user-sidemenu'); %>
+<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                Property Entry : 75%
+                <div id="progress-bar" style="width:75%;"></div>
+                 
+            </div>
+        </div>
+		<div class="row">
+			<div class="col-lg-12">
+
+				<div id="add-listing">
+
+				<!-- Section -->
+					<div class="add-listing-section margin-top-30">
+
+						<!-- Headline -->
+						<div class="add-listing-headline">
+							<h3><i class="sl sl-icon-picture"></i> Provide additional details about your property to get maximum visibilty.</h3>
+						</div>
+
+						<!-- Row -->
+						<div class="row with-forms">
+
+							<div class="col-md-4">
+								<h5>Bathroom(s) <span>*</span></h5>
+								<input type="text" placeholder="No of Bathroom">
+							</div>
+
+							<div class="col-md-4">
+								<h5>Balcony <span>(optional)</span></h5>
+								<input type="text" placeholder="No of Balcony">
+							</div>
+
+							<div class="col-md-4">
+								<h5>Water Supply <span></span></h5>
+								<select name="bhk">
+									<option>Select</option>
+									<option>Corporation</option>
+									<option>Borewell</option>
+									<option>Both</option>
+								</select>
+							</div>
+							
+						</div>
+						<div class="row with-forms">
+
+							<div class="col-md-4">
+								<h5>Gym <span>*</span></h5>
+								<select name="bhk">
+									<option>Select</option>
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+
+							<div class="col-md-4">
+								<h5>Power Backup <span>*</span></h5>
+								<select name="bhk">
+									<option>Select</option>
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+
+							<div class="col-md-4">
+								<h5>Gated Security <span></span></h5>
+								<select name="bhk">
+									<option>Select</option>
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</div>
+							
+						</div>
+						
+						<div class="row with-forms">
+
+							<div class="col-md-4">
+								<h5>Who will show the house?<span>*</span></h5>
+								<select name="bhk">
+									<option>Select</option>
+									<option>I will show</option>
+									<option>Need Help</option>
+									<option>Neighbours</option>
+									<option>Others</option>
+									<option>Security</option>
+									<option>Tenants</option>
+								</select>
+							</div>
+
+							<div class="col-md-4">
+								<h5>Secondary Number  <span></span></h5>
+								<input type="text" placeholder="Secondary Number ">
+							</div>
+							
+						</div>
+						<!-- Row / End -->
+						
+							<!-- Checkboxes -->
+						<h5 class="margin-top-30 margin-bottom-10">Select the amenities available<span></span></h5>
+						<div class="checkboxes in-row margin-bottom-20">
+					
+							<input id="check-a" type="checkbox" name="check">
+							<label for="check-a">Lift</label>
+
+							<input id="check-b" type="checkbox" name="check">
+							<label for="check-b">Internet Service</label>
+
+							<input id="check-c" type="checkbox" name="check">
+							<label for="check-c">Air Conditioner</label>
+
+							<input id="check-d" type="checkbox" name="check">
+							<label for="check-d">Club House</label>
+
+							<input id="check-e" type="checkbox" name="check" >
+							<label for="check-e">Children's Play Area</label>
+
+							<input id="check-f" type="checkbox" name="check" >
+							<label for="check-f">Servant Room</label>
+
+							<input id="check-g" type="checkbox" name="check">
+							<label for="check-g">Gas Pipeline</label>	
+
+							<input id="check-h" type="checkbox" name="check">
+							<label for="check-h">Rain Water Harvesting</label>
+							
+							<input id="check-i" type="checkbox" name="check">
+							<label for="check-i">House Keeping</label>
+							
+							<input id="check-j" type="checkbox" name="check">
+							<label for="check-j">Non-Veg Allowed</label>
+							
+							<input id="check-k" type="checkbox" name="check">
+							<label for="check-k">Sewage Treatment Plant</label>
+					
+						</div>
+						<!-- Checkboxes / End -->
+							
+							<button type="submit" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
+						
+					</div>
+					<!-- Section / End -->
+
+					</div>
+					<!-- Section / End -->
+
+
+					
+
+				</div>
+			</div>
+
+<%- include('user-footer'); %>
