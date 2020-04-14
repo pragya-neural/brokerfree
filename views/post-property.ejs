@@ -1,0 +1,132 @@
+<%- include('header') %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="gradient">
+	<div class="container">
+		<div class="row">
+			
+		</div>
+	</div>
+</div>
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row sticky-wrapper">
+
+
+		<!-- Sidebar
+		================================================== -->
+		<div class="col-lg-4 col-md-4 margin-top-0">
+				
+						<!-- Contact -->
+			<div class="boxed-widget margin-bottom-50">
+				<h3>Why Choose us?</h3>
+				<ul class="listing-details-sidebar">
+					<li><i class="fa fa-times"></i>No Brokerage</li>
+					<li><i class="fa fa-arrows"></i> More Options</li>
+                    <li><i class="fa fa-credit-card"></i> Genuin Buyers/Tenants</li>
+				</ul><br><br>
+					<h3>What Our User say.</h3>
+				<blockquote>" Mauris aliquet ultricies ante, non faucibus ante gravida sed. Sed ultrices pellentesque purus, vulputate volutpat ipsum hendrerit sed neque sed sapien rutrum laoreet justo ultrices. In pellentesque lorem condimentum dui morbi pulvinar dui non quam pretium ut lacinia tortor. "</blockquote>
+
+				<!-- Reply to review popup -->
+				<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+					<div class="small-dialog-header">
+						<h3>Enter Review</h3>
+					</div>
+					<div class="message-reply margin-top-0">
+						<textarea cols="40" rows="3" placeholder="Your message to Tom"></textarea>
+						<button class="button">Send</button>
+					</div>
+				</div>
+			</div>
+			<!-- Contact / End-->
+
+		</div>
+		<!-- Sidebar / End -->
+			
+
+		<!-- Content
+		================================================== -->
+		<div class="col-lg-8 col-md-8 padding-left-30">
+		<%if(exits){ %>
+		<div class="alert alert-success" role="alert">
+		  <%= exits%>
+		</div>
+		<% } %>
+			<!-- Listings Container -->
+			<div id="add-listing" class="separated-form">
+				<form method="post" class="">
+					<!-- Section -->
+					<div class="add-listing-section">
+
+						<!-- Headline -->
+						<div class="add-listing-headline">
+							<h3><i class="sl sl-icon-doc"></i> Post your Property</h3>
+							
+                            Enter your details before starting Property entry.
+						</div>
+
+						<% if(locals.errors) { %>
+						<div class="notification error closeable">
+							<p><span>Error!</span> Please fill in all the fields required.</p>
+							<a class="close"></a>
+						</div>
+						
+						<% } %>
+						
+						<!-- Title -->
+						<div class="row with-forms">
+							<div class="col-md-6">
+								<h5>Full Name <i class="tip" data-tip-content="Name of your business"></i></h5>
+								<input class="search-field" type="text" name="uname" id="uname" value=""/>
+								<% if(locals.errors) { %><% if (errors.uname) { %>
+									<span class='error'><%= errors.uname.msg %></span>
+								<% } }%>
+							</div>
+                            <div class="col-md-6">
+								<h5>Email <i class="tip" data-tip-content="Name of your business"></i></h5>
+								<input class="search-field" type="text" name="email" id="email" value=""/>
+								<% if(locals.errors) { %><% if (errors.email) { %>
+									<span class='error'><%= errors.email.msg %></span>
+								<% } } %>
+							</div>
+						</div>
+
+						<!-- Row -->
+						<div class="row with-forms">
+							<div class="col-md-6">
+								<h5>Mobile No <i class="tip" data-tip-content="Maximum of 15 keywords related with your business"></i></h5>
+								<input type="text" name="mobileno" id="mobileno" value=""/>
+								<% if(locals.errors) { %><% if (errors.mobileno) { %>
+									<span class='error'><%= errors.mobileno.msg %></span>
+								<% }} %>
+							</div>
+							<!-- Status -->
+							<div class="col-md-6">
+								<h5>Password <i class="tip" data-tip-content="Enter alphanumeric Password"></i></h5>
+								<input type="password" name="password" id="password" />
+								<% if(locals.errors) { %><% if (errors.password) { %>
+									<span class='error'><%= errors.password.msg %></span>
+								<% }} %>
+							</div>
+							<input type="submit" class="button pull-right" name="enterproperty" value="Enter Property" />
+							<img src="img/line.png" class="margin-top-10"/>
+							<a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><input type="button" class="button border margin-top-15" name="login" value="Login" /></a>
+
+						</div>
+						<!-- Row / End -->
+
+					</div>
+					<!-- Section / End -->
+
+				</form>
+		  </div>
+			<!-- Listings Container / End -->
+
+				
+			<!-- Reviews -->
+	  </div>
+	</div>
+</div>
+<%- include('footer'); %>

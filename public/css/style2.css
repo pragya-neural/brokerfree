@@ -1,0 +1,263 @@
+.add-listing-headline {
+	padding: 2px 14px;
+	width: calc(100% + 0px);
+	left:0px;
+	margin:0px;
+	border-bottom:none; 
+	background: #f91942;
+}
+.add-listing-headline h5{color:#fff;}
+.table>thead>tr>th{padding:0px;background: #f91942;}
+.table>tbody>tr>td{padding:15px}
+.table>thead>tr>th{padding:15px}
+.table>tbody>tr>td>center>h4{margin-top:0px;margin-bottom:0px;}
+
+.add-listing-section {
+    padding: 0 0px 0px;
+}
+.add_b{width:150px;}
+.radio_est{display:inline-block; margin-right: 1%;}
+.radio_test{ margin-right: 2%;}
+
+.main-search-container:before {
+		background: none;
+}
+.build{width: 250px;
+    height: 55px;
+    margin: 10px;
+}
+.build1{width: 180px;
+    height: 163px;
+    margin: 45px;
+}
+.new_bg_text{background: #fffefed1;
+    Width: 580px;
+    float: right;
+    padding: 67px;
+    z-index: 9999999999;
+    margin-right: 120px;
+    border-radius: 165px 5px 165px 5px;
+
+}
+.fa-times{color:#f00;}
+.fa-check{color:#029e00;}
+
+
+/* Responsiveness Mobile*/
+
+
+
+
+/*****************tab view**************/
+.tabordion {
+  color: #333;
+  display: block;
+  font-family: arial, sans-serif;
+  margin: auto;
+  position: relative;
+ /* width: 80%;*/
+}
+
+.tabordion input[name="sections"] {
+  left: -9999px;
+  position: absolute;
+  top: -9999px;
+}
+
+.tabordion section {
+  display: block;
+  border-bottom: 1px solid #ccc;
+  width: 220px;
+}
+label{margin-bottom:0px;}
+
+.tabordion section label {
+     /*background: #ccc;
+     border: 1px solid #fff; */
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    /* font-weight: bold; */
+    padding: 8px 17px;
+    position: relative;
+    width: 220px;
+    z-index: 100;
+    height: auto;
+}
+
+.tabordion section article {
+  display: none;
+  left: 229px;
+  min-width: 300px;
+  padding: 0 0 0 21px;
+  position: absolute;  
+  top: 0;
+  min-height: 350px;
+  height:auto;
+}
+
+.tabordion section article:after {
+  background-color: #f8f8f87d;
+  bottom: 0;
+  content: "";
+  display: block;
+  left:-229px;
+  position: absolute;
+  top: 0;
+  width: 220px;
+  z-index:1;
+  border: 1px solid #ccc;
+  
+}
+
+.tabordion input[name="sections"]:checked + label { 
+    background: #f91942;
+    color: #fffcfc;
+	
+}
+
+.tabordion input[name="sections"]:checked ~ article {
+  display: block;
+}
+
+
+@media (max-width: 533px) {
+
+  .tabordion {
+    width: 100%;
+  }
+  
+  .tabordion section label {
+    font-size: 1em;
+	width: 200px;
+    background: #ffffffd4;
+  }  
+
+ .tabordion section article {
+    left: 200px;
+    min-width: 270px;
+	position:relative;
+  } 
+  
+  .tabordion section article:after {
+    background-color: #ccc;
+    bottom: 0;
+    content: "";
+    display: block;
+    left:-199px;
+    position: absolute;
+    top: 0;
+    width: 200px;
+
+  } 
+.tabordion section {
+  display: block;
+  border-bottom: 1px solid #ccc;
+  width: 472px;
+  border: 1px solid #ccc;
+} 
+.tabordion input[name="sections"]:checked ~ article {
+    display: contents;
+} 
+.tabordion input[name="sections"]:checked + label {
+    background: #f91942;
+    color: #fffcfc;
+    width: 470px;
+}
+  
+}
+
+@media (max-width: 410px) {
+  .table>tbody>tr>td {
+    padding: 6px;
+  }
+  .table{font-size:10px;}
+  .add_b {
+    width: 70px;
+  }
+  button.button{padding: 2px 10px !important;}
+  .add-listing-headline {
+    padding: 13px 0px;
+  }
+  .add-listing-headline i.fa {
+    top: -10px;
+  }
+  .add-listing-headline h3 {font-size:16px;}
+  .tabs-nav li {
+	 width: 210px !important;
+  }
+  table h2{font-size:22px;}
+  table h4{
+	font-size: 15px;
+    font-weight: 600;
+  }
+  
+}
+
+
+@media (max-width: 768px) {
+  h1 {
+    width: 96%;
+  }
+
+  .tabordion {
+    width: 96%;
+  }
+  .table>tbody>tr>td {
+    padding: 6px;
+  }
+  .table{font-size:10px;}
+  .add_b {
+    width: 80px;
+  }
+  button.button{padding: 2px 10px !important;}
+  .add-listing-headline {
+    padding: 13px 0px;
+  }
+  .add-listing-headline i.fa {
+    top: -10px;
+  }
+  .add-listing-headline h3 {font-size:16px;}
+  .tabs-nav li {
+	 width: 210px !important;
+  }
+  table h2{font-size:22px;}
+  table h4{
+	font-size: 15px;
+    font-weight: 600;
+  }
+  
+}
+
+
+@media (min-width: 1366px) {
+  h1 {
+    width: 70%;
+  }
+
+  .tabordion {
+    width: 100%;
+	min-height: 450px;
+	height: 855px;
+  }
+}
+
+.customize_btn{padding: 4px 38px;
+    color: #fa3c5e;
+    position: relative;
+    font-size: 15px;
+    font-weight: 600;
+	background-color: #ffffff;
+	font-size: 15px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    margin-right: 6px;
+    overflow: hidden;
+    border: none;
+    border-radius: 50px;}
+
+.sign-in-form .tabs-nav li {
+    width: 100px !important;
+}

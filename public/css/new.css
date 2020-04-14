@@ -1,0 +1,36 @@
+.add-listing-headline {
+	padding: 30px 14px;
+	width: calc(100% + 0px);
+	left:0px;
+	margin:0px;
+}
+.table>thead>tr>th{padding:0px;background: #fcfcfc;}
+.table>tbody>tr>td{padding:20px}
+
+.add-listing-section {
+    padding: 0 0px 0px;
+}
+.add_b{width:150px;}
+.radio_est{display:inline-block; margin-right: 1%;}
+.radio_test{ margin-right: 2%;}
+
+.main-search-container:before {
+		background: none;
+}
+.build{width: 250px;
+    height: 55px;
+    margin: 10px;
+}
+.build1{width: 180px;
+    height: 163px;
+    margin: 45px;
+}
+.new_bg_text{background: #fffefed1;
+    Width: 580px;
+    float: right;
+    padding: 67px;
+    z-index: 9999999999;
+    margin-right: 120px;
+    border-radius: 165px 5px 165px 5px;
+
+}

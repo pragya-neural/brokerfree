@@ -1,0 +1,81 @@
+<%- include('header') %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Verification</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>Verification Process</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Container / Start -->
+<div class="container">
+
+	<div class="row">
+
+		<!-- Contact Details -->
+		<div class="col-md-4 margin-top-45">
+			<img src="img/email.jpeg"/>
+		</div>
+
+		<!-- Contact Form -->
+		<div class="col-md-5 margin-top-45">
+
+			<section id="contact">
+				<h4 class="headline">Verification Process</h4>
+					<p>To complete User registration process please verify your email. Enter OTP (One time Password) send on mail.</p>
+				<div id="contact-message"></div> 
+
+					<form method="post" action="#" name="contactform" id="contactform" autocomplete="on">
+
+					<div class="row">
+						<div class="col-md-12">
+							<div>
+								<input name="email" type="email" id="email" placeholder="Email OTP" required="required" />
+							</div>
+						</div>
+					</div>
+					
+					<p>  Please Take a moment to verify your mobile Number.
+						OTP send on (+91xxxxxxxx98)<small style="color:#f91942;">This help us confirm your identity and secure your account</small></p>
+			  <div class="row">
+						<div class="col-md-12">
+							<div>
+								<input name="phone" type="text" id="phone" placeholder="Mobile OTP" required="required" />
+							</div>
+						</div>
+					</div>
+
+
+					<a href="/property"><input type="button" class="submit button pull-right" id="submit" value="Move to dashboard" /></a>
+
+					</form>
+			</section>
+		</div>
+		<!-- Contact Form / End -->
+		
+		<!-- Contact Details -->
+		<div class="col-md-3">
+
+		</div>
+
+	</div>
+
+</div><br><br>
+<!-- Container / End -->
+
+<%- include('footer'); %>

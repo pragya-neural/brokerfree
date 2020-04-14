@@ -1,0 +1,238 @@
+body{ /* style of BODY */
+
+}
+
+#pushcontentwrapper{ /* wrapper around page content other than menu markup */
+    position: relative;
+    width: 100%;
+    -moz-transition: left 100ms ease-in-out, right 100ms ease-in-out; /* Content wrapper transition. Actual duration controlled by script */
+    -webkit-transition: left 100ms ease-in-out, right 100ms ease-in-out;
+    transition: left 100ms ease-in-out, right 100ms ease-in-out;
+}
+
+
+.pushmenu{ /* shared class for horizontal push menu */
+    background-color: #4a4a4a;
+    color: white;
+    width: 280px; /* default menu width */
+    height: 100%;
+    position: fixed;
+    z-index: 1000;
+    font-size: 16px;
+    top: -100%;
+    clear: both;
+    display: block;
+    visibility: 'hidden';
+    /*overflow-y: auto;*/
+    -moz-transition: all 100ms ease-in-out; /* Menu transition. Actual duration controlled by script */
+    -webkit-transition: all 100ms ease-in-out;
+    transition: all 100ms ease-in-out;
+}
+
+.pushmenu.left{ /* Additional push menu style when orientation is "left" */
+    border-right: 4px solid black;
+    box-shadow: 8px 0 5px rgba(174, 174, 174, .8);
+}
+
+.pushmenu.right{ /* Additional push menu style when orientation is "right" */
+    border-left: 4px solid black;
+    box-shadow: -8px 0 5px rgba(174, 174, 174, .8);
+    width: 240px;
+}
+
+
+.pushmenu .closebutton{ /* label button inside UL to close menu */
+    position: absolute;
+    right: 5px;
+    top: 11px;
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.pushmenu .closebutton:hover{
+    color: lightyellow;
+}
+
+
+.pushmenu a{
+color: white;
+}
+
+.pushmenu h2{
+    color: #FFF4EA;
+    margin-left: 15px;
+    font-family: 'Rosario', sans-serif;
+    font-size:18px;
+    /*letter-spacing: 5px;*/
+    border-bottom: 1px solid gray;
+    padding-bottom: 3px;
+    text-transform: uppercase;
+}
+
+
+
+.pushmenu ul.mainnav{ /* Push menu main UL style */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-family: 'Rosario', sans-serif;
+    font-weight: bold;
+}
+
+.pushmenu ul.mainnav li{
+    margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+.pushmenu ul.mainnav a{
+    font-size: 18px;
+    padding: 5px;
+    padding-left: 25px;
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.pushmenu ul.mainnav a i{ /* Fontawesome icon style */
+    margin-right: 5px;
+}
+
+
+.pushmenu  ul.mainnav a:hover{
+    background: darkred;
+    color: white;
+}
+
+.pushmenu.open + .menutoggler{ /* Style of menu toggler when menu is opened */
+    opacity: 0.3;
+}
+
+
+/* ######### CSS for fixed menu toggler ######### */
+
+.menutoggler { /* fixed toggler that toggles menu visibility */
+    font-size: 27px;
+    font-weight: bold;
+    position: fixed;
+    background: transparent;
+    top: 26px;
+    text-shadow: 1px 1px 2px #fff;
+    left: 0;
+    z-index: 9999999;
+    padding: 0px 8px;
+    background: #fff;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.menutoggler:hover{
+    border: 1px solid gray;
+}
+
+
+.menutoggler.right{ /* Additional fixed toggler style when menu orientation is "right" instead of "left" */
+    left: auto;
+    right: 0;
+}
+
+/* ######### CSS for sample animated drawer button style  ######### */
+
+.animateddrawer{
+	font-size: 8px; /* to change size of animated drawer, simply adjust this property value ONLY */
+  width: 3em; /* width of button */
+  height: 3em; /* height of button */
+  outline: none;
+  display: block;
+  position: relative;
+  left:265px;
+  top:-45px;
+}
+
+.animateddrawer:before{
+  position: absolute;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px; /* height of top and bottom drawer line */
+  background: #808080;
+  border-radius: 2px;
+  top: 1px;
+  left: 0;
+  opacity: 1;
+  transition: all 0.3s ease-in;
+}
+.animateddrawer:after{
+  position: absolute;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px; /* height of top and bottom drawer line */
+  background: #808080;
+  border-radius: 2px;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: all 0.3s ease-in;
+}
+
+.animateddrawer:after{
+  top: 16px;
+  bottom: 0;
+}
+
+.animateddrawer span{
+  width: 100%;
+  height: 4px; /* height of middle drawer line */
+  background: #808080;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em; /* set this to - half of middle drawer line height */
+  border-radius: 2px;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  transition: all 0.3s ease-in 0.3s;
+}
+
+.animateddrawer span::after{
+  content: '';
+  display: block;
+  width: 100%;
+  height: 5px; /* height of middle drawer line */
+  background: #808080;
+  border-radius: 2px;
+  position: absolute;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  transition: all 0.3s ease-in 0.3s;
+}
+
+.animateddrawer.open:before{ /* style when .open class is added to button */
+  top: 50%;
+  margin-top: -0.5em; /* set this to - half of top drawer line height */
+  opacity: 0;
+}
+
+.animateddrawer.open:after{ /* style when .open class is added to button */
+  bottom: 50%;
+  opacity: 0;
+}
+
+.animateddrawer.open span{ /* style when .open class is added to button */
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.animateddrawer.open span:after{ /* style when .open class is added to button */
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+ 
+}
+
+
+
+
+

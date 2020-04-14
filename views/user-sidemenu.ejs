@@ -1,0 +1,131 @@
+<!-- sidebar start -->
+<div id="dashboard">
+    <!-- Navigation
+        ================================================== -->
+        <!-- Responsive Navigation Trigger -->
+        <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
+    
+        <div class="dashboard-nav">
+            <div class="dashboard-nav-inner">
+                <ul data-submenu-title="Main">
+                   <li><a href="#"><i class="im im-icon-Home"></i> Dashboard</a></li>
+                   <li><a href="my-profile.php"><i class="im im-icon-Business-Man"></i> My Profile</a></li>
+                   <li><a href="my-property.php"><i class="im im-icon-Chinese-Temple"></i> My Properties</a></li>
+                </ul>
+                
+                <ul data-submenu-title="Property Entry">
+                    <li class="active"><a><i class="im im-icon-Home-2"></i>Post Property</a>
+                        <ul data-submenu-title="Property Entry">
+                            <% var sidemn=sideselection;
+                             if( sideselection!='property' ){ 
+                                 sidemn='inactive'; 
+                                }else{
+                                 sidemn='active'; 
+                                }%>
+                                <li class="<%= sidemn %>">
+                                    <a href="property"><i class="im im-icon-Home"></i>Enter Property</a></li>
+                            <% var sidemn=sideselection;
+                                    if( sideselection!='propertyd' ){ 
+                                        sidemn='inactive'; 
+                                       }else{
+                                        sidemn='active'; 
+                                       }%>
+                            <li class="<%= sidemn %>">
+                               <a href="property-details"><i class="im im-icon-Home"></i> Property Details</a></li>
+                               <% var sidemn=sideselection;
+                               if( sideselection!='locality' ){ 
+                                   sidemn='inactive'; 
+                               }else{
+                                   sidemn='active'; 
+                               }%>
+                            <li class="<%= sidemn %>">
+                                <a href="locality-details"><i class="im im-icon-Location-2"></i> Locality Details</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='resale' ){ 
+                                    sidemn='inactive'; 
+                                }else{
+                                    sidemn='active'; 
+                                }%>
+                             <li class="<%= sidemn %>">
+                                <a href="resale-details"><i class="im im-icon-Rotation-390"></i> Rental Details</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='gallery' ){ 
+                                    sidemn='inactive'; 
+                                }else{
+                                    sidemn='active'; 
+                                }%>
+                             <li class="<%= sidemn %>">
+                                <a href="gallery"><i class="im im-icon-Photos"></i> Gallery</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='nearby' ){ 
+                                    sidemn='inactive'; 
+                                }else{
+                                    sidemn='active'; 
+                                }%>
+                             <li class="<%= sidemn %>">
+                                <a href="nearby-details"><i class="im im-icon-Location-2"></i> Near by Details</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='amenity' ){ 
+                                    sidemn='inactive'; 
+                                }else{
+                                    sidemn='active'; 
+                                }%>
+                             <li class="<%= sidemn %>">
+                                <a href="amenities"><i class="im im-icon-Photos"></i> Amenities</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='additional' ){ 
+                                    sidemn='inactive'; 
+                                }else{
+                                    sidemn='active'; 
+                                }%>
+                             <li class="<%= sidemn %>">
+                                <a href="addition-info"><i class="im im-icon-Newspaper"></i> Additional Information</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='time' ){ 
+                                    sidemn='inactive'; 
+                                }else{
+                                    sidemn='active'; 
+                                }%>
+                             <li class="<%= sidemn %>">
+                                <a href="schedule"><i class="fa fa-calendar"></i> Schedule </a></li>
+                        </ul>
+                        
+                    </li>
+                </ul>
+                
+                <ul data-submenu-title="Plans">
+                   <li><a><i class="im im-icon-Haunted-House"></i> Residential Plans</a>
+                        <ul>
+                            <li><a href="residental-plan.php">My Existing Plans</a></li>
+                            <li><a href="user-tenant.php"> Tenants Plans</a></li>
+                            <li><a href="user-owner-plan.php"> Owners Plan</a></li>
+                            <li><a href="user-seller-plan.php"> Seller Plans</a></li>
+                            <li><a href="user-buyer-plan.php"> Buyers Plan</a></li>
+                        </ul>
+                   </li>
+                   <li><a><i class="im im-icon-Embassy"></i> Commercial Plans</a>
+                        <ul>
+                            <li><a href="commercial-plan.php">My Existing Plans</a></li>
+                            <li><a href="user-tenant.php"> Tenants Plans</a></li>
+                            <li><a href="user-owner-plan.php"> Owners Plan</a></li>
+                            <li><a href="user-seller-plan.php"> Seller Plans</a></li>
+                            <li><a href="user-buyer-plan.php"> Buyers Plan</a></li>
+                        </ul>
+                        
+                   </li>
+                   <li><a><i class="im im-icon-Hotel"></i> My Listings</a>
+                        <ul>
+                            <li><a href="my-listing.php">My Properties</a></li>
+                            <li><a href="interest-shown.php"> Interest Shown</a></li>
+                            <li><a href="my-appintment.php"> Appointments</a></li>
+                            <li><a href="my-timeline.php">  My Timeline</a></li>
+                        </ul>
+                   </li>
+                   <li><a href="rental-agreement.php"><i class="im im-icon-Diploma-2"></i> My Rental Agreement</a>
+                   </li>
+                </ul>
+                
+            </div>
+        </div>
+        <!-- sidebar end -->
+    
