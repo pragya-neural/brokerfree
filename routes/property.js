@@ -26,13 +26,30 @@ router.get('/',checkLogin,function(req, res, next) {
     obj.pro_type = pro_type;
     res.render('property', { title: 'Property Entry', sideselection: 'property',obj:obj });
   });
-  
  });
- 
+});
+//save property
+router.post('/save-property',checkLogin,function(req, res, next) {
+  var pro_type = req.body.pro_type;
+  var purpose = req.body.purpose;
+  var data={
+    "property_type_id":pro_type,
+    "purpose_type_id":purpose,
+    "user_id":req.session.uid,
+    "creation_date":new Date()
+      }
+  curd_module.data_insert_return_id('property',data,function(id){
+    var enc_pro_id = id;
+    res.redirect("/property/property-details/"+enc_pro_id);
+  });
   
 });
 
-router.get('/property-details', function(req, res, next) {
+router.get('/property-details', checkLogin,function(req, res, next) {
+  res.render('property-details', { title: 'Property Details', sideselection: 'property' });
+});
+
+router.get('/property-details/:pid', checkLogin,function(req, res, next) {
   res.render('property-details', { title: 'Property Details', sideselection: 'property' });
 });
 

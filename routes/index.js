@@ -74,6 +74,38 @@ router.get('/post-property', function(req, res, next) {
   res.render('post-property', { title:'Post Property' ,exits:''});
 });
 
+router.get('/tenant-plan', function(req, res, next) {
+	res.render('tenant-plan', { title:'Post Property '});
+  });
+
+  router.get('/owner-plan', function(req, res, next) {
+	res.render('owner-plan', { title:'Post Property '});
+  });
+
+  router.get('/agreement', function(req, res, next) {
+	res.render('agreement', { title:'Post Property '});
+  });
+
+  router.get('/corporate', function(req, res, next) {
+	res.render('corporate', { title:'Post Property '});
+  });
+
+  router.get('/builder', function(req, res, next) {
+    res.render('builder', { title:'Post Property '});
+    });
+
+
+  router.get('/seller-plan', function(req, res, next) {
+	res.render('seller-plan', { title:'Post Property '});
+  });
+
+  router.get('/buyer-plan', function(req, res, next) {
+	res.render('buyer-plan', { title:'Post Property '});
+  });
+
+
+
+
 router.get('/logout', function(req, res, next) {
 	req.session.loggedin = false;
 		req.session.destroy();
