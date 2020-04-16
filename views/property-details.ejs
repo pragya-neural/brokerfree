@@ -34,9 +34,9 @@
                                     <h5>Apartment Type <span>*</span></h5>
                                     <select name="bhk">
                                         <option>Select </option>
-                                        <option>Apartment</option>
-                                        <option>Independent House/Villa</option>
-                                        <option>Gated Community Villa</option>
+                                        <%for(var a=0;a<obj.apartment_type.length;a++){ %>
+                                        <option value="<%=obj.apartment_type[a].apartment_type_id%>"><%=obj.apartment_type[a].apartment_type%></option>
+                                        <% } %>
                                     </select>
                                 </div>
                                 <!-- Website -->
@@ -50,10 +50,9 @@
                                     <h5>BHK Type <span>(optional)</span></h5>
                                     <select name="bhk">
                                         <option>Select BHK</option>
-                                        <option>1 BHK</option>
-                                        <option>2 BHK</option>
-                                        <option>3 BHK</option>
-                                        <option>4 BHK</option>
+                                        <%for(var a=0;a<obj.bhk_type.length;a++){ %>
+                                        <option value="<%=obj.bhk_type[a].bhk_type_id%>"><%=obj.bhk_type[a].bhk_type%></option>
+                                        <% } %>
                                     </select>
                                 </div>
                                 
@@ -69,7 +68,9 @@
                                     <h5>Ownership Type <span>*</span></h5>
                                     <select name="bhk">
                                         <option>Select Ownership Type</option>
-                                        <option>Ownership Type</option>
+                                        <%for(var a=0;a<obj.ownership_type.length;a++){ %>
+                                            <option value="<%=obj.ownership_type[a].ownership_type_id%>"><%=obj.ownership_type[a].ownership_type%></option>
+                                        <% } %>
                                     </select>
                                 </div>
     
@@ -82,12 +83,9 @@
                                     <h5>Property Age <span>*</span></h5>
                                     <select name="bhk">
                                         <option>Select Year</option>
-                                        <option>Under Construction</option>
-                                        <option>Less than 1 year</option>
-                                        <option>1-3 years</option>
-                                        <option>3-5 years</option>
-                                        <option>5-10 years</option>
-                                        <option>More than 10 years</option>
+                                        <%for(var a=0;a<obj.property_age.length;a++){ %>
+                                            <option value="<%=obj.property_age[a].property_age_id%>"><%=obj.property_age[a].property_age%></option>
+                                        <% } %>
                                     </select>
                                 </div>
                                 
@@ -101,10 +99,9 @@
                                     <h5>Facing<span>*</span></h5>
                                     <select name="facing">
                                         <option>Select Facing</option>
-                                        <option>North Facing</option>
-                                        <option>East Facing</option>
-                                        <option>South Facing</option>
-                                        <option>West Facing</option>
+                                        <%for(var a=0;a<obj.facing.length;a++){ %>
+                                            <option value="<%=obj.facing[a].facing_id%>"><%=obj.facing[a].facing_name%></option>
+                                        <% } %>
                                     </select>
                                 </div>
     
@@ -112,22 +109,15 @@
                                     <h5>Floor <span>(optional)</span></h5>
                                     <select name="floor">
                                         <option>Select Floor</option>
-                                        <option>1 Floor</option>
-                                        <option>2 Floor</option>
-                                        <option>3 Floor</option>
-                                        <option>4 Floor</option>
+                                        <%for(var a=0;a<obj.floor.length;a++){ %>
+                                            <option value="<%=obj.floor[a].floor_id%>"><%=obj.floor[a].floor_name%></option>
+                                        <% } %>
                                     </select>
                                 </div>
     
                                 <div class="col-md-4">
                                     <h5>Total Floor <span>*</span></h5>
-                                    <select name="tfloor">
-                                        <option>Select Floor</option>
-                                        <option>1 Floor</option>
-                                        <option>2 Floor</option>
-                                        <option>3 Floor</option>
-                                        <option>4 Floor</option>
-                                    </select>
+                                    <input type="text" placeholder="Property Size">
                                 </div>
     
                             </div>
@@ -139,22 +129,15 @@
                                     <h5>Floor Type<span>*</span></h5>
                                     <select name="tfloor">
                                         <option>Select Type</option>
-                                        <option>1 Floor</option>
-                                        <option>2 Floor</option>
-                                        <option>3 Floor</option>
-                                        <option>4 Floor</option>
+                                        <%for(var a=0;a<obj.floor_type.length;a++){ %>
+                                            <option value="<%=obj.floor_type[a].floor_type_id%>"><%=obj.floor_type[a].floor_type%></option>
+                                        <% } %>
                                     </select>
                                 </div>
     
                                 <div class="col-md-4">
                                     <h5>No of Units <span>*</span></h5>
-                                    <select name="tfloor">
-                                        <option>Select Unit</option>
-                                        <option>1 Unit</option>
-                                        <option>2 Unit</option>
-                                        <option>3 Unit</option>
-                                        <option>4 Unit</option>
-                                    </select>
+                                    <input type="text" placeholder="Property Size">
                                 </div>
     
                                 <button type="submit" onclick="move()" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
