@@ -45,6 +45,27 @@ router.post('/save-property',checkLogin,function(req, res, next) {
   
 });
 
+//update property
+router.post('/update-property',checkLogin,function(req, res, next) {
+  var data={
+    "apartment_type_id":req.body.apartment_type,
+    "apartment_name":req.body.apartment_name,
+    "bhk_type_id":req.body.bhk_type,
+    "ownership_type_id":req.body.ownership_type,
+    "property_size":req.body.property_size,
+    "property_age_id":req.body.property_age,
+    "facing_id":req.body.facing,
+    "floor_id":req.body.floor,
+    "total_floor_id":req.body.total_floor,
+    "floor_type_id":req.body.floor_type,
+    "no_of_unit":req.body.no_unit
+    }
+  var where="property_id="+req.body.property_id;
+  curd_module.update_data('property',data,where,function(){
+    res.redirect("/property"); 
+  })
+});
+
 router.get('/property-details/:pid', checkLogin,function(req, res, next) {
   var pid = req.params.pid;
   where = "active_status='active'";
@@ -63,6 +84,7 @@ router.get('/property-details/:pid', checkLogin,function(req, res, next) {
     obj.facing=facing;
     obj.floor=floor;
     obj.floor_type=floor_type;
+    obj.property_id = pid;
     res.render('property-details', { title: 'Property Details', sideselection: 'property',obj:obj });
   });
 });
