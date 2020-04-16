@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <br>Property Entry : 0%
-                <div id="progress-bar" style="width:15%;"></div>
+                <div id="progress-bar" style="width:50%;"></div>
                  
             </div>
         </div>
@@ -25,14 +25,14 @@
                             <div class="add-listing-headline">
                                 <h3><i class="im im-icon-Blueprint"></i>Provide Your Details About Your Property</h3>
                             </div>
-    
+                            <form action="/property/update-property" method="post" id="property_update">
                             <!-- Row -->
                             <div class="row with-forms">
     
                                 <!-- Phone -->
                                 <div class="col-md-4">
                                     <h5>Apartment Type <span>*</span></h5>
-                                    <select name="bhk">
+                                    <select name="apartment_type" id="apartment_type">
                                         <option>Select </option>
                                         <%for(var a=0;a<obj.apartment_type.length;a++){ %>
                                         <option value="<%=obj.apartment_type[a].apartment_type_id%>"><%=obj.apartment_type[a].apartment_type%></option>
@@ -42,13 +42,14 @@
                                 <!-- Website -->
                                 <div class="col-md-4">
                                     <h5>Apartment Name <span>(optional)</span></h5>
-                                    <input type="text" placeholder="Apartment Name">
+                                    <input type="text" name="apartment_name" id="apartment_name" placeholder="Apartment Name">
+                                    <input type="hidden" name="property_id" value="<%=obj.property_id%>">
                                 </div>
     
                                 <!-- Email Address -->
                                 <div class="col-md-4">
                                     <h5>BHK Type <span>(optional)</span></h5>
-                                    <select name="bhk">
+                                    <select name="bhk_type" id="bhk_type">
                                         <option>Select BHK</option>
                                         <%for(var a=0;a<obj.bhk_type.length;a++){ %>
                                         <option value="<%=obj.bhk_type[a].bhk_type_id%>"><%=obj.bhk_type[a].bhk_type%></option>
@@ -66,7 +67,7 @@
     
                                 <div class="col-md-4">
                                     <h5>Ownership Type <span>*</span></h5>
-                                    <select name="bhk">
+                                    <select name="ownership_type" id="ownership_type">
                                         <option>Select Ownership Type</option>
                                         <%for(var a=0;a<obj.ownership_type.length;a++){ %>
                                             <option value="<%=obj.ownership_type[a].ownership_type_id%>"><%=obj.ownership_type[a].ownership_type%></option>
@@ -76,12 +77,12 @@
     
                                 <div class="col-md-4">
                                     <h5>Property Size <span>(optional)</span></h5>
-                                    <input type="text" placeholder="Property Size">
+                                    <input type="text" name="property_size" id="property_size" placeholder="Property Size">
                                 </div>
     
                                 <div class="col-md-4">
                                     <h5>Property Age <span>*</span></h5>
-                                    <select name="bhk">
+                                    <select name="property_age" id="property_age">
                                         <option>Select Year</option>
                                         <%for(var a=0;a<obj.property_age.length;a++){ %>
                                             <option value="<%=obj.property_age[a].property_age_id%>"><%=obj.property_age[a].property_age%></option>
@@ -97,7 +98,7 @@
     
                                 <div class="col-md-4">
                                     <h5>Facing<span>*</span></h5>
-                                    <select name="facing">
+                                    <select name="facing" id="facing">
                                         <option>Select Facing</option>
                                         <%for(var a=0;a<obj.facing.length;a++){ %>
                                             <option value="<%=obj.facing[a].facing_id%>"><%=obj.facing[a].facing_name%></option>
@@ -107,7 +108,7 @@
     
                                 <div class="col-md-4">
                                     <h5>Floor <span>(optional)</span></h5>
-                                    <select name="floor">
+                                    <select name="floor" id="floor">
                                         <option>Select Floor</option>
                                         <%for(var a=0;a<obj.floor.length;a++){ %>
                                             <option value="<%=obj.floor[a].floor_id%>"><%=obj.floor[a].floor_name%></option>
@@ -117,7 +118,7 @@
     
                                 <div class="col-md-4">
                                     <h5>Total Floor <span>*</span></h5>
-                                    <input type="text" placeholder="Property Size">
+                                    <input type="text" name="total_floor" id="total_floor" placeholder="Total Floor">
                                 </div>
     
                             </div>
@@ -127,7 +128,7 @@
     
                                 <div class="col-md-4">
                                     <h5>Floor Type<span>*</span></h5>
-                                    <select name="tfloor">
+                                    <select  name="floor_type" id="floor_type">
                                         <option>Select Type</option>
                                         <%for(var a=0;a<obj.floor_type.length;a++){ %>
                                             <option value="<%=obj.floor_type[a].floor_type_id%>"><%=obj.floor_type[a].floor_type%></option>
@@ -137,22 +138,24 @@
     
                                 <div class="col-md-4">
                                     <h5>No of Units <span>*</span></h5>
-                                    <input type="text" placeholder="Property Size">
+                                    <input type="text" name="no_unit" id="no_unit" placeholder="Number of Units">
                                 </div>
-    
-                                <button type="submit" onclick="move()" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
-                            
+                                <!--<input type="submit" class="button preview pull-right" id="sbt_btn" value="Submit">-->
+                                <button type="submit" id="sbt_btn" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>                           
                             </div>
                             <!-- Row / End -->
-    
+                            </form>
                         </div>
                         <!-- Section / End -->
-    
-    
-                        
-    
                     </div>
                 </div>
-    
+                <script>
+                    $('document').ready(function(){
+                    $('#sbt_btn').on('click',function(e){
+                        e.preventDefault();
+                       $('#property_update').submit();
+                    });
+                    });
+                </script>    
 
 <%- include('user-footer'); %>
