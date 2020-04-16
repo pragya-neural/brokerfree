@@ -26,14 +26,51 @@ router.get('/',checkLogin,function(req, res, next) {
     obj.pro_type = pro_type;
     res.render('property', { title: 'Property Entry', sideselection: 'property',obj:obj });
   });
-  
  });
- 
+});
+//save property
+router.post('/save-property',checkLogin,function(req, res, next) {
+  var pro_type = req.body.pro_type;
+  var purpose = req.body.purpose;
+  var data={
+    "property_type_id":pro_type,
+    "purpose_type_id":purpose,
+    "user_id":req.session.uid,
+    "creation_date":new Date()
+      }
+  curd_module.data_insert_return_id('property',data,function(id){
+    var enc_pro_id = id;
+    res.redirect("/property/property-details/"+enc_pro_id);
+  });
   
 });
 
-router.get('/property-details', function(req, res, next) {
-  res.render('property-details', { title: 'Property Details', sideselection: 'property' });
+router.get('/property-details/:pid', checkLogin,function(req, res, next) {
+  var pid = req.params.pid;
+  where = "active_status='active'";
+  curd_module.all_data_select('apartment_type_id,apartment_type','apartment_type',where,'apartment_type_id desc',function(apartment_type){
+    curd_module.all_data_select('bhk_type_id,bhk_type','bhk_type',where,'bhk_type_id desc',function(bhk_type){
+    curd_module.all_data_select('ownership_type_id,ownership_type','ownership_type',where,'ownership_type_id desc',function(ownership_type){
+    curd_module.all_data_select('property_age_id,property_age','property_age',where,'property_age_id ASC',function(property_age){
+    curd_module.all_data_select('facing_id,facing_name','facing',where,'facing_id ASC',function(facing){
+    curd_module.all_data_select('floor_id,floor_name','floor',where,'floor_id ASC',function(floor){
+    curd_module.all_data_select('floor_type_id,floor_type','floor_type',where,'floor_type_id ASC',function(floor_type){
+    var obj = {};
+    obj.apartment_type=apartment_type;
+    obj.bhk_type=bhk_type;
+    obj.ownership_type=ownership_type;
+    obj.property_age=property_age;
+    obj.facing=facing;
+    obj.floor=floor;
+    obj.floor_type=floor_type;
+    res.render('property-details', { title: 'Property Details', sideselection: 'property',obj:obj });
+  });
+});
+});
+});
+});
+});
+});
 });
 
 router.get('/locality-details', function(req, res, next) {
