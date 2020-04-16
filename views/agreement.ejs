@@ -1,0 +1,204 @@
+<%- include('header') %>
+<img src="img/house.jpg" class="img-responsive"/>
+
+<!-- Content
+================================================== -->
+<div class="container">
+<div class="row">
+	<!-- Search -->
+	<div class="col-md-9"></div>
+		<div class="col-md-3 pull-right" style="margin-top: -235px;">
+			<span><h5>Agreement For :</h5></span>
+				<select>
+					<option>Select</option>
+					<option>Landlord</option>
+					<option>Tenant</option>
+				</select>
+				<span><h5>Location :</h5></span>
+				<div class="main-search-input-item location">
+					<div id="autocomplete-container">
+						<input id="autocomplete-input" type="text" placeholder="Location Search">
+					</div>
+					<a href="#"><i class="fa fa-map-marker"></i></a>
+				</div>
+
+			<!--<div class="main-search-input gray-style margin-top-0 margin-bottom-10">
+			
+				<div class="main-search-input-item location">
+					<div id="autocomplete-container">
+						<input id="autocomplete-input" type="text" placeholder="Location">
+					</div>
+					<a href="#"><i class="fa fa-map-marker"></i></a>
+				</div>
+			</div>-->
+			<center>
+			<button class="button">Create Agreement</button>
+			<center>
+		</div>
+		<!-- Search Section / End -->
+
+</div>
+</div>
+
+<!-- Fullwidth Section -->
+<section class="fullwidth padding-top-75 padding-bottom-70" data-background-color="#f8f8f8">
+
+	<div class="container">
+		<div class="row">
+		
+			<div class="col-md-12">
+				<h3 class="headline centered margin-bottom-45">
+					<strong class="headline-with-separator">How It Works</strong>
+					<span>you found everything here regarding renting / selling property.</span>
+				</h3>
+			</div>
+
+			<div class="col-md-12">
+		<div class="row icons-container">
+		<!-- Stage -->
+		<div class="col-md-4">
+			<div class="icon-box-2 with-line">
+				<i class="fa fa-cut"></i>
+				<h3>Create rental agreement online</h3>
+				<p>Either the owner or the tenant fills in the required information. An Rental agreement is created online using this information.</p>
+			</div>
+		</div>
+
+		<!-- Stage -->
+		<div class="col-md-4">
+			<div class="icon-box-2 with-line">
+				<i class="im im-icon-Mail-withAtSign"></i>
+				<h3>Register with comfort at Home</h3>
+				<p>An appointment for registration is scheduled. Our team visits your home on the scheduled day and the biometric registration is done at home where owner, tenant and two witnesses will be available in same place. This service is available on all days of the week and can be availed on Sundays too!.</p>
+			</div>
+		</div>
+
+		<!-- Stage -->
+		<div class="col-md-4">
+			<div class="icon-box-2">
+				<i class="im im-icon-Checked-User"></i>
+				<h3>Download your agreement</h3>
+				<p>Within 3-4 working days the soft copy of your registered rental agreement is sent to your email ID. And what's more? You don't even need to step out of home!</p>
+			</div>
+		</div>
+	</div>				
+				
+			</div>
+
+		</div>
+	</div>
+
+</section>
+<!-- Fullwidth Section / End -->
+
+
+<!-- Flip banner -->
+<a href="listings-half-screen-map-list.html" class="flip-banner parallax" data-background="images/slider-bg-02.jpg" data-color="#f91942" data-color-opacity="0.85" data-img-width="2500" data-img-height="1666">
+	<div class="flip-banner-content">
+		<h2 class="flip-visible">Explore top-rated attractions nearby</h2>
+		<h2 class="flip-hidden">Browse Listings <i class="sl sl-icon-arrow-right"></i></h2>
+	</div>
+</a>
+<!-- Flip banner / End -->
+
+
+
+
+<!-- Footer
+================================================== -->
+<?php include('footer.php'); ?>
+<!-- Footer / End -->
+
+
+<!-- Sign In Popup -->
+			<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+
+				<div class="small-dialog-header">
+					<h3>Sign In</h3>
+				</div>
+
+				<!--Tabs -->
+				<div class="sign-in-form style-1">
+
+					<ul class="tabs-nav">
+						<li class=""><a href="#tab1">Log In</a></li>
+						<li><a href="#tab2">Register</a></li>
+					</ul>
+
+					<div class="tabs-container alt">
+
+						<!-- Login -->
+						<div class="tab-content" id="tab1" style="display: none;">
+							<form method="post" class="login">
+
+								<p class="form-row form-row-wide">
+									<label for="username">Username:
+										<i class="im im-icon-Male"></i>
+										<input type="text" class="input-text" name="username" id="username" value="" />
+									</label>
+								</p>
+
+								<p class="form-row form-row-wide">
+									<label for="password">Password:
+										<i class="im im-icon-Lock-2"></i>
+										<input class="input-text" type="password" name="password" id="password"/>
+									</label>
+									<span class="lost_password">
+										<a href="#" >Lost Your Password?</a>
+									</span>
+								</p>
+
+								<div class="form-row">
+									<input type="submit" class="button border margin-top-5" name="login" value="Login" />
+									<div class="checkboxes margin-top-10">
+										<input id="remember-me" type="checkbox" name="check">
+										<label for="remember-me">Remember Me</label>
+									</div>
+								</div>
+								
+							</form>
+						</div>
+
+						<!-- Register -->
+						<div class="tab-content" id="tab2" style="display: none;">
+
+							<form method="post" class="register">
+								
+							<p class="form-row form-row-wide">
+								<label for="username2">Username:
+									<i class="im im-icon-Male"></i>
+									<input type="text" class="input-text" name="username" id="username2" value="" />
+								</label>
+							</p>
+								
+							<p class="form-row form-row-wide">
+								<label for="email2">Email Address:
+									<i class="im im-icon-Mail"></i>
+									<input type="text" class="input-text" name="email" id="email2" value="" />
+								</label>
+							</p>
+
+							<p class="form-row form-row-wide">
+								<label for="password1">Password:
+									<i class="im im-icon-Lock-2"></i>
+									<input class="input-text" type="password" name="password1" id="password1"/>
+								</label>
+							</p>
+
+							<p class="form-row form-row-wide">
+								<label for="password2">Repeat Password:
+									<i class="im im-icon-Lock-2"></i>
+									<input class="input-text" type="password" name="password2" id="password2"/>
+								</label>
+							</p>
+
+							<input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
+	
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+<%- include('footer'); %>
