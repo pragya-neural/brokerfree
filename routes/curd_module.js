@@ -16,6 +16,18 @@ var conn = require('./connection');
          });  
     }
 
+    function  fatch_single_row_data(field,tbl_name,where,cb){
+        var query='select '+field+' from '+tbl_name+' where '+where+'';
+        conn.query(query, function (err, results, fields) { 
+            if (err) throw err;
+            Object.keys(results).forEach(function(key) {
+				var myJSON = JSON.stringify(results[key]);
+				var row = JSON.parse(myJSON);
+                cb(row);
+              });
+         });  
+    }
+
     function  num_rows(tbl_name,where,cb){
         var query='select count(*) as total from '+tbl_name+' where '+where+'';
         conn.query(query, function (err, results, fields) { 
@@ -61,3 +73,4 @@ module.exports.num_rows=num_rows;
 module.exports.delete_rows=delete_rows;
 module.exports.update_data=update_data;
 module.exports.all_data_select_limit=all_data_select_limit;
+module.exports.fatch_single_row_data=fatch_single_row_data;

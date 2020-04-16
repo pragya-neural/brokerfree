@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var app = express();
-var curd_module = require('./Curd_module');
+var curd_module = require('./curd_module');
 var checkLogin = function (req, res, next) {
   if (req.session.loggedin==true) {
 	  res.locals.username = req.session.username;
@@ -69,6 +69,8 @@ router.post('/update-property',checkLogin,function(req, res, next) {
 router.get('/property-details/:pid', checkLogin,function(req, res, next) {
   var pid = req.params.pid;
   where = "active_status='active'";
+  where_id = "property_id="+pid;
+  curd_module.fatch_single_row_data('*','property',where_id,function(property_data){
   curd_module.all_data_select('apartment_type_id,apartment_type','apartment_type',where,'apartment_type_id desc',function(apartment_type){
     curd_module.all_data_select('bhk_type_id,bhk_type','bhk_type',where,'bhk_type_id desc',function(bhk_type){
     curd_module.all_data_select('ownership_type_id,ownership_type','ownership_type',where,'ownership_type_id desc',function(ownership_type){
@@ -76,6 +78,7 @@ router.get('/property-details/:pid', checkLogin,function(req, res, next) {
     curd_module.all_data_select('facing_id,facing_name','facing',where,'facing_id ASC',function(facing){
     curd_module.all_data_select('floor_id,floor_name','floor',where,'floor_id ASC',function(floor){
     curd_module.all_data_select('floor_type_id,floor_type','floor_type',where,'floor_type_id ASC',function(floor_type){
+
     var obj = {};
     obj.apartment_type=apartment_type;
     obj.bhk_type=bhk_type;
@@ -85,8 +88,10 @@ router.get('/property-details/:pid', checkLogin,function(req, res, next) {
     obj.floor=floor;
     obj.floor_type=floor_type;
     obj.property_id = pid;
+    obj.property_data=property_data;
     res.render('property-details', { title: 'Property Details', sideselection: 'property',obj:obj });
   });
+});
 });
 });
 });

@@ -33,16 +33,19 @@
                                 <div class="col-md-4">
                                     <h5>Apartment Type <span>*</span></h5>
                                     <select name="apartment_type" id="apartment_type">
-                                        <option>Select </option>
-                                        <%for(var a=0;a<obj.apartment_type.length;a++){ %>
-                                        <option value="<%=obj.apartment_type[a].apartment_type_id%>"><%=obj.apartment_type[a].apartment_type%></option>
+                                        <option value="">Select </option>
+                                        <%for(var a=0;a<obj.apartment_type.length;a++){
+                                        var select = (obj.apartment_type[a].apartment_type_id==obj.property_data.apartment_type_id)?'selected':''; 
+                                        %>
+                                        <option value="<%=obj.apartment_type[a].apartment_type_id%>"<%=select%>><%=obj.apartment_type[a].apartment_type%></option>
                                         <% } %>
                                     </select>
+                                    <span class="error apartment_type"></span>
                                 </div>
                                 <!-- Website -->
                                 <div class="col-md-4">
                                     <h5>Apartment Name <span>(optional)</span></h5>
-                                    <input type="text" name="apartment_name" id="apartment_name" placeholder="Apartment Name">
+                                    <input type="text" name="apartment_name" id="apartment_name" placeholder="Apartment Name" value="<%=obj.property_data.apartment_name%>">
                                     <input type="hidden" name="property_id" value="<%=obj.property_id%>">
                                 </div>
     
@@ -50,9 +53,11 @@
                                 <div class="col-md-4">
                                     <h5>BHK Type <span>(optional)</span></h5>
                                     <select name="bhk_type" id="bhk_type">
-                                        <option>Select BHK</option>
-                                        <%for(var a=0;a<obj.bhk_type.length;a++){ %>
-                                        <option value="<%=obj.bhk_type[a].bhk_type_id%>"><%=obj.bhk_type[a].bhk_type%></option>
+                                        <option value="">Select BHK</option>
+                                        <%for(var a=0;a<obj.bhk_type.length;a++){ 
+                                        var select = (obj.bhk_type[a].bhk_type_id==obj.property_data.bhk_type_id)?'selected':'';
+                                        %>
+                                        <option value="<%=obj.bhk_type[a].bhk_type_id%>" <%=select%>><%=obj.bhk_type[a].bhk_type%></option>
                                         <% } %>
                                     </select>
                                 </div>
@@ -68,26 +73,32 @@
                                 <div class="col-md-4">
                                     <h5>Ownership Type <span>*</span></h5>
                                     <select name="ownership_type" id="ownership_type">
-                                        <option>Select Ownership Type</option>
-                                        <%for(var a=0;a<obj.ownership_type.length;a++){ %>
-                                            <option value="<%=obj.ownership_type[a].ownership_type_id%>"><%=obj.ownership_type[a].ownership_type%></option>
+                                        <option value="">Select Ownership Type</option>
+                                        <%for(var a=0;a<obj.ownership_type.length;a++){ 
+                                        var select = (obj.ownership_type[a].ownership_type_id==obj.property_data.ownership_type_id)?'selected':'';    
+                                        %>
+                                            <option value="<%=obj.ownership_type[a].ownership_type_id%>" <%=select%>><%=obj.ownership_type[a].ownership_type%></option>
                                         <% } %>
                                     </select>
+                                    <span class="error ownership_type"></span>
                                 </div>
     
                                 <div class="col-md-4">
                                     <h5>Property Size <span>(optional)</span></h5>
-                                    <input type="text" name="property_size" id="property_size" placeholder="Property Size">
+                                    <input type="text" name="property_size" id="property_size" value="<%=obj.property_data.property_size%>" placeholder="Property Size">
                                 </div>
     
                                 <div class="col-md-4">
                                     <h5>Property Age <span>*</span></h5>
                                     <select name="property_age" id="property_age">
-                                        <option>Select Year</option>
-                                        <%for(var a=0;a<obj.property_age.length;a++){ %>
-                                            <option value="<%=obj.property_age[a].property_age_id%>"><%=obj.property_age[a].property_age%></option>
+                                        <option value="">Select Year</option>
+                                        <%for(var a=0;a<obj.property_age.length;a++){ 
+                                            var select = (obj.property_age[a].property_age_id==obj.property_data.property_age_id)?'selected':'';    
+                                        %>
+                                            <option value="<%=obj.property_age[a].property_age_id%>" <%=select%>><%=obj.property_age[a].property_age%></option>
                                         <% } %>
                                     </select>
+                                    <span class="error property_age"></span>
                                 </div>
                                 
     
@@ -99,26 +110,32 @@
                                 <div class="col-md-4">
                                     <h5>Facing<span>*</span></h5>
                                     <select name="facing" id="facing">
-                                        <option>Select Facing</option>
-                                        <%for(var a=0;a<obj.facing.length;a++){ %>
-                                            <option value="<%=obj.facing[a].facing_id%>"><%=obj.facing[a].facing_name%></option>
+                                        <option value="">Select Facing</option>
+                                        <%for(var a=0;a<obj.facing.length;a++){ 
+                                        var select = (obj.facing[a].facing_id==obj.property_data.facing_id)?'selected':'';    
+                                            %>
+                                            <option value="<%=obj.facing[a].facing_id%>" <%=select%>><%=obj.facing[a].facing_name%></option>
                                         <% } %>
                                     </select>
+                                    <span class="error facing"></span>
                                 </div>
     
                                 <div class="col-md-4">
                                     <h5>Floor <span>(optional)</span></h5>
                                     <select name="floor" id="floor">
-                                        <option>Select Floor</option>
-                                        <%for(var a=0;a<obj.floor.length;a++){ %>
-                                            <option value="<%=obj.floor[a].floor_id%>"><%=obj.floor[a].floor_name%></option>
+                                        <option value="">Select Floor</option>
+                                        <%for(var a=0;a<obj.floor.length;a++){ 
+                                        var select = (obj.floor[a].floor_id==obj.property_data.floor_id)?'selected':'';    
+                                        %>
+                                            <option value="<%=obj.floor[a].floor_id%>" <%=select%>><%=obj.floor[a].floor_name%></option>
                                         <% } %>
                                     </select>
                                 </div>
     
                                 <div class="col-md-4">
                                     <h5>Total Floor <span>*</span></h5>
-                                    <input type="text" name="total_floor" id="total_floor" placeholder="Total Floor">
+                                    <input type="text" name="total_floor" id="total_floor" value="<%=obj.property_data.total_floor_id%>" placeholder="Total Floor">
+                                    <span class="error total_floor"></span>
                                 </div>
     
                             </div>
@@ -129,16 +146,20 @@
                                 <div class="col-md-4">
                                     <h5>Floor Type<span>*</span></h5>
                                     <select  name="floor_type" id="floor_type">
-                                        <option>Select Type</option>
-                                        <%for(var a=0;a<obj.floor_type.length;a++){ %>
-                                            <option value="<%=obj.floor_type[a].floor_type_id%>"><%=obj.floor_type[a].floor_type%></option>
+                                        <option value="">Select Type</option>
+                                        <%for(var a=0;a<obj.floor_type.length;a++){ 
+                                        var select = (obj.floor_type[a].floor_type_id==obj.property_data.floor_type_id)?'selected':'';    
+                                            %>
+                                            <option value="<%=obj.floor_type[a].floor_type_id%>" <%=select%>><%=obj.floor_type[a].floor_type%></option>
                                         <% } %>
                                     </select>
+                                    <span class="error floor_type"></span>
                                 </div>
     
                                 <div class="col-md-4">
                                     <h5>No of Units <span>*</span></h5>
-                                    <input type="text" name="no_unit" id="no_unit" placeholder="Number of Units">
+                                    <input type="text" name="no_unit" id="no_unit" value="<%=obj.property_data.no_of_unit%>" placeholder="Number of Units">
+                                    <span class="error no_unit"></span>
                                 </div>
                                 <!--<input type="submit" class="button preview pull-right" id="sbt_btn" value="Submit">-->
                                 <button type="submit" id="sbt_btn" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>                           
@@ -152,8 +173,52 @@
                 <script>
                     $('document').ready(function(){
                     $('#sbt_btn').on('click',function(e){
-                        e.preventDefault();
-                       $('#property_update').submit();
+                    e.preventDefault();
+                    var apartment_type = $("#apartment_type option:selected").val();
+                    var ownership_type = $("#ownership_type option:selected").val();
+                    var property_age = $("#property_age option:selected").val();
+                    var facing = $("#facing option:selected").val();
+                    var total_floor = $("#total_floor").val();
+                    var floor_type = $("#floor_type option:selected").val();
+                    var no_unit = $("#no_unit").val();
+                    if(apartment_type==''){
+                        $('.apartment_type').html('Select Apartment Type');
+                        $('.apartment_type').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else if(ownership_type==''){
+                        $('.ownership_type').html('Select Ownership Type');
+                        $('.ownership_type').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else if(property_age==''){
+                        $('.property_age').html('Select Property Age');
+                        $('.property_age').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else if(facing==''){
+                        $('.facing').html('Select facing');
+                        $('.facing').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else if(total_floor==''){
+                        $('.total_floor').html('Enter Total Floor');
+                        $('.total_floor').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else if(floor_type==''){
+                        $('.floor_type').html('Select Floor Type');
+                        $('.floor_type').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else if(no_unit==''){
+                        $('.no_unit').html('Enter Number Of Unit');
+                        $('.no_unit').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else{
+                    $('#property_update').submit();
+                    }
                     });
                     });
                 </script>    
