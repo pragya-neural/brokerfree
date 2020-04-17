@@ -13,22 +13,22 @@ router.get('/home', function(req, res, next) {
       var obj = {};
       obj.user_detail = user_detail;
      
-    res.render('admin/userreport', { title: 'Nobroker Users Reports', obj:obj });
+    res.render('admin/userreport', { title: 'Nobroker Users Report', obj:obj });
   
   });
 });
-/*
-  router.get('/',checkLogin,function(req, res, next) {
-    var where = "active_status='active'";
-    curd_module.all_data_select('property_type_id,property_type','property_type',where,'property_type_id desc',function(pro_type){
-    var where = "active_status='active'";
-    curd_module.all_data_select('property_purpose_id,property_purpose_name','property_purpose',where,'property_purpose_id desc',function(purpose){
-      var obj = {};
-      obj.purpose = purpose;
-      obj.pro_type = pro_type;
-      res.render('property', { title: 'Property Entry', sideselection: 'property',obj:obj });
-    });
-   });
-  }); */
+
+router.get('/propertyreport', function(req, res, next) {
+  var where = "p.active_status is not null";
+  var from ="property p left join property_type pt on p.property_type_id=pt.property_type_id left join property_purpose pp on p.property_type_id=pp.property_purpose_id left join bhk_type bt on p.bhk_type_id=bt.bhk_type_id";
+  curd_module.all_data_select('property_id,user_id,property_type,property_purpose_name,apartment_name,no_of_unit,bt.bhk_type,p.active_status',from,where,'user_id desc',function(prop_detail){
+    var obj = {};
+    obj.prop_detail = prop_detail;
+   
+  res.render('admin/propertyreport', { title: 'Nobroker Properties Report', obj:obj });
+
+});
+});
+
 
 module.exports = router;

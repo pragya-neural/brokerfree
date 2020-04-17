@@ -1,0 +1,3 @@
+property_report
+***************
+SELECT property_id,user_id,property_type,property_purpose_name,apartment_name,bt.bhk_type,p.active_status,no_of_unit FROM property p left join property_type pt on p.property_type_id=pt.property_type_id left join property_purpose pp on p.property_type_id=pp.property_purpose_id left join bhk_type bt on p.bhk_type_id=bt.bhk_type_id
