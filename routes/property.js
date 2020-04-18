@@ -40,13 +40,24 @@ router.post('/save-property',checkLogin,function(req, res, next) {
       }
   curd_module.data_insert_return_id('property',data,function(id){
     var enc_pro_id = id;
+    var pro_id={"property_id":id}
+    curd_module.data_insert_return_id('property_location',pro_id,function(id){
+    curd_module.data_insert_return_id('resale_rental_details',pro_id,function(id){
+    curd_module.data_insert_return_id('property_gallery',pro_id,function(id){
+    curd_module.data_insert_return_id('nearby_details',pro_id,function(id){
+    curd_module.data_insert_return_id('basic_amenities',pro_id,function(id){
     res.redirect("/property/property-details/"+enc_pro_id);
   });
-  
+  });
+  });
+});
+});
+});
 });
 
 //update property
 router.post('/update-property',checkLogin,function(req, res, next) {
+  var enc_pro_id = req.body.property_id;
   var data={
     "apartment_type_id":req.body.apartment_type,
     "apartment_name":req.body.apartment_name,
@@ -60,9 +71,9 @@ router.post('/update-property',checkLogin,function(req, res, next) {
     "floor_type_id":req.body.floor_type,
     "no_of_unit":req.body.no_unit
     }
-  var where="property_id="+req.body.property_id;
+  var where="property_id="+enc_pro_id;
   curd_module.update_data('property',data,where,function(){
-    res.redirect("/property"); 
+    res.redirect("/property/locality-details/"+enc_pro_id);
   })
 });
 
@@ -89,7 +100,7 @@ router.get('/property-details/:pid', checkLogin,function(req, res, next) {
     obj.floor_type=floor_type;
     obj.property_id = pid;
     obj.property_data=property_data;
-    res.render('property-details', { title: 'Property Details', sideselection: 'property',obj:obj });
+    res.render('property-details', { title: 'Property Details', sideselection: 'property_detail',obj:obj });
   });
 });
 });
@@ -100,8 +111,26 @@ router.get('/property-details/:pid', checkLogin,function(req, res, next) {
 });
 });
 
-router.get('/locality-details', function(req, res, next) {
-  res.render('locality-details', { title: 'Locality Details', sideselection: 'locality' });
+router.get('/locality-details/:pid',checkLogin,function(req, res, next) {
+  var where_country='101';
+  curd_module.all_data_select('sid,name','states',where_country,'sid ASC',function(states){
+    var obj = {};
+    obj.states=states;
+  res.render('locality-details', { title: 'Locality Details', sideselection: 'locality',obj:obj });
+  });
+});
+
+router.post('/fill-city-dd',checkLogin,function(req, res, next) {
+  var state_id = req.body.State_id;
+  var where_state="state_id="+state_id;
+  var cites='';
+  curd_module.all_data_select('ci_id,name','cities',where_state,'ci_id ASC',function(cities){
+  for(var a=0;a<cities.length;a++){
+   cites += "<option value='"+cities[a].ci_id+"'>"+cities[a].name+"</option>";
+ }  
+ res.send(cites);
+  });
+  
 });
 
 router.get('/resale-details', function(req, res, next) {
