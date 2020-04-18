@@ -15,7 +15,7 @@
 			<div class="col-lg-12">
 
 				<div id="add-listing">
-
+				<form action="/property/update-resale-details" method="post" id="update_resale_details">
 					<!-- Section -->
 					<div class="add-listing-section">
 
@@ -29,19 +29,22 @@
 
 							<div class="col-md-4">
 								<h5>Expected Price <span>*</span></h5>
-								<input type="text" placeholder="Expected Price">
+								<input type="text" name="expected_price" id="expected_price" placeholder="Expected Price">
+								<input type="hidden" name="property_id" value="<%=obj.property_id%>">
 							</div>
 
 							<div class="col-md-4">
 								<h5>Maintinance Cost <span>(optional)</span></h5>
-								<input type="text" placeholder="Maintinance Cost">
+								<input type="text" name="maintenance_cost" id="maintenance_cost" placeholder="Maintinance Cost">
 							</div>
 
 							<div class="col-md-4">
 								<h5>No of Lease Year <span>(optional)</span></h5>
-								<select name="bhk">
-									<option>Select Year</option>
-									<option>2020</option>
+								<select name="lease_years" id="lease_years">
+									<option value="">Select Year</option>
+									<%for(var a=1;a<=10;a++){%>
+									<option value="<%=a%>"><%=a%></option>
+									<% } %>
 								</select>
 							</div>
 							
@@ -54,26 +57,25 @@
 
 							<div class="col-md-4">
 								<h5>Availible Form  <span>*</span></h5>
-								<input type="date">
+								<input type="date" name="available_from" id="available_from">
 							</div>
 							<div class="col-md-4">
 								<h5>Furnishing <span>*</span></h5>
-								<select name="bhk">
-									<option>Select</option>
-									<option>Fully furnished</option>
-									<option>Semi-furnished</option>
-									<option>Unfurnished</option>
+								<select name="furnishing_id" id="furnishing_id">
+									<option value="">Select</option>
+									<% for(var a=0;a<obj.furnish.length;a++){ %>
+									<option value="<%=obj.furnish[a].furnishing_id%>"><%=obj.furnish[a].furnishing%></option>
+									<%  } %>
 								</select>
 							</div>
 
 							<div class="col-md-4">
 								<h5>Parking <span>*</span></h5>
-								<select name="bhk">
+								<select name="parking_id" id="parking_id">
 									<option>Select Parking</option>
-									<option>Car</option>
-									<option>Bike</option>
-									<option>Bike and Car</option>
-									<option>None</option>
+									<% for(var a=0;a<obj.parking.length;a++){ %>
+										<option value="<%=obj.parking[a].parking_id%>"><%=obj.parking[a].parking%></option>
+									<%  } %>
 								</select>
 							</div>
 							
@@ -87,16 +89,18 @@
 
 							<div class="col-md-4">
 								<h5>Kitchen Type <span>*</span></h5>
-								<select name="bhk">
+								<select name="kitchen_type_id" id="kitchen_type_id">
 									<option>Select Kitchen Type</option>
-									<option>Ownership Type</option>
+									<% for(var a=0;a<obj.kitchen_type.length;a++){ %>
+										<option value="<%=obj.kitchen_type[a].kitchen_type_id%>"><%=obj.kitchen_type[a].kitchen_type%></option>
+									<%  } %>
 								</select>
 							</div>
 							
 							<div class="col-md-4">
 								<h5>Nigotiable<span>*</span></h5>
 								<div class="checkboxes in-row margin-bottom-20">
-									<input id="check-a" type="checkbox" name="check">
+									<input id="check-a" type="checkbox" name="price_negotiable" value="1">
 									<label for="check-a">Price Nigotiable</label>
 							    </div>
 							</div>
@@ -104,7 +108,7 @@
 							<div class="col-md-4">
 								<h5>Under Loan <span>*</span></h5>
 								<div class="checkboxes in-row margin-bottom-20">
-									<input id="check-b" type="checkbox" name="check">
+									<input id="check-b" type="checkbox" name="current_loan_status" value="1">
 									<label for="check-b">Currently Under Loan</label>
 							    </div>
 							</div>							
@@ -117,22 +121,22 @@
 
 						<div class="form">
 							<h5>Description</h5>
-							<textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"placeholder="Write a few lines about your property. Let the tenant know the amenities available, type of neighbourhood, proximity to bus and train stations etc."></textarea>
+							<textarea class="WYSIWYG" name="description" cols="40" rows="3" id="description" spellcheck="true"placeholder="Write a few lines about your property. Let the tenant know the amenities available, type of neighbourhood, proximity to bus and train stations etc."></textarea>
 						</div>
-
-							<button type="submit" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
-						
+							<button type="submit" class="button preview pull-right" id="sbt_btn">Submit <i class="fa fa-arrow-circle-right"></i></button>
 						</div>
 						<!-- Row / End -->
-
-						
-
 					</div>
+				</form>
 					<!-- Section / End -->
-
-
-					
-
 				</div>
-            </div>
+			</div>
+			<script>
+				$('document').ready(function(){
+				$('#sbt_btn').on('click',function(e){
+				e.preventDefault();
+				$('#update_resale_details').submit();
+				});
+				});
+			</script> 
             <%- include('user-footer'); %>
