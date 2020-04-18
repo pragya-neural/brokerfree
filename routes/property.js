@@ -13,8 +13,21 @@ var checkLogin = function (req, res, next) {
 	}
 }
 
-app.use(checkLogin);
+var checkproperty = function (req, res, next) {
+  var pid=req.params.pid;
+  var uid = req.session.uid;
+  var where="user_id="+uid+" and property_id="+pid;
+  curd_module.num_rows('property',where,function(tcount){
+    if(tcount==0){
+      res.redirect("/");
+      
+    }
+  });
+  next();
+}
 
+app.use(checkLogin);
+//app.use(checkproperty);
 /* GET property page. */
 router.get('/',checkLogin,function(req, res, next) {
   var where = "active_status='active'";
@@ -77,7 +90,7 @@ router.post('/update-property',checkLogin,function(req, res, next) {
   })
 });
 
-router.get('/property-details/:pid', checkLogin,function(req, res, next) {
+router.get('/property-details/:pid', [checkLogin,checkproperty],function(req, res, next) {
   var pid = req.params.pid;
   where = "active_status='active'";
   where_id = "property_id="+pid;
@@ -111,19 +124,40 @@ router.get('/property-details/:pid', checkLogin,function(req, res, next) {
 });
 });
 
-router.get('/locality-details/:pid',checkLogin,function(req, res, next) {
+router.get('/locality-details/:pid', [checkLogin,checkproperty],function(req, res, next) {
+  var pid = req.params.pid;
   var where_country='101';
+  where_id = "property_id="+pid;
+  curd_module.fatch_single_row_data('*','property_location',where_id,function(location_data){
   curd_module.all_data_select('sid,name','states',where_country,'sid ASC',function(states){
     var obj = {};
     obj.states=states;
+    obj.location_data=location_data;
+    obj.property_id=pid;
   res.render('locality-details', { title: 'Locality Details', sideselection: 'locality',obj:obj });
   });
+});
+});
+
+//update location
+router.post('/update-location',checkLogin,function(req, res, next) {
+  var enc_pro_id = req.body.property_id;
+  var data={
+    "state_id":req.body.state,
+    "location_id":req.body.city,
+    "street":req.body.street,
+    "property_url":req.body.url
+    }
+  var where="property_id="+enc_pro_id;
+  curd_module.update_data('property_location',data,where,function(){
+    res.redirect("/property/resale-details/"+enc_pro_id);
+  })
 });
 
 router.post('/fill-city-dd',checkLogin,function(req, res, next) {
   var state_id = req.body.State_id;
   var where_state="state_id="+state_id;
-  var cites='';
+  var cites='<option value="">Select City</option>';
   curd_module.all_data_select('ci_id,name','cities',where_state,'ci_id ASC',function(cities){
   for(var a=0;a<cities.length;a++){
    cites += "<option value='"+cities[a].ci_id+"'>"+cities[a].name+"</option>";
@@ -133,11 +167,46 @@ router.post('/fill-city-dd',checkLogin,function(req, res, next) {
   
 });
 
-router.get('/resale-details', function(req, res, next) {
-  res.render('resale-details', { title: 'resale-deetails', sideselection: 'resale' });
+router.get('/resale-details/:pid',[checkLogin,checkproperty],function(req, res, next) {
+  var pid = req.params.pid;
+  where = "active_status='active'";
+  where_id = "property_id="+pid;
+  curd_module.all_data_select('furnishing_id,furnishing','furnishing',where,'furnishing_id DESC',function(furnish){
+  curd_module.all_data_select('parking_id,parking','parking',where,'parking_id DESC',function(parking){
+  curd_module.all_data_select('kitchen_type_id,kitchen_type','kitchen_type',where,'kitchen_type_id DESC',function(kitchen_type){
+    var obj={};
+    obj.furnish=furnish;
+    obj.parking=parking;
+    obj.kitchen_type=kitchen_type;
+    obj.property_id=pid;
+    res.render('resale-details', { title: 'resale-deetails', sideselection: 'resale',obj:obj });
+  });
+});
+});
 });
 
-router.get('/gallery', function(req, res, next) {
+//update resale details
+router.post('/update-resale-details',checkLogin,function(req, res, next) {
+  var enc_pro_id = req.body.property_id;
+  var data={
+    "expected_price":req.body.expected_price,
+    "maintenance_cost":req.body.maintenance_cost,
+    "lease_years":req.body.lease_years,
+    "available_from":req.body.available_from,
+    "furnishing_id":req.body.furnishing_id,
+    "parking_id":req.body.parking_id,
+    "kitchen_type_id":req.body.kitchen_type_id,
+    "price_negotiable":req.body.price_negotiable,
+    "current_loan_status":req.body.current_loan_status,
+    "description":req.body.description
+    }
+  var where="property_id="+enc_pro_id;
+  curd_module.update_data('resale_rental_details',data,where,function(){
+    res.redirect("/property/gallery/"+enc_pro_id);
+  })
+});
+
+router.get('/gallery/:pid',[checkLogin,checkproperty],function(req, res, next) {
   res.render('gallery', { title: 'Gallery', sideselection: 'gallery' });
 });
 
