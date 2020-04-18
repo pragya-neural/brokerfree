@@ -31,18 +31,19 @@
                                 <!-- Phone -->
                                 <div class="col-md-4">
                                     <h5>State <span>*</span></h5>
-                                    <select name="state">
-                                        <option>Select State</option>
-                                        <option>Delhi</option>
-                                        <option>Uttar Pradesh</option>
-                                        <option>Haryana</option>
-                                        <option>Rajesthan</option>
+                                    <select name="state" id="state">
+                                        <option value="">Select State</option>
+                                        <%for(var a=0;a<obj.states.length;a++){%>
+                                        <option value="<%=obj.states[a].sid%>"><%=obj.states[a].name%></option>
+                                       <% } %>
                                     </select>
                                 </div>
                                 <!-- Website -->
                                 <div class="col-md-4">
-                                    <h5>Location <span>*</span></h5>
-                                    <input type="text" placeholder="location">
+                                    <h5>City <span>*</span></h5>
+                                    <select name="city" id="city">
+                                        <option value="">Select City</option>
+                                    </select>
                                 </div>
     
                                 <!-- Email Address -->
@@ -66,11 +67,28 @@
                             </div>
                             <!-- Row / End -->
                             
-                            <button type="submit" onClick="move1()" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
+                            <button type="submit" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
                             
                         </div>
                         <!-- Section / End -->
     
                     </div>
                 </div>
+<script>
+                $("#state").change(function() {
+                    var stateid= $(this).val(); alert(stateid);
+                    datastr={State_id:stateid};
+                  $.ajax({
+                           url: './property/fill-city-dd',
+                           type: 'post',
+                           data: datastr,
+                           success: function(response)
+                           {
+                          
+                          $("#city").html(response);
+                        
+                           }
+                         });
+                });
+</script>
                 <%- include('user-footer'); %>
