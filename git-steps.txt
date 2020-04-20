@@ -1,0 +1,37 @@
+folder updated with latest github ravi branch . now doing push ok.
+
+for pulling updated folder
+**************************
+$ git init
+$ git remote add orgin https://github.com/pragya-neural/brokerfree.git
+$ git checkout -b ravi
+$ git pull https://github.com/pragya-neural/brokerfree.git ravi
+
+-----------------
+for pushing changes
+*******************
+$ git add .
+$ git status
+$ git commit -m "sheetanshu sir commit"
+$ git config --global user.email "pragya@neuralinfo.org"
+$ git config --global user.name "pragya-neural"
+$ git commit -m "sheetanshu sir commit"
+$ git push origin ravi
+$ git remote add origin https://github.com/pragya-neural/brokerfree.git
+$ git push origin ravi
+$ git status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

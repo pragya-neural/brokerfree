@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%- include('user-header'); %>
 <%- include('user-sidemenu'); %>
 <!-- Content
@@ -130,4 +131,138 @@
                     $('#map').html(loc1);
                     });
 </script>
+=======
+<%- include('user-header'); %>
+<%- include('user-sidemenu'); %>
+<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+        <!-- Notice -->
+            <div class="row">
+                <div class="col-md-12">
+                    <br>Property Entry : 15%
+                    <div id="progress-bar" style="width:15%;"></div>
+                     
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-lg-12">
+    
+                    <div id="add-listing">
+                        <form action="/property/update-location" method="post" id="location_update">
+                        <!-- Section -->
+                        <div class="add-listing-section">
+    
+                            <!-- Headline -->
+                            <div class="add-listing-headline">
+                                <h3><i class="im im-icon-Blueprint"></i>Provide Locality Details</h3>
+                            </div>
+    
+                            <!-- Row -->
+                            <div class="row with-forms">
+    
+                                <!-- Phone -->
+                                <div class="col-md-4">
+                                    <h5>State <span>*</span></h5>
+                                    <select name="state" id="state">
+                                        <option value="">Select State</option>
+                                        <%for(var a=0;a<obj.states.length;a++){
+                                        var select = (obj.states[a].sid==obj.location_data.state_id)?'selected':''; 
+                                        %>
+                                        <option value="<%=obj.states[a].sid%>" <%=select%>><%=obj.states[a].name%></option>
+                                       <% } %>
+                                    </select>
+                                    <span class="error state"></span>
+                                </div>
+                                <!-- Website -->
+                                <div class="col-md-4">
+                                    <h5>City <span>*</span></h5>
+                                    <select name="city" id="city">
+                                        <option value="">Select City</option>
+                                    </select>
+                                    <span class="error city"></span>
+                                </div>
+    
+                                <!-- Email Address -->
+                                <div class="col-md-4">
+                                    <h5>Street/ Area <span>*</span></h5>
+                                    <input type="text" name="street" id="street" placeholder="Street/ Area" value="<%=obj.location_data.street%>">
+                                    <input type="hidden" name="property_id" value="<%=obj.property_id%>">
+                                    <span class="error location"></span>
+                                </div>
+                                
+                            </div>
+                            <!-- Row / End -->
+                            
+                            <!-- Row -->
+                            <div class="row with-forms">
+                                <!-- Phone -->
+                                <div class="col-md-4">
+                                    <h5>Google Location url<span>*</span></h5>
+                                    <textarea name="url" id="url" placeholder="Google Location url"><%=obj.location_data.property_url%></textarea>
+                                </div>
+                                <div class="col-md-8" >
+                                 <span id="map"> </span>  
+                                </div>
+                            </div>
+                            <!-- Row / End -->
+                            
+                            <button type="submit" class="button preview pull-right" id="sbt_btn">Submit <i class="fa fa-arrow-circle-right"></i></button>
+                            
+                        </div>
+                        <!-- Section / End -->
+                    </form>
+                    </div>
+                </div>
+<script>
+                $("#state").change(function() {
+                    var stateid= $(this).val(); 
+                    datastr={State_id:stateid};
+                  $.ajax({
+                           url: '/property/fill-city-dd',
+                           type: 'post',
+                           data: datastr,
+                           success: function(response)
+                           {
+                          $("#city").html(response);
+                           }
+                         });
+                });
+                $('#url').on('change',function(){
+                    var loc = $('#url').val(); 
+                    $('#map').html(loc);
+                });
+               
+                $('document').ready(function(){
+                    $('#sbt_btn').on('click',function(e){
+                    e.preventDefault();
+                    var state = $("#state option:selected").val();
+                    var city = $("#city option:selected").val();
+                    var location = $("#street").val();
+                   
+                    if(state==''){
+                        $('.state').html('Select State');
+                        $('.state').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else if(city==''){
+                        $('.city').html('Select City');
+                        $('.city').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else if(location==''){
+                        $('.location').html('Enter Address');
+                        $('.location').delay(2000).fadeOut('slow');
+                        return false;
+                    }
+                    else{
+                    $('#location_update').submit();
+                    }
+                    });
+                    var loc1 = $('#url').val(); 
+                    $('#map').html(loc1);
+                    });
+</script>
+>>>>>>> e81018c575184f0b05cad55c7784f9fc6453e5ef
                 <%- include('user-footer'); %>
