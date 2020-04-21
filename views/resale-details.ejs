@@ -29,21 +29,24 @@
 
 							<div class="col-md-4">
 								<h5>Expected Price <span>*</span></h5>
-								<input type="text" name="expected_price" id="expected_price" placeholder="Expected Price">
+								<input type="text" name="expected_price" id="expected_price" value="<%=obj.resale.expected_price%>" placeholder="Expected Price">
 								<input type="hidden" name="property_id" value="<%=obj.property_id%>">
+								<span class="error expected_price"></span>
 							</div>
 
 							<div class="col-md-4">
 								<h5>Maintinance Cost <span>(optional)</span></h5>
-								<input type="text" name="maintenance_cost" id="maintenance_cost" placeholder="Maintinance Cost">
+								<input type="text" name="maintenance_cost" id="maintenance_cost" value="<%=obj.resale.maintenance_cost%>" placeholder="Maintinance Cost">
 							</div>
 
 							<div class="col-md-4">
 								<h5>No of Lease Year <span>(optional)</span></h5>
 								<select name="lease_years" id="lease_years">
 									<option value="">Select Year</option>
-									<%for(var a=1;a<=10;a++){%>
-									<option value="<%=a%>"><%=a%></option>
+									<%for(var a=1;a<=10;a++){
+									var select = (a==obj.resale.lease_years)?'selected':'';
+									%>
+									<option value="<%=a%>" <%=select%>><%=a%></option>
 									<% } %>
 								</select>
 							</div>
@@ -57,26 +60,33 @@
 
 							<div class="col-md-4">
 								<h5>Availible Form  <span>*</span></h5>
-								<input type="date" name="available_from" id="available_from">
+								<input type="date" value="<%=obj.resale.available_from%>" name="available_from" id="available_from">
+								<span class="error available_from"></span>
 							</div>
 							<div class="col-md-4">
 								<h5>Furnishing <span>*</span></h5>
 								<select name="furnishing_id" id="furnishing_id">
 									<option value="">Select</option>
-									<% for(var a=0;a<obj.furnish.length;a++){ %>
-									<option value="<%=obj.furnish[a].furnishing_id%>"><%=obj.furnish[a].furnishing%></option>
+									<% for(var a=0;a<obj.furnish.length;a++){ 
+									var select = (obj.furnish[a].furnishing_id==obj.resale.furnishing_id)?'selected':'';
+									%>
+									<option value="<%=obj.furnish[a].furnishing_id%>" <%=select%>><%=obj.furnish[a].furnishing%></option>
 									<%  } %>
 								</select>
+								<span class="error furnishing_id"></span>
 							</div>
 
 							<div class="col-md-4">
 								<h5>Parking <span>*</span></h5>
 								<select name="parking_id" id="parking_id">
 									<option>Select Parking</option>
-									<% for(var a=0;a<obj.parking.length;a++){ %>
-										<option value="<%=obj.parking[a].parking_id%>"><%=obj.parking[a].parking%></option>
+									<% for(var a=0;a<obj.parking.length;a++){
+									var select = (obj.parking[a].parking_id==obj.resale.parking_id)?'selected':'';
+									%>
+										<option value="<%=obj.parking[a].parking_id%>" <%=select%>><%=obj.parking[a].parking%></option>
 									<%  } %>
 								</select>
+								<span class="error parking_id"></span>
 							</div>
 							
 
@@ -88,27 +98,32 @@
 						<div class="row with-forms">
 
 							<div class="col-md-4">
-								<h5>Kitchen Type <span>*</span></h5>
+								<h5>Kitchen Type</h5>
 								<select name="kitchen_type_id" id="kitchen_type_id">
 									<option>Select Kitchen Type</option>
-									<% for(var a=0;a<obj.kitchen_type.length;a++){ %>
-										<option value="<%=obj.kitchen_type[a].kitchen_type_id%>"><%=obj.kitchen_type[a].kitchen_type%></option>
+									<% for(var a=0;a<obj.kitchen_type.length;a++){ 
+									var select = (obj.kitchen_type[a].kitchen_type_id==obj.resale.kitchen_type_id)?'selected':'';
+									%>
+										<option value="<%=obj.kitchen_type[a].kitchen_type_id%>" <%=select%>><%=obj.kitchen_type[a].kitchen_type%></option>
 									<%  } %>
 								</select>
 							</div>
-							
+							<%
+							var nigo=(obj.resale.price_negotiable==1)?'checked':'';
+							var lone=(obj.resale.current_loan_status==1)?'checked':'';
+							%>
 							<div class="col-md-4">
-								<h5>Nigotiable<span>*</span></h5>
+								<h5>Nigotiable</h5>
 								<div class="checkboxes in-row margin-bottom-20">
-									<input id="check-a" type="checkbox" name="price_negotiable" value="1">
+									<input id="check-a" type="checkbox" name="price_negotiable" value="1" <%=nigo%>>
 									<label for="check-a">Price Nigotiable</label>
 							    </div>
 							</div>
 							
 							<div class="col-md-4">
-								<h5>Under Loan <span>*</span></h5>
+								<h5>Under Loan</h5>
 								<div class="checkboxes in-row margin-bottom-20">
-									<input id="check-b" type="checkbox" name="current_loan_status" value="1">
+									<input id="check-b" type="checkbox" name="current_loan_status" value="1" <%=lone%>>
 									<label for="check-b">Currently Under Loan</label>
 							    </div>
 							</div>							
@@ -135,7 +150,34 @@
 				$('document').ready(function(){
 				$('#sbt_btn').on('click',function(e){
 				e.preventDefault();
+				var expected_price = $("#expected_price").val();
+				var available_from = $("#available_from").val();
+				var furnishing_id = $("#furnishing_id option:selected").val();
+				var parking_id = $("#parking_id option:selected").val();
+
+				if(expected_price==''){
+                        $('.expected_price').html('Enter expected price');
+                        $('.expected_price').delay(2000).fadeOut('slow');
+                        return false;
+				}
+				else if(available_from ==''){
+					$('.available_from').html('Select Available from date');
+                    $('.available_from').delay(2000).fadeOut('slow');
+                    return false;
+				}
+				else if(furnishing_id==''){
+					$('.furnishing_id').html('Select furnishing type');
+                    $('.furnishing_id').delay(2000).fadeOut('slow');
+                    return false;
+				}
+				else if(parking_id==''){
+					$('.parking_id').html('Select parking type');
+                    $('.parking_id').delay(2000).fadeOut('slow');
+                    return false;
+				}
+				else{	
 				$('#update_resale_details').submit();
+				}
 				});
 				});
 			</script> 

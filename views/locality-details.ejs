@@ -46,6 +46,11 @@
                                     <h5>City <span>*</span></h5>
                                     <select name="city" id="city">
                                         <option value="">Select City</option>
+                                        <%for(var a=0;a<obj.curr_state_city.length;a++){
+                                            var select = (obj.curr_state_city[a].city_id==obj.location_data.location_id)?'selected':'';     
+                                        %>
+                                            <option value="<%=obj.curr_state_city[a].city_id%>" <%=select%>><%=obj.curr_state_city[a].name%></option>
+                                        <% } %>    
                                     </select>
                                     <span class="error city"></span>
                                 </div>
