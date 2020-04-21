@@ -3,7 +3,7 @@
 .dashboard-content{padding:0px 20px;padding-bottom:0;position:relative;z-index:10;height:100%;margin-left:260px}
 
 .dashboard-nav,.dashboard #logo{min-width:260px;max-width:260px}
-.dashboard-nav{position:fixed;min-height:100vh;overflow:hidden}
+.dashboard-nav{position:fixed;min-height:100vh;}
 .dashboard-nav-inner{height:100%;width:277px;overflow-y:scroll;position:relative;display:block;padding:10px 0 25px}
 .messages-container-inner .messages-inbox ul::-webkit-scrollbar{width:17px}
 .dashboard-nav-inner{max-height:900px;width:calc(100% + 17px);overflow-y:scroll;position:relative;display:block;padding:10px 0 25px}

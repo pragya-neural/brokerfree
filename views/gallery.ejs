@@ -26,7 +26,7 @@
 
 						<!-- Dropzone -->
 						<div class="submit-section">
-							<form action="#" class="dropzone" ></form>
+							<form action="/property/update-property-images" class="dropzone" id="update_roperty_image"></form>
 						</div>
 
 					</div>
@@ -36,7 +36,7 @@
 						<!-- Row -->
 						<div class="row with-forms">
 
-							<button type="submit" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
+							<button type="submit" id="sbt_btn" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
 						
 						</div>
 						<!-- Row / End -->
@@ -50,5 +50,13 @@
 					
 
 				</div>
-            </div>
+			</div>
+			<script>
+				$('document').ready(function(){
+				$('#sbt_btn').on('click',function(e){
+				e.preventDefault();
+				$('#update_roperty_image').submit();
+				});
+				});
+			</script> 
             <%- include('user-footer'); %>

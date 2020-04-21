@@ -129,7 +129,7 @@ router.get('/locality-details/:pid', [checkLogin,checkproperty],function(req, re
   var where_country='101';
   where_id = "property_id="+pid;
   curd_module.fatch_single_row_data('*','property_location',where_id,function(location_data){
-  curd_module.all_data_select('sid,name','states',where_country,'sid ASC',function(states){
+  curd_module.all_data_select('state_id,name','states',where_country,'state_id ASC',function(states){
     var obj = {};
     obj.states=states;
     obj.location_data=location_data;
@@ -158,9 +158,9 @@ router.post('/fill-city-dd',checkLogin,function(req, res, next) {
   var state_id = req.body.State_id;
   var where_state="state_id="+state_id;
   var cites='<option value="">Select City</option>';
-  curd_module.all_data_select('ci_id,name','cities',where_state,'ci_id ASC',function(cities){
+  curd_module.all_data_select('city_id,name','cities',where_state,'city_id ASC',function(cities){
   for(var a=0;a<cities.length;a++){
-   cites += "<option value='"+cities[a].ci_id+"'>"+cities[a].name+"</option>";
+   cites += "<option value='"+cities[a].city_id+"'>"+cities[a].name+"</option>";
  }  
  res.send(cites);
   });
@@ -208,6 +208,28 @@ router.post('/update-resale-details',checkLogin,function(req, res, next) {
 
 router.get('/gallery/:pid',[checkLogin,checkproperty],function(req, res, next) {
   res.render('gallery', { title: 'Gallery', sideselection: 'gallery' });
+});
+
+//update property images
+router.post('/update-property-images',checkLogin,function(req, res, next) {
+  console.log(req);
+  var enc_pro_id = req.body.property_id;
+  var data={
+    "expected_price":req.body.expected_price,
+    "maintenance_cost":req.body.maintenance_cost,
+    "lease_years":req.body.lease_years,
+    "available_from":req.body.available_from,
+    "furnishing_id":req.body.furnishing_id,
+    "parking_id":req.body.parking_id,
+    "kitchen_type_id":req.body.kitchen_type_id,
+    "price_negotiable":req.body.price_negotiable,
+    "current_loan_status":req.body.current_loan_status,
+    "description":req.body.description
+    }
+  var where="property_id="+enc_pro_id;
+  curd_module.update_data('resale_rental_details',data,where,function(){
+    res.redirect("/property/gallery/"+enc_pro_id);
+  })
 });
 
 router.get('/nearby-details', function(req, res, next) {

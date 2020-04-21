@@ -7,8 +7,7 @@ router.get('/home', function(req, res, next) {
     res.render('admin/home', { title: 'Nobroker Admin-Panel'});
   });
 
-<<<<<<< HEAD
-=======
+
   router.get('/userreport', function(req, res, next) {
     var where = "active_status is not null";
     curd_module.all_data_select('user_id,user_login,name,email_id,mobile_no,user_type,active_status','users',where,'user_id desc',function(user_detail){
@@ -31,7 +30,7 @@ router.get('/propertyreport', function(req, res, next) {
 
 });
 });
->>>>>>> e81018c575184f0b05cad55c7784f9fc6453e5ef
+
 
 
 module.exports = router;

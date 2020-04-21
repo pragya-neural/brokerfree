@@ -21,7 +21,7 @@ router.get('/',checkLogin, function(req, res, next) {
 });
 
 /* POST register page. */
-router.post('/', function(req, res, next) {
+router.post('/register', function(req, res, next) {
   var today = new Date();
   var encryptedString = md5(req.body.password1);
   var username = req.body.mobileno;
