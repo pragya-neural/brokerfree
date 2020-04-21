@@ -60,7 +60,7 @@
 
 							<div class="col-md-4">
 								<h5>Availible Form  <span>*</span></h5>
-								<input type="date" value="<%=obj.resale.available_from%>" name="available_from" id="available_from">
+								<input type="date" value="<%=(obj.resale.available_from).substring(0,10)%>" name="available_from" id="available_from">
 								<span class="error available_from"></span>
 							</div>
 							<div class="col-md-4">

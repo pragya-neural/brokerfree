@@ -220,24 +220,24 @@ router.get('/gallery/:pid',[checkLogin,checkproperty],function(req, res, next) {
 
 //update property images
 router.post('/update-property-images',checkLogin,function(req, res, next) {
-  console.log(req);
-  var enc_pro_id = req.body.property_id;
-  var data={
-    "expected_price":req.body.expected_price,
-    "maintenance_cost":req.body.maintenance_cost,
-    "lease_years":req.body.lease_years,
-    "available_from":req.body.available_from,
-    "furnishing_id":req.body.furnishing_id,
-    "parking_id":req.body.parking_id,
-    "kitchen_type_id":req.body.kitchen_type_id,
-    "price_negotiable":req.body.price_negotiable,
-    "current_loan_status":req.body.current_loan_status,
-    "description":req.body.description
-    }
-  var where="property_id="+enc_pro_id;
-  curd_module.update_data('resale_rental_details',data,where,function(){
-    res.redirect("/property/gallery/"+enc_pro_id);
-  })
+  console.log(req.files);
+  //var enc_pro_id = req.body.property_id;
+  //var data={
+    //"expected_price":req.body.expected_price,
+    //"maintenance_cost":req.body.maintenance_cost,
+   // "lease_years":req.body.lease_years,
+    //"available_from":req.body.available_from,
+    //"furnishing_id":req.body.furnishing_id,
+   // "parking_id":req.body.parking_id,
+   // "kitchen_type_id":req.body.kitchen_type_id,
+    //"price_negotiable":req.body.price_negotiable,
+   // "current_loan_status":req.body.current_loan_status,
+    //"description":req.body.description
+   // }
+ // var where="property_id="+enc_pro_id;
+ // curd_module.update_data('resale_rental_details',data,where,function(){
+   // res.redirect("/property/gallery/"+enc_pro_id);
+  //})
 });
 
 router.get('/nearby-details', function(req, res, next) {
