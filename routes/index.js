@@ -5,7 +5,7 @@ const { check, validationResult } = require('express-validator');
 var Cryptr  = require('cryptr');
 var md5 = require('md5');
 var connection = require('./connection');
-var Curd_module = require('./Curd_module');
+var crud_module = require('./crud_module');
 var checkLogin = function (req, res, next) {
   if (!req.session.loggedin) {
 		next();
