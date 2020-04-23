@@ -21,8 +21,8 @@ router.get('/home', function(req, res, next) {
 
 router.get('/propertyreport', function(req, res, next) {
   var where = "p.active_status is not null";
-  var from ="property p left join property_type pt on p.property_type_id=pt.property_type_id left join property_purpose pp on p.property_type_id=pp.property_purpose_id left join bhk_type bt on p.bhk_type_id=bt.bhk_type_id";
-  curd_module.all_data_select('property_id,user_id,property_type,property_purpose_name,apartment_name,no_of_unit,bt.bhk_type,p.active_status',from,where,'user_id desc',function(prop_detail){
+  var from ="property p left join property_type pt on p.property_type_id=pt.property_type_id left join property_purpose pp on p.property_type_id=pp.property_purpose_id left join bhk_type bt on p.bhk_type_id=bt.bhk_type_id left join users u on p.user_id=u.user_id";
+  curd_module.all_data_select('property_id,p.user_id,name,DATE_FORMAT(p.creation_date, "%d %M %Y") creation_date,property_type,property_purpose_name,apartment_name,no_of_unit,bt.bhk_type,p.active_status',from,where,'user_id desc',function(prop_detail){
     var obj = {};
     obj.prop_detail = prop_detail;
    
