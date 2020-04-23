@@ -50,6 +50,8 @@
         <table class="table table-striped table-bordered table-hover dataTables-example" >
         <thead>
         <tr>
+            <th>Owner</th>
+            <th>Date</th>
             <th>Property Type</th>
             <th>Purpose</th>
             <th>Apartment Name</th>
@@ -62,6 +64,8 @@
         <%for(var a=0;a<obj.prop_detail.length;a++){%>
                
          <tr class="gradeX" value="<%=obj.prop_detail[a].property_id%>">
+            <td><%=obj.prop_detail[a].name%></td>
+            <td><%=obj.prop_detail[a].creation_date%>
             <td><%=obj.prop_detail[a].property_type%></td>
             <td><%=obj.prop_detail[a].property_purpose_name%>
             </td>
@@ -73,6 +77,8 @@
         <% } %>
         <tfoot>
         <tr>
+            <th>Owner</th>
+            <th>Date</th>
             <th>Property Type</th>
             <th>Purpose</th>
             <th>Apartment Name</th>
