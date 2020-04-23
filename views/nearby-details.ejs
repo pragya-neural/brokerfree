@@ -23,187 +23,27 @@
 						<div class="add-listing-headline">
 							<h3><i class="sl sl-icon-picture"></i>Near By Details</h3>
 						</div>
-						
+						<form action="/property/add-nearby-details" method="post" id="add_nearby_details">
 						<!-- Row -->
+						<%for(var a=0;a<obj.landmark.length;a++){%>
 						<div class="row with-forms">
 							<div class="col-md-3">
 								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-a" type="checkbox" name="check">
-								 <label for="check-a">Police Station</label>
+								 <input id="check-a<%=a%>" type="checkbox" name="landmark" value="<%=obj.landmark[a].landmark_id%>">
+								 <label for="check-a<%=a%>"><%=obj.landmark[a].landmark%></label>
 								</div>
 							</div>
 							
 							<div class="col-md-6">
-							    <select>
-									<option>Select Distance</option>
-									<option> within 1Km</option>
-									<option> within 1-2Km</option>
-									<option> within 2-3Km</option>
-									<option> within 3-4Km</option>
-									<option> within 5Km ></option>
+							    <select name="distances" id="distances<%=a%>">
+									<option value="">Select Distance</option>
+									<% for(var b=0;b<obj.distances.length;b++){ %>
+									<option value="<%=obj.distances[b].landmark_distance_id%>"><%=obj.distances[b].distance_details%></option>
+									<% } %>
 								</select>
 							</div> 
 						</div>
-						<!-- Row / End -->
-						<div class="row with-forms">
-							<div class="col-md-3">
-								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-b" type="checkbox" name="check">
-								 <label for="check-b">Hospital</label>
-								</div>
-							</div>
-							
-							<div class="col-md-6">
-							    <select>
-									<option>Select Distance</option>
-									<option> within 1Km</option>
-									<option> within 1-2Km</option>
-									<option> within 2-3Km</option>
-									<option> within 3-4Km</option>
-									<option> within 5Km ></option>
-								</select>
-							</div> 
-						</div>
-						<!-- Row / End -->
-						<div class="row with-forms">
-							<div class="col-md-3">
-								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-c" type="checkbox" name="check">
-								 <label for="check-c">Metro Station</label>
-								</div>
-							</div>
-							
-							<div class="col-md-6">
-							    <select>
-									<option>Select Distance</option>
-									<option> within 1Km</option>
-									<option> within 1-2Km</option>
-									<option> within 2-3Km</option>
-									<option> within 3-4Km</option>
-									<option> within 5Km ></option>
-								</select>
-							</div> 
-						</div>
-						<!-- Row / End -->
-						<div class="row with-forms">
-							<div class="col-md-3">
-								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-d" type="checkbox" name="check">
-								 <label for="check-d">Shopping Mall</label>
-								</div>
-							</div>
-							
-							<div class="col-md-6">
-							    <select>
-									<option>Select Distance</option>
-									<option> within 1Km</option>
-									<option> within 1-2Km</option>
-									<option> within 2-3Km</option>
-									<option> within 3-4Km</option>
-									<option> within 5Km ></option>
-								</select>
-							</div> 
-						</div>
-						<!-- Row / End -->
-						<div class="row with-forms">
-							<div class="col-md-3">
-								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-e" type="checkbox" name="check">
-								 <label for="check-e">Fire station</label>
-								</div>
-							</div>
-							
-							<div class="col-md-6">
-							    <select>
-									<option>Select Distance</option>
-									<option> within 1Km</option>
-									<option> within 1-2Km</option>
-									<option> within 2-3Km</option>
-									<option> within 3-4Km</option>
-									<option> within 5Km ></option>
-								</select>
-							</div> 
-						</div>
-						<!-- Row / End -->
-						<div class="row with-forms">
-							<div class="col-md-3">
-								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-f" type="checkbox" name="check">
-								 <label for="check-f">Bus Stand</label>
-								</div>
-							</div>
-							
-							<div class="col-md-6">
-							    <select>
-									<option>Select Distance</option>
-									<option> within 1Km</option>
-									<option> within 1-2Km</option>
-									<option> within 2-3Km</option>
-									<option> within 3-4Km</option>
-									<option> within 5Km ></option>
-								</select>
-							</div> 
-						</div>
-						<!-- Row / End -->
-						<div class="row with-forms">
-							<div class="col-md-3">
-								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-g" type="checkbox" name="check">
-								 <label for="check-g">Railway Station</label>
-								</div>
-							</div>
-							
-							<div class="col-md-6">
-							    <select>
-									<option>Select Distance</option>
-									<option> within 1Km</option>
-									<option> within 1-2Km</option>
-									<option> within 2-3Km</option>
-									<option> within 3-4Km</option>
-									<option> within 5Km ></option>
-								</select>
-							</div> 
-						</div>
-						<!-- Row / End -->
-						<div class="row with-forms">
-							<div class="col-md-3">
-								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-h" type="checkbox" name="check">
-								 <label for="check-h"> Airport</label>
-								</div>
-							</div>
-							
-							<div class="col-md-6">
-							    <select>
-									<option>Select Distance</option>
-									<option> within 1Km</option>
-									<option> within 1-2Km</option>
-									<option> within 2-3Km</option>
-									<option> within 3-4Km</option>
-									<option> within 5Km ></option>
-								</select>
-							</div> 
-						</div>
-						<!-- Row / End -->
-						<div class="row with-forms">
-							<div class="col-md-3">
-								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-i" type="checkbox" name="check">
-								 <label for="check-i">Post Office</label>
-								</div>
-							</div>
-							
-							<div class="col-md-6">
-							    <select>
-									<option>Select Distance</option>
-									<option> within 1Km</option>
-									<option> within 1-2Km</option>
-									<option> within 2-3Km</option>
-									<option> within 3-4Km</option>
-									<option> within 5Km ></option>
-								</select>
-							</div> 
-						</div>
+						<% } %>
 						<!-- Row / End -->
 						<div class="row with-forms">
 							<div class="col-md-3">
@@ -218,28 +58,27 @@
 							</div> 
 						</div>
 						<!-- Row / End -->
-						
-
 					</div>
 					<!-- Section / End -->
-
-						
 						<!-- Row -->
 						<div class="row with-forms">
-
-							<button type="submit" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
-						
+							<input type="hidden" name="property_id" value="<%=obj.property_id%>">
+							<button type="submit" class="button preview pull-right" id="sbt_btn">Submit <i class="fa fa-arrow-circle-right"></i></button>					
 						</div>
 						<!-- Row / End -->
-
-						
-
 					</div>
+				</form>
 					<!-- Section / End -->
-
-
-					
-
 				</div>
 			</div>
+			<script>
+				$('document').ready(function(){
+				$('#sbt_btn').on('click',function(e){
+				e.preventDefault();
+					
+				$('#add_nearby_details').submit();
+				
+				});
+				});
+			</script> 
 <%- include('user-footer'); %>

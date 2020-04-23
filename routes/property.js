@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var router = express.Router();
 var app = express();
 var crud_module = require('./crud_module');
@@ -27,6 +28,7 @@ var checkproperty = function (req, res, next) {
 }
 
 app.use(checkLogin);
+app.use(bodyParser.urlencoded({ extended: true }))
 //app.use(checkproperty);
 /* GET property page. */
 router.get('/',checkLogin,function(req, res, next) {
@@ -56,13 +58,13 @@ router.post('/save-property',checkLogin,function(req, res, next) {
     var pro_id={"property_id":id}
     crud_module.data_insert_return_id('property_location',pro_id,function(id){
     crud_module.data_insert_return_id('resale_rental_details',pro_id,function(id){
-    crud_module.data_insert_return_id('property_gallery',pro_id,function(id){
-    crud_module.data_insert_return_id('nearby_details',pro_id,function(id){
+    //crud_module.data_insert_return_id('property_gallery',pro_id,function(id){
+    //crud_module.data_insert_return_id('nearby_details',pro_id,function(id){
     crud_module.data_insert_return_id('basic_amenities',pro_id,function(id){
     res.redirect("/property/property-details/"+enc_pro_id);
   });
-  });
-  });
+  //});
+  //});
 });
 });
 });
@@ -221,27 +223,26 @@ router.get('/gallery/:pid',[checkLogin,checkproperty],function(req, res, next) {
 //update property images
 router.post('/update-property-images',checkLogin,function(req, res, next) {
   console.log(req);
-  //var enc_pro_id = req.body.property_id;
-  //var data={
-    //"expected_price":req.body.expected_price,
-    //"maintenance_cost":req.body.maintenance_cost,
-   // "lease_years":req.body.lease_years,
-    //"available_from":req.body.available_from,
-    //"furnishing_id":req.body.furnishing_id,
-   // "parking_id":req.body.parking_id,
-   // "kitchen_type_id":req.body.kitchen_type_id,
-    //"price_negotiable":req.body.price_negotiable,
-   // "current_loan_status":req.body.current_loan_status,
-    //"description":req.body.description
-   // }
- // var where="property_id="+enc_pro_id;
- // crud_module.update_data('resale_rental_details',data,where,function(){
-   // res.redirect("/property/gallery/"+enc_pro_id);
-  //})
 });
 
-router.get('/nearby-details', function(req, res, next) {
-  res.render('nearby-details', { title: 'Near By Details', sideselection: 'nearby' });
+router.get('/nearby-details/:pid',[checkLogin,checkproperty], function(req, res, next) {
+  var pid = req.params.pid;
+  var where="del_status='active'";
+  crud_module.all_data_select('landmark_id,landmark','landmarks',where,'landmark_id ASC',function(landmark){
+  crud_module.all_data_select('landmark_distance_id,distance_details','landmark_distances',where,'landmark_distance_id ASC',function(distances){
+  var obj={};
+  obj.landmark=landmark;
+  obj.distances=distances;
+  obj.property_id=pid;
+  res.render('nearby-details', { title: 'Near By Details', sideselection: 'nearby' ,obj:obj});
+});
+});
+});
+
+router.post('/add-nearby-details',checkLogin,function(req, res, next) {
+  var enc_pro_id = req.body.property_id;
+  console.log(req.body.landmark);
+  console.log((req.body.distances).filter(function(x) { return x !=''; }));
 });
 
 router.get('/amenities', function(req, res, next) {
