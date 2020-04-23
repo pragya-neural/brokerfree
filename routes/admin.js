@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var app = express();
-var crud_module = require('./crud_module');
+var curd_module = require('./curd_module');
 
 router.get('/home', function(req, res, next) {
     res.render('admin/home', { title: 'Nobroker Admin-Panel'});
@@ -10,7 +10,7 @@ router.get('/home', function(req, res, next) {
 
   router.get('/userreport', function(req, res, next) {
     var where = "active_status is not null";
-    crud_module.all_data_select('user_id,user_login,name,email_id,mobile_no,user_type,active_status','users',where,'user_id desc',function(user_detail){
+    curd_module.all_data_select('user_id,user_login,name,email_id,mobile_no,user_type,active_status','users',where,'user_id desc',function(user_detail){
       var obj = {};
       obj.user_detail = user_detail;
      
