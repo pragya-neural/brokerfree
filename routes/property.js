@@ -217,13 +217,46 @@ router.post('/update-resale-details',checkLogin,function(req, res, next) {
 });
 
 router.get('/gallery/:pid',[checkLogin,checkproperty],function(req, res, next) {
-  res.render('gallery', { title: 'Gallery', sideselection: 'gallery' });
+  var pid = req.params.pid;
+  var obj={};
+  obj.property_id=pid;
+  res.render('gallery', { title: 'Gallery', sideselection: 'gallery',obj:obj });
 });
 
 //update property images
-router.post('/update-property-images',checkLogin,function(req, res, next) {
-  console.log(req);
-});
+router.post('/update-property-images/:pid',checkLogin,function(req, res, next) {
+  var enc_pro_id = req.params.pid;
+  var multiparty = require('multiparty');
+  var form = new multiparty.Form();
+  var fs = require('fs');
+  
+  form.parse(req, function(err, fields, files) {
+    
+     var photoarray =  new Array();
+      var imgArray = files.update_roperty_image;
+      for (var i = 0; i < imgArray.length; i++) {
+          var newPath = './public/uploads/';
+          var singleImg = imgArray[i];
+      var new_file_name = Math.floor((Math.random() * 10000) + 1)+'_'+Date.now()+'_'+singleImg.originalFilename;
+          newPath+= new_file_name;
+          readAndWriteFile(singleImg, newPath);
+      var val = {'upload_date':new Date(),'property_id':enc_pro_id,'image_name':new_file_name};
+      photoarray.push(val) 
+      }
+    crud_module.bulkInsert('property_gallery',photoarray,function(result){
+      res.redirect("/property/nearby-details/"+enc_pro_id);
+    });
+  });
+  
+  function readAndWriteFile(singleImg, newPath) {
+          fs.readFile(singleImg.path , function(err,data) {
+              fs.writeFile(newPath,data, function(err) {
+                  if (err) console.log('ERRRRRR!! :'+err);
+                  //console.log('Fitxer: '+singleImg.originalFilename +' - '+ newPath);
+              })
+          })
+  }
+  });
 
 router.get('/nearby-details/:pid',[checkLogin,checkproperty], function(req, res, next) {
   var pid = req.params.pid;

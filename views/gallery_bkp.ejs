@@ -1,0 +1,62 @@
+<%- include('user-header'); %>
+<%- include('user-sidemenu'); %>
+<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                Property Entry : 45%
+                <div id="progress-bar" style="width:45%;"></div>
+                 
+            </div>
+        </div>
+		<div class="row">
+			<div class="col-lg-12">
+
+				<div id="add-listing">
+
+				<!-- Section -->
+					<div class="add-listing-section margin-top-30">
+
+						<!-- Headline -->
+						<div class="add-listing-headline">
+							<h3><i class="sl sl-icon-picture"></i> Get 100% More Response By adding Photos</h3>
+						</div>
+
+						<!-- Dropzone -->
+						<div class="submit-section">
+							<form action="/property/update-property-images" enctype="multipart/form-data" class="dropzone" id="update_roperty_image" name="update_roperty_image"></form>
+						</div>
+
+					</div>
+					<!-- Section / End -->
+
+						
+						<!-- Row -->
+						<div class="row with-forms">
+
+							<button type="submit" id="sbt_btn" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
+						
+						</div>
+						<!-- Row / End -->
+
+						
+
+					</div>
+					<!-- Section / End -->
+
+
+					
+
+				</div>
+			</div>
+			<script>
+				$('document').ready(function(){
+				$('#sbt_btn').on('click',function(e){
+				e.preventDefault();
+				$('#update_roperty_image').submit();
+				});
+				});
+			</script> 
+            <%- include('user-footer'); %>

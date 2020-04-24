@@ -4,5 +4,6 @@ npm install cryptr
 npm install --save express-validator
 npm install md5
 npm install express-session
+npm install multiparty
 
 initial property status -> incomplete after complete entry status -> 'pending'

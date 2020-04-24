@@ -67,6 +67,16 @@ var conn = require('./connection');
               });
          });  
     }
+
+    function bulkInsert(table, objectArray, cb) {
+        let keys = Object.keys(objectArray[0]);
+        let values = objectArray.map( obj => keys.map( key => obj[key]));
+        let sql = 'INSERT INTO ' + table + ' (' + keys.join(',') + ') VALUES ?';
+        conn.query(sql, [values], function (error, results, fields) {
+          if (error) cb(error);
+          cb(results);
+        });
+      }
 module.exports.data_insert_return_id=data_insert_return_id;
 module.exports.all_data_select=all_data_select;
 module.exports.num_rows=num_rows;
@@ -74,3 +84,4 @@ module.exports.delete_rows=delete_rows;
 module.exports.update_data=update_data;
 module.exports.all_data_select_limit=all_data_select_limit;
 module.exports.fatch_single_row_data=fatch_single_row_data;
+module.exports.bulkInsert=bulkInsert;
