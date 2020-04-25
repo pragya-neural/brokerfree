@@ -231,7 +231,7 @@ router.post('/update-property-images/:pid',checkLogin,function(req, res, next) {
   var fs = require('fs');
   
   form.parse(req, function(err, fields, files) {
-    console.log(files);
+   
      var photoarray =  new Array();
       var imgArray = files.update_property_image;
       if(imgArray[0].originalFilename!==''){
@@ -279,11 +279,31 @@ router.get('/nearby-details/:pid',[checkLogin,checkproperty], function(req, res,
 
 router.post('/add-nearby-details',checkLogin,function(req, res, next) {
   var enc_pro_id = req.body.property_id;
-  console.log(req.body.landmark);
-  console.log((req.body.distances).filter(function(x) { return x !=''; }));
+  if(req.body.other==1){
+    var data={"property_id":enc_pro_id,"any_other_landmark":req.body.other_nearby}
+    crud_module.data_insert_return_id('any_other_landmark',data,function(result){
+
+    });
+  }
+  
+  var landmark = req.body.landmark;
+  var distances = (req.body.distances).filter(function(x) { return x !=''; });
+  var nearby =  new Array();
+  if(landmark.length === distances.length){
+    for(var a=0;a<landmark.length;a++){
+      var val = {'creation_date':new Date(),'property_id':enc_pro_id,'landmark_id':landmark[a],'landmark_distance_id':distances[a]};
+      nearby.push(val) 
+    }
+    crud_module.bulkInsert('nearby_details',nearby,function(result){
+    });
+  }
+  else{
+    res.redirect("/property/nearby-details/"+enc_pro_id);
+  }
+  res.redirect("/property/amenities/"+enc_pro_id);
 });
 
-router.get('/amenities', function(req, res, next) {
+router.get('/amenities/:pid', function(req, res, next) {
   res.render('amenities', { title: 'Basic Amenities', sideselection: 'amenity' });
 });
 

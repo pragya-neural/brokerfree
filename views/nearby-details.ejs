@@ -23,6 +23,7 @@
 						<div class="add-listing-headline">
 							<h3><i class="sl sl-icon-picture"></i>Near By Details</h3>
 						</div>
+						
 						<form action="/property/add-nearby-details" method="post" id="add_nearby_details">
 						<!-- Row -->
 						<%for(var a=0;a<obj.landmark.length;a++){%>
@@ -48,13 +49,13 @@
 						<div class="row with-forms">
 							<div class="col-md-3">
 								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-j" type="checkbox" name="check">
-								 <label for="check-j">Any Land Mark </label>
+								 <input id="other" type="checkbox" name="other" value="1">
+								 <label for="other">Any Land Mark </label>
 								</div>
 							</div>
 							
 							<div class="col-md-6">
-							    <input id="check-k" type="text" name="check">
+							    <input id="check-k" type="text" name="other_nearby">
 							</div> 
 						</div>
 						<!-- Row / End -->
