@@ -20,17 +20,18 @@
 						<div class="add-listing-headline">
 							<h3><i class="fa fa-calendar-check-o"></i> Make House Visit Free By Providing us Your Availablity</h3>
 						</div>
-						
+						<form action="/property/update-schedule" method="post" id="update_schedule">
 						<!-- Row -->
 						<div class="row with-forms">
 							<div class="col-md-6">
 								<h5>Availability <span>*</span></h5>
-								<select>
-									<option>Select Availability</option>
-									<option>Everyday (Monday - Sunday)</option>
-									<option>Weekdays (Monday - Friday)</option>
-									<option>Weekends (Saturday - Sunday)</option>
+								<select name="availability" id="availability">
+									<option value="">Select Availability</option>
+									<% for(var a=0 ;a<obj.schedule.length;a++){ %>
+									<option value="<%=obj.schedule[a].available_schedule_id%>"><%=obj.schedule[a].available_schedule%></option>
+									<% } %>
 								</select>
+								<input type="hidden" name="property_id" value="<%=obj.property_id%>">
 							</div>
 						</div>
 						
@@ -38,22 +39,22 @@
 
 							<div class="col-md-6">
 								<h5>Start Time <span>*</span></h5>
-								<input type="time" name="s_date">
+								<input type="time" name="s_date" id="s_date">
 							</div>
 
 							<div class="col-md-6">
 								<h5>End Time<span>*</span></h5>
-								<input type="time" name="e_date">
+								<input type="time" name="e_date" id="e_date">
 							</div>
 							
 						</div>
 						
 						<div class="row with-forms">
 
-							<a href="propertysaved"><button type="submit" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button></a>
+						<button type="submit" id="sbt_btn" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
 							
 						</div>
-				
+					</form>
 
 					</div>
 					<!-- Section / End -->					
@@ -61,4 +62,12 @@
 					<!-- Section / End -->
 				</div>
 			</div>
+			<script>
+				$('document').ready(function(){
+				$('#sbt_btn').on('click',function(e){
+				e.preventDefault();
+				$('#update_schedule').submit();
+				});
+				});
+			</script> 
 <%- include('user-footer'); %>

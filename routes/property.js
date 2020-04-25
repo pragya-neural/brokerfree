@@ -58,13 +58,13 @@ router.post('/save-property',checkLogin,function(req, res, next) {
     var pro_id={"property_id":id}
     crud_module.data_insert_return_id('property_location',pro_id,function(id){
     crud_module.data_insert_return_id('resale_rental_details',pro_id,function(id){
-    //crud_module.data_insert_return_id('property_gallery',pro_id,function(id){
-    //crud_module.data_insert_return_id('nearby_details',pro_id,function(id){
+    crud_module.data_insert_return_id('meeting_schedule',pro_id,function(id){
+    crud_module.data_insert_return_id('property_certification',pro_id,function(id){
     crud_module.data_insert_return_id('basic_amenities',pro_id,function(id){
     res.redirect("/property/property-details/"+enc_pro_id);
   });
-  //});
-  //});
+  });
+  });
 });
 });
 });
@@ -303,16 +303,91 @@ router.post('/add-nearby-details',checkLogin,function(req, res, next) {
   res.redirect("/property/amenities/"+enc_pro_id);
 });
 
-router.get('/amenities/:pid', function(req, res, next) {
-  res.render('amenities', { title: 'Basic Amenities', sideselection: 'amenity' });
+router.get('/amenities/:pid',[checkLogin,checkproperty],function(req, res, next) {
+  var pid = req.params.pid;
+  var where="1=1";
+  crud_module.all_data_select('*','amenities_head',where,'amenities_head_id asc',function(amenities){
+  crud_module.all_data_select('*','water_supply',where,'water_supply_id asc',function(water){
+  crud_module.all_data_select ('*','who_show_house_options',where,'who_show_house_id ASC',function(whoshow){
+  var obj={};
+  obj.amenities=amenities;
+  obj.property_id=pid;
+  obj.water=water;
+  obj.whoshow=whoshow;
+  res.render('amenities', { title: 'Basic Amenities', sideselection: 'amenity',obj:obj });
+  });
+})
+});  
 });
 
-router.get('/addition-info', function(req, res, next) {
-  res.render('addition-info', { title: 'Additional Information', sideselection: 'additional' });
+//update amenities details
+router.post('/update-amenities',checkLogin,function(req, res, next) {
+  var enc_pro_id = req.body.property_id;
+  var data={
+    "creation_date":new Date(),
+    "total_bathroom":req.body.bathroom,
+    "total_balcony":req.body.balcony,
+    "water_supply_id":req.body.water_supply,
+    "gym_type":req.body.gym,
+    "power_backup":req.body.power,
+    "gated_security":req.body.security,
+    "who_show_house_id":req.body.whoshow,
+    "secondary_no":req.body.sec_number
+    };
+  var eminit=req.body.amenities;
+  var amenities_array = new Array();
+  for(var a=0;a<eminit.length;a++){
+    var value = {'property_id':enc_pro_id,'amenities_head_id':eminit[a]};
+    amenities_array.push(value);
+  }
+  var where="property_id="+enc_pro_id;
+  crud_module.update_data('basic_amenities',data,where,function(){
+  crud_module.delete_rows('other_amenities',where,function(){
+  crud_module.bulkInsert('other_amenities',amenities_array,function(){
+    res.redirect("/property/addition-info/"+enc_pro_id);
+  });
+});
+});
 });
 
-router.get('/schedule', function(req, res, next) {
-  res.render('schedule', { title: 'Time Schedule', sideselection: 'time' });
+router.get('/addition-info/:pid', function(req, res, next) {
+  var pid = req.params.pid;
+  var where="del_status='active'";
+  crud_module.all_data_select('certification_type_id,certification_name','property_certification_type',where,'certification_type_id ASC',function(certification_type){
+  obj={};
+  obj.certification_type=certification_type;
+  obj.property_id=pid;
+  res.render('addition-info', { title: 'Additional Information', sideselection: 'additional',obj:obj });
+});
+});
+
+router.get('/schedule/:pid',[checkLogin,checkproperty], function(req, res, next) {
+  var pid = req.params.pid;
+  var where="1=1";
+  crud_module.all_data_select('available_schedule_id,available_schedule','available_schedule',where,'available_schedule_id ASC',function(schedule){
+  var obj={};
+  obj.schedule=schedule;
+  obj.property_id=pid;
+  res.render('schedule', { title: 'Time Schedule', sideselection: 'time' ,obj:obj });
+});
+});
+
+
+//update schedule details
+router.post('/update-schedule',checkLogin,function(req, res, next) {
+  var enc_pro_id = req.body.property_id;
+  var today = new Date();
+  var data={
+    "creation_date":today,
+    "available_id":req.body.availability,
+    "start_time":req.body.s_date,
+    "end_time":req.body.e_date
+    };
+  
+  var where="property_id="+enc_pro_id;
+  crud_module.update_data('meeting_schedule',data,where,function(){
+    res.redirect("/property");
+});
 });
 
 

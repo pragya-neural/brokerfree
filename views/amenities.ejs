@@ -23,27 +23,28 @@
 						<div class="add-listing-headline">
 							<h3><i class="sl sl-icon-picture"></i> Provide additional details about your property to get maximum visibilty.</h3>
 						</div>
-
+						<form action="/property/update-amenities" method="post" id="update_amenities_details">
 						<!-- Row -->
 						<div class="row with-forms">
 
 							<div class="col-md-4">
 								<h5>Bathroom(s) <span>*</span></h5>
-								<input type="text" placeholder="No of Bathroom">
+								<input type="text" name="bathroom" id="bathroom" placeholder="No of Bathroom">
 							</div>
 
 							<div class="col-md-4">
 								<h5>Balcony <span>(optional)</span></h5>
-								<input type="text" placeholder="No of Balcony">
+								<input type="text" name="balcony" id="balcony" placeholder="No of Balcony">
+								<input type="hidden" name="property_id" value="<%=obj.property_id%>">
 							</div>
 
 							<div class="col-md-4">
 								<h5>Water Supply <span></span></h5>
-								<select name="bhk">
-									<option>Select</option>
-									<option>Corporation</option>
-									<option>Borewell</option>
-									<option>Both</option>
+								<select name="water_supply" id="water_supply">
+									<option value="">Select</option>
+									<% for(var a=0;a<obj.water.length;a++){ %>
+									<option value="<%=obj.water[a].water_supply_id%>"><%=obj.water[a].option_value%></option>
+									<% } %>
 								</select>
 							</div>
 							
@@ -52,28 +53,28 @@
 
 							<div class="col-md-4">
 								<h5>Gym <span>*</span></h5>
-								<select name="bhk">
-									<option>Select</option>
-									<option>Yes</option>
-									<option>No</option>
+								<select name="gym" id="gym">
+									<option value="">Select</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
 								</select>
 							</div>
 
 							<div class="col-md-4">
 								<h5>Power Backup <span>*</span></h5>
-								<select name="bhk">
-									<option>Select</option>
-									<option>Yes</option>
-									<option>No</option>
+								<select  name="power" id="power">
+									<option value="">Select</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
 								</select>
 							</div>
 
 							<div class="col-md-4">
 								<h5>Gated Security <span></span></h5>
-								<select name="bhk">
-									<option>Select</option>
-									<option>Yes</option>
-									<option>No</option>
+								<select  name="security" id="security">
+									<option value="">Select</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
 								</select>
 							</div>
 							
@@ -83,20 +84,17 @@
 
 							<div class="col-md-4">
 								<h5>Who will show the house?<span>*</span></h5>
-								<select name="bhk">
-									<option>Select</option>
-									<option>I will show</option>
-									<option>Need Help</option>
-									<option>Neighbours</option>
-									<option>Others</option>
-									<option>Security</option>
-									<option>Tenants</option>
+								<select name="whoshow" id="whoshow">
+									<option value="">Select</option>
+									<% for(var a=0;a<obj.whoshow.length;a++){ %>
+									<option value="<%=obj.whoshow[a].who_show_house_id%>"><%=obj.whoshow[a].option_value%></option>
+									<% } %>
 								</select>
 							</div>
 
 							<div class="col-md-4">
 								<h5>Secondary Number  <span></span></h5>
-								<input type="text" placeholder="Secondary Number ">
+								<input type="text" name="sec_number" id="sec_number" placeholder="Secondary Number ">
 							</div>
 							
 						</div>
@@ -105,55 +103,27 @@
 							<!-- Checkboxes -->
 						<h5 class="margin-top-30 margin-bottom-10">Select the amenities available<span></span></h5>
 						<div class="checkboxes in-row margin-bottom-20">
-					
-							<input id="check-a" type="checkbox" name="check">
-							<label for="check-a">Lift</label>
-
-							<input id="check-b" type="checkbox" name="check">
-							<label for="check-b">Internet Service</label>
-
-							<input id="check-c" type="checkbox" name="check">
-							<label for="check-c">Air Conditioner</label>
-
-							<input id="check-d" type="checkbox" name="check">
-							<label for="check-d">Club House</label>
-
-							<input id="check-e" type="checkbox" name="check" >
-							<label for="check-e">Children's Play Area</label>
-
-							<input id="check-f" type="checkbox" name="check" >
-							<label for="check-f">Servant Room</label>
-
-							<input id="check-g" type="checkbox" name="check">
-							<label for="check-g">Gas Pipeline</label>	
-
-							<input id="check-h" type="checkbox" name="check">
-							<label for="check-h">Rain Water Harvesting</label>
-							
-							<input id="check-i" type="checkbox" name="check">
-							<label for="check-i">House Keeping</label>
-							
-							<input id="check-j" type="checkbox" name="check">
-							<label for="check-j">Non-Veg Allowed</label>
-							
-							<input id="check-k" type="checkbox" name="check">
-							<label for="check-k">Sewage Treatment Plant</label>
-					
+							<%for(var a=0;a<obj.amenities.length;a++){%>
+							<input id="check<%=a%>" type="checkbox" name="amenities" value="<%=obj.amenities[a].amenities_head_id%>">
+							<label for="check<%=a%>"><%=obj.amenities[a].amenities_head%></label>
+							<% } %>
 						</div>
 						<!-- Checkboxes / End -->
-							
-							<button type="submit" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
-						
+							<button type="submit" id="sbt_btn" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
 					</div>
 					<!-- Section / End -->
-
+					</form>
 					</div>
 					<!-- Section / End -->
-
-
-					
-
 				</div>
 			</div>
+			<script>
+				$('document').ready(function(){
+				$('#sbt_btn').on('click',function(e){
+				e.preventDefault();
+				$('#update_amenities_details').submit();
+				});
+				});
+			</script> 
 
 <%- include('user-footer'); %>
