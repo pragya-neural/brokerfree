@@ -231,9 +231,10 @@ router.post('/update-property-images/:pid',checkLogin,function(req, res, next) {
   var fs = require('fs');
   
   form.parse(req, function(err, fields, files) {
-    
+    console.log(files);
      var photoarray =  new Array();
-      var imgArray = files.update_roperty_image;
+      var imgArray = files.update_property_image;
+      if(imgArray[0].originalFilename!==''){
       for (var i = 0; i < imgArray.length; i++) {
           var newPath = './public/uploads/';
           var singleImg = imgArray[i];
@@ -246,6 +247,10 @@ router.post('/update-property-images/:pid',checkLogin,function(req, res, next) {
     crud_module.bulkInsert('property_gallery',photoarray,function(result){
       res.redirect("/property/nearby-details/"+enc_pro_id);
     });
+    }
+    else{
+      res.redirect("/property/nearby-details/"+enc_pro_id); 
+    }
   });
   
   function readAndWriteFile(singleImg, newPath) {

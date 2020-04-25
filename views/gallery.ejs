@@ -26,8 +26,8 @@
 
 						<!-- Dropzone -->
 						<div class="submit-section">
-							<form action="/property/update-property-images/<%=obj.property_id%>" enctype="multipart/form-data" id="update_roperty_image" method="post">
-							<input type="file"  name="update_roperty_image" multiple>
+							<form action="/property/update-property-images/<%=obj.property_id%>" enctype="multipart/form-data" id="update_property_image" method="post">
+							<input type="file"  name="update_property_image" multiple accept=".jpeg,.png,.jpg,.pdf">
 							
 						</div>
 
@@ -57,7 +57,7 @@
 				$('document').ready(function(){
 				$('#sbt_btn').on('click',function(e){
 				e.preventDefault();
-				$('#update_roperty_image').submit();
+				$('#update_property_image').submit();
 				});
 				});
 			</script> 
