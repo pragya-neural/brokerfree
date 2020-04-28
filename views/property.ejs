@@ -7,53 +7,25 @@
 			<!-- Listings -->
 			<div class="col-lg-12 col-md-12">
 				<div class="dashboard-list-box margin-top-30">
-					<h4>You Have already Posted 2 Property on Nobrokerr</h4>
+					<h4>You Have already Posted <%=obj.incomplete_property.length%> Property on Nobrokerr</h4>
 					<ul>
+					<%for(var a=0;a<obj.incomplete_property.length;a++){ %>
 					<div class="col-md-6 propety">
 						<li>
 							<div class="list-box-listing">
-								<div class="list-box-listing-img"><a href="#"><img src="../images/property1.jpg" alt=""></a></div>
+								<div class="list-box-listing-img"><a href="/property/property-details/<%=obj.incomplete_property[a].property_id%>"><img style="height:122px;" src="uploads/<%= obj.incomplete_property[a].image_name ? obj.incomplete_property[a].image_name : 'property1.jpg' %>" alt=""></a></div>
 								<div class="list-box-listing-content">
 									<div class="inner">
-										<h3>2 BHK For Rent In Arunoday Chs, Arunoday CHS</h3>
-										<span>10, Chakala Rd, Tarun Bharat Society, Andheri East</span><br>
-										<button class="button pull-left"><i class="fa fa-pencil"></i>Edit</button>
-										<button class="button gray pull-right">Mark Rented Out </button>
+										<h3><%=obj.incomplete_property[a].bhk_type%> For <%=obj.incomplete_property[a].property_purpose_name%> In <%=obj.incomplete_property[a].city%></h3>
+										<span><%=obj.incomplete_property[a].street%></span><br>
+										<a href="/property/property-details/<%=obj.incomplete_property[a].property_id%>"><button class="button pull-left"><i class="fa fa-pencil"></i>Edit</button></a>
+										<!--<button class="button gray pull-right">Mark Rented Out </button>-->
 									</div>
 								</div>
 							</div>
 						</li>
 					</div>
-					<div class="col-md-6 propety">
-						<li>
-							<div class="list-box-listing">
-								<div class="list-box-listing-img"><a href="#"><img src="../images/property1.jpg" alt=""></a></div>
-								<div class="list-box-listing-content">
-									<div class="inner">
-										<h3>2 BHK For Rent In Arunoday Chs, Arunoday CHS</h3>
-										<span>10, Chakala Rd, Tarun Bharat Society, Andheri East</span><br>
-										<button class="button pull-left"><i class="fa fa-pencil"></i>Edit</button>
-										<button class="button grey pull-right">Request Activation </button>
-									</div>
-								</div>
-							</div>
-						</li>
-					</div>
-					<div class="col-md-6 propety">
-						<li>
-							<div class="list-box-listing">
-								<div class="list-box-listing-img"><a href="#"><img src="../images/property1.jpg" alt=""></a></div>
-								<div class="list-box-listing-content">
-									<div class="inner">
-										<h3>2 BHK For Rent In Arunoday Chs, Arunoday CHS</h3>
-										<span>10, Chakala Rd, Tarun Bharat Society, Andheri East</span><br>
-										<button class="button pull-left"><i class="fa fa-pencil"></i>Edit</button>
-										<button class="button grey pull-right">Request Activation </button>
-									</div>
-								</div>
-							</div>
-						</li>
-					</div>
+					<% } %>
 					</ul>
 					
 					<hr class="line_property">

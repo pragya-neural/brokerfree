@@ -34,18 +34,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 /* GET property page. */
 router.get('/',checkLogin,function(req, res, next) {
   var where = "active_status='active'";
-  //property_functions.get_incomplete_property(req,res,function(incomplete_property){
+  property_functions.get_incomplete_property(req,res,function(incomplete_property){
   crud_module.all_data_select('property_type_id,property_type','property_type',where,'property_type_id desc',function(pro_type){
   crud_module.all_data_select('property_purpose_id,property_purpose_name','property_purpose',where,'property_purpose_id desc',function(purpose){
     var obj = {};
     obj.purpose = purpose;
     obj.pro_type = pro_type;
-    //obj.incomplete_property=incomplete_property;
-    //console.log(incomplete_property);
+    obj.incomplete_property=incomplete_property;
     res.render('property', { title: 'Property Entry', sideselection: 'property',obj:obj });
   });
  });
-//});
+});
 });
 //save property
 router.post('/save-property',checkLogin,function(req, res, next) {
