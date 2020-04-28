@@ -1,0 +1,72 @@
+<%- include('user-header'); %>
+<%- include('user-sidemenu'); %>
+	
+<style>
+.dashboard-list-box ul li:last-child {
+	border:none;
+	margin:0px;}
+</style>	
+	<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+		<!--<div id="titlebar margin-top-40">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Residential Plan </h2> 
+					<nav id="breadcrumbs">
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li>Dashboard</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>-->
+		<div class="row">
+			
+			<!-- Listings -->
+			<div class="col-lg-12 col-md-12">
+				<div class="dashboard-list-box margin-top-30">
+					<h4>My Existing Plan</h4>
+					<ul>
+						<li class="pending-booking">
+							<div class="list-box-listing bookings">
+								<div class="list-box-listing-content">
+									<div class="inner">
+										<h3>Tenant Plan<span class="booking-status pending">Activate Plan</span><span class="booking-status unpaid">Paid</span></h3>
+
+										<div class="inner-booking-list">
+											<h5>Plan Booking Date:</h5>
+											<ul class="booking-list">
+												<li class="highlighted">19-03-2020</li>
+											</ul>
+										</div><br>
+										
+										<div class="inner-booking-list">
+											<h5>Plan Price:</h5>
+											<ul class="booking-list">
+												<li class="highlighted"><i class="fa fa-inr"></i> 999</li>
+											</ul>
+										</div><br>
+													
+										<div class="inner-booking-list">
+											<h5>Plan Details:</h5>
+											<ul class="booking-list">
+												<li class="highlighted">Premium Filters <i class="fa fa-check"></i></li>
+												<li class="highlighted">Number of Contacts <span>Upto 25</span></li>
+												<li class="highlighted">Instant Property Alerts <i class="fa fa-check"></i></li>
+												<li class="highlighted">Locality Experts <i class="fa fa-times"></i></li>
+												<li class="highlighted">Rent Negotiation <i class="fa fa-times"></i></li>
+											</ul>
+										</div>		
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+	
+	
+
+<%- include('user-footer'); %>
