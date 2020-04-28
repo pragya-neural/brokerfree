@@ -28,12 +28,21 @@
 						<div class="submit-section">
 							<form action="/property/update-property-images/<%=obj.property_id%>" enctype="multipart/form-data" id="update_property_image" method="post">
 							<input type="file"  name="update_property_image" multiple accept=".jpeg,.png,.jpg,.pdf">
-							
 						</div>
-
+						
 					</div>
 					<!-- Section / End -->
-
+					<div class="col-md-12 propety">
+						<ul style="display: inline-flex;">
+						<% for(var a=0;a<obj.images.length;a++){ %>
+						<li style="margin-right: 20px;">
+							<div class="list-box-listing">
+								<div class="list-box-listing-img"><img style="height:122px;" src="/uploads/<%=obj.images[a].image_name%>" alt=""></div>
+							</div>
+						</li>
+						<% } %>
+						</ul>
+					</div>
 						
 						<!-- Row -->
 						<div class="row with-forms">

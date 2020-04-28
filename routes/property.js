@@ -219,10 +219,14 @@ router.post('/update-resale-details',checkLogin,function(req, res, next) {
 
 router.get('/gallery/:pid',[checkLogin,checkproperty],function(req, res, next) {
   var pid = req.params.pid;
+  where_id = "property_id="+pid;
+  crud_module.all_data_select('image_name,property_gallery_id','property_gallery',where_id,'property_gallery_id ASC',function(images){
   var obj={};
+  obj.images=images;
   obj.property_id=pid;
   res.render('gallery', { title: 'Gallery', sideselection: 'gallery',obj:obj });
 });
+})
 
 //update property images
 router.post('/update-property-images/:pid',checkLogin,function(req, res, next) {
@@ -366,7 +370,7 @@ router.get('/addition-info/:pid', function(req, res, next) {
 router.post('/add_additional_info',function(req, res, next) {
   var enc_pro_id = req.body.property_id;
   console.log(req.body);
-  res.redirect("/schedule/"+enc_pro_id);
+  res.redirect("/property/schedule/"+enc_pro_id);
 });
 
 router.get('/schedule/:pid',[checkLogin,checkproperty], function(req, res, next) {
@@ -380,7 +384,6 @@ router.get('/schedule/:pid',[checkLogin,checkproperty], function(req, res, next)
 });
 });
 
-
 //update schedule details
 router.post('/update-schedule',checkLogin,function(req, res, next) {
   var enc_pro_id = req.body.property_id;
@@ -391,13 +394,23 @@ router.post('/update-schedule',checkLogin,function(req, res, next) {
     "start_time":req.body.s_date,
     "end_time":req.body.e_date
     };
-  
+  var complete ={
+    "active_status":"complete"
+  };
   var where="property_id="+enc_pro_id;
   crud_module.update_data('meeting_schedule',data,where,function(){
-    res.redirect("/property");
+  crud_module.update_data('property',complete,where,function(){
+    res.redirect("/property/propertysaved/"+enc_pro_id);
+});
 });
 });
 
+router.get('/propertysaved/:pid',[checkLogin,checkproperty], function(req, res, next) {
+  var pid = req.params.pid;
+  var obj={};
+  obj.property_id=pid;
+  res.render('propertysaved', { title: 'propertysaved', sideselection: 'time' ,obj:obj });
+});
 
 
 

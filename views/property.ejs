@@ -16,10 +16,10 @@
 								<div class="list-box-listing-img"><a href="/property/property-details/<%=obj.incomplete_property[a].property_id%>"><img style="height:122px;" src="uploads/<%= obj.incomplete_property[a].image_name ? obj.incomplete_property[a].image_name : 'property1.jpg' %>" alt=""></a></div>
 								<div class="list-box-listing-content">
 									<div class="inner">
-										<h3><%=obj.incomplete_property[a].bhk_type%> For <%=obj.incomplete_property[a].property_purpose_name%> In <%=obj.incomplete_property[a].city%></h3>
-										<span><%=obj.incomplete_property[a].street%></span><br>
+										<h3><%=obj.incomplete_property[a].property_type%> property <%=obj.incomplete_property[a].bhk_type%> for <%=obj.incomplete_property[a].property_purpose_name%></h3>
+										<span><%=obj.incomplete_property[a].street%>,<%=obj.incomplete_property[a].city%>,<%=obj.incomplete_property[a].state%></span><br>
 										<a href="/property/property-details/<%=obj.incomplete_property[a].property_id%>"><button class="button pull-left"><i class="fa fa-pencil"></i>Edit</button></a>
-										<!--<button class="button gray pull-right">Mark Rented Out </button>-->
+										<button class="button gray pull-right">Request Activation </button>
 									</div>
 								</div>
 							</div>
