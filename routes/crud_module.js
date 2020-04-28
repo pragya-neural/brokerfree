@@ -76,7 +76,14 @@ var conn = require('./connection');
           if (error) cb(error);
           cb(results);
         });
-      }
+    }
+
+    function execute_query(query_str,cb){
+        conn.query(query_str, function (err, results, fields) { 
+            if (err) throw err;
+              cb(results);
+         });  
+    }
 module.exports.data_insert_return_id=data_insert_return_id;
 module.exports.all_data_select=all_data_select;
 module.exports.num_rows=num_rows;
@@ -85,3 +92,4 @@ module.exports.update_data=update_data;
 module.exports.all_data_select_limit=all_data_select_limit;
 module.exports.fatch_single_row_data=fatch_single_row_data;
 module.exports.bulkInsert=bulkInsert;
+module.exports.execute_query=execute_query;

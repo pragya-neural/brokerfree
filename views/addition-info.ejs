@@ -23,66 +23,39 @@
 						<div class="add-listing-headline">
 							<h3><i class="im im-icon-Blueprint"></i>Additional Information (optional)</h3>
 						</div>
-
+						<form action="/property/add_additional_info" method="POST" id="add_info">
 						<!-- Row -->
 						<div class="row with-forms">
-
+							<% for(var a=0;a<obj.certification_type.length;a++){ %>
 							<!-- Phone -->
 							<div class="col-md-6">
-								<h5>Do you Have Deed Sale Certificate? <span>*</span></h5>
-								<select name="certificate">
-									<option>Select Certificate</option>
-									<option>Agra</option>
-									<option>Delhi</option>
-									<option>Kanpur</option>
-									<option>Lucknow</option>
-								</select>
-								<input type="hidden" name="property_id" value="<%=obj.property_id%>">
-							</div>
-							<!-- Website -->
-							<div class="col-md-6">
-								<h5>Have you Paid Property Tax? <span>*</span></h5>
-								<select name="certificate">
-									<option>Select Property Tax</option>
-									<option>Agra</option>
-									<option>Delhi</option>
-									<option>Kanpur</option>
-									<option>Lucknow</option>
+								<h5><%=obj.certification_type[a].certification_name%></h5>
+								<select name="<%=obj.certification_type[a].certification_type_id%>">
+									<option value="">Select Certificate</option>
+									<option value="yes">Yes</option>
+									<option value="dont know">Dont know</option>
 								</select>
 							</div>
-
-							
-
+							<% } %>
+							<input type="hidden" name="property_id" value="<%=obj.property_id%>">
 						</div>
-						<!-- Row / End -->
-						
-						<!-- Row -->
 						<div class="row with-forms">
 
-							<!-- Email Address -->
-							<div class="col-md-6">
-								<h5>Do you Have Occupancy Certificate? <span>*</span></h5>
-								<select name="bhk">
-									<option>Select Certificate</option>
-									<option>1 BHK</option>
-									<option>2 BHK</option>
-									<option>3 BHK</option>
-									<option>4 BHK</option>
-								</select>
+							<button type="submit" id="sbt_btn" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
+								
 							</div>
-							<button type="submit" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
-
-						</div>
 						<!-- Row / End -->
-						
-						
-						
 					</div>
+				</form>
 					<!-- Section / End -->
-
-
-					
-
 				</div>
 			</div>
+			<script>
+				$('document').ready(function(){
+				$('#sbt_btn').on('click',function(e){
+				e.preventDefault();
+				$('#add_info').submit();
+				});
+				});
+			</script> 
 <%- include('user-footer'); %>

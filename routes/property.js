@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 var app = express();
 var crud_module = require('./crud_module');
+var property_functions = require('./functions/property_functions');
 var checkLogin = function (req, res, next) {
   if (req.session.loggedin==true) {
 	  res.locals.username = req.session.username;
@@ -33,15 +34,18 @@ app.use(bodyParser.urlencoded({ extended: true }))
 /* GET property page. */
 router.get('/',checkLogin,function(req, res, next) {
   var where = "active_status='active'";
+  //property_functions.get_incomplete_property(req,res,function(incomplete_property){
   crud_module.all_data_select('property_type_id,property_type','property_type',where,'property_type_id desc',function(pro_type){
-  var where = "active_status='active'";
   crud_module.all_data_select('property_purpose_id,property_purpose_name','property_purpose',where,'property_purpose_id desc',function(purpose){
     var obj = {};
     obj.purpose = purpose;
     obj.pro_type = pro_type;
+    //obj.incomplete_property=incomplete_property;
+    //console.log(incomplete_property);
     res.render('property', { title: 'Property Entry', sideselection: 'property',obj:obj });
   });
  });
+//});
 });
 //save property
 router.post('/save-property',checkLogin,function(req, res, next) {
@@ -59,10 +63,8 @@ router.post('/save-property',checkLogin,function(req, res, next) {
     crud_module.data_insert_return_id('property_location',pro_id,function(id){
     crud_module.data_insert_return_id('resale_rental_details',pro_id,function(id){
     crud_module.data_insert_return_id('meeting_schedule',pro_id,function(id){
-    crud_module.data_insert_return_id('property_certification',pro_id,function(id){
     crud_module.data_insert_return_id('basic_amenities',pro_id,function(id){
     res.redirect("/property/property-details/"+enc_pro_id);
-  });
   });
   });
 });
@@ -352,13 +354,20 @@ router.post('/update-amenities',checkLogin,function(req, res, next) {
 
 router.get('/addition-info/:pid', function(req, res, next) {
   var pid = req.params.pid;
-  var where="del_status='active'";
+  var where="active_status='active'";
   crud_module.all_data_select('certification_type_id,certification_name','property_certification_type',where,'certification_type_id ASC',function(certification_type){
   obj={};
   obj.certification_type=certification_type;
   obj.property_id=pid;
   res.render('addition-info', { title: 'Additional Information', sideselection: 'additional',obj:obj });
 });
+});
+
+//update schedule details
+router.post('/add_additional_info',function(req, res, next) {
+  var enc_pro_id = req.body.property_id;
+  console.log(req.body);
+  res.redirect("/schedule/"+enc_pro_id);
 });
 
 router.get('/schedule/:pid',[checkLogin,checkproperty], function(req, res, next) {
