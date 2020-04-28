@@ -1,4 +1,14 @@
 <!-- sidebar start -->
+<% var propmn='inactive';var resimn='inactive';var commmn='inactive';
+if(sideselection=='property' || sideselection=='property_detail'|| sideselection=='locality' || sideselection=='resale' || sideselection=='gallery' || sideselection=='nearby' || sideselection=='amenity' || sideselection=='additional' || sideselection=='time')
+      {propmn='active';}
+
+if(sideselection=='residential-buyer' || sideselection=='residential-seller'|| sideselection=='residential-owner' || sideselection=='residential-tenant' || sideselection=='existing-residential-plan' )
+      {resimn='active';}
+
+if(sideselection=='commercial-seller' || sideselection=='commercial-owner'|| sideselection=='commercial-tenant' || sideselection=='existing-commercial-plan' || sideselection=='commercial-buyer' )
+      {commmn='active';}%> 
+
 <div id="dashboard">
     <!-- Navigation
         ================================================== -->
@@ -7,28 +17,62 @@
     
         <div class="dashboard-nav">
             <div class="dashboard-nav-inner">
+                
                 <ul data-submenu-title="Main">
-                   <li><a href="dashboard"><i class="im im-icon-Home"></i> Dashboard</a></li>
-                   <li><a href="my-profile"><i class="im im-icon-Business-Man"></i> My Profile</a></li>
-                   <li><a href="my-property"><i class="im im-icon-Chinese-Temple"></i> My Properties</a></li>
+                    <% var sidemn=sideselection;
+                             if( sideselection!='dashboard' ){ 
+                                 sidemn='inactive'; 
+                                 
+                                }else{
+                                 sidemn='active';
+                                 
+                                }%>
+                    <li class="<%= sidemn %>">
+                       
+                                    <a href="dashboard"><i class="im im-icon-Home"></i> Dashboard</a></li>
+                    <% var sidemn=sideselection;
+                                    if( sideselection!='my-profile' ){ 
+                                        sidemn='inactive';
+                                        
+                                       }else{
+                                        sidemn='active'; 
+                                        
+                                       }%>
+                           <li class="<%= sidemn %>">
+                                    <a href="my-profile"><i class="im im-icon-Business-Man"></i> My Profile</a></li>
+                    <% var sidemn=sideselection;
+                                    if( sideselection!='my-properties' ){ 
+                                        sidemn='inactive';
+                                        
+                                       }else{
+                                        sidemn='active'; 
+                                        
+                                       }%>
+                           <li class="<%= sidemn %>">
+                                    <a href="my-property"><i class="im im-icon-Chinese-Temple"></i> My Properties</a></li>
                 </ul>
                 
                 <ul data-submenu-title="Property Entry">
-                    <li class="active"><a><i class="im im-icon-Home-2"></i>Post Property</a>
+                    <li class="<%= propmn %>"><a><i class="im im-icon-Home-2"></i>Post Property</a>
                         <ul data-submenu-title="Property Entry">
                             <% var sidemn=sideselection;
                              if( sideselection!='property' ){ 
-                                 sidemn='inactive'; 
+                                 sidemn='inactive';
+                                  
                                 }else{
-                                 sidemn='active'; 
+                                 sidemn='active';
+                                 
                                 }%>
                                 <li class="<%= sidemn %>">
+                                    
                                     <a href="/property"><i class="im im-icon-Home"></i>Enter Property</a></li>
                                     <% var sidemn=sideselection;
                                     if( sideselection!='property_detail' ){ 
                                         sidemn='inactive'; 
+                                        
                                        }else{
                                         sidemn='active'; 
+                                       
                                        }%>
                                        <li class="<%= sidemn %>">
                                            <a href="./property/property-details"><i class="im im-icon-Home"></i>Property Details</a></li>
@@ -36,56 +80,70 @@
                                <% var sidemn=sideselection;
                                if( sideselection!='locality' ){ 
                                    sidemn='inactive'; 
+                                   
                                }else{
                                    sidemn='active'; 
+                                   
                                }%>
                             <li class="<%= sidemn %>">
                                 <a href="locality-details"><i class="im im-icon-Location-2"></i> Locality Details</a></li>
                                 <% var sidemn=sideselection;
                                 if( sideselection!='resale' ){ 
-                                    sidemn='inactive'; 
+                                    sidemn='inactive';
+                                   
                                 }else{
                                     sidemn='active'; 
+                                    
                                 }%>
                              <li class="<%= sidemn %>">
                                 <a href="resale-details"><i class="im im-icon-Rotation-390"></i> Rental Details</a></li>
                                 <% var sidemn=sideselection;
                                 if( sideselection!='gallery' ){ 
-                                    sidemn='inactive'; 
+                                    sidemn='inactive';
+                                    
                                 }else{
                                     sidemn='active'; 
+                                   
                                 }%>
                              <li class="<%= sidemn %>">
                                 <a href="gallery"><i class="im im-icon-Photos"></i> Gallery</a></li>
                                 <% var sidemn=sideselection;
                                 if( sideselection!='nearby' ){ 
-                                    sidemn='inactive'; 
+                                    sidemn='inactive';
+                                   
                                 }else{
                                     sidemn='active'; 
+                                   
                                 }%>
                              <li class="<%= sidemn %>">
                                 <a href="nearby-details"><i class="im im-icon-Location-2"></i> Near by Details</a></li>
                                 <% var sidemn=sideselection;
                                 if( sideselection!='amenity' ){ 
-                                    sidemn='inactive'; 
+                                    sidemn='inactive';
+                                    
                                 }else{
-                                    sidemn='active'; 
+                                    sidemn='active';
+                                    
                                 }%>
                              <li class="<%= sidemn %>">
                                 <a href="amenities"><i class="im im-icon-Photos"></i> Amenities</a></li>
                                 <% var sidemn=sideselection;
                                 if( sideselection!='additional' ){ 
                                     sidemn='inactive'; 
+                                    
                                 }else{
-                                    sidemn='active'; 
+                                    sidemn='active';
+                                    
                                 }%>
                              <li class="<%= sidemn %>">
                                 <a href="addition-info"><i class="im im-icon-Newspaper"></i> Additional Information</a></li>
                                 <% var sidemn=sideselection;
                                 if( sideselection!='time' ){ 
                                     sidemn='inactive'; 
+                                    
                                 }else{
-                                    sidemn='active'; 
+                                    sidemn='active';
+                                    
                                 }%>
                              <li class="<%= sidemn %>">
                                 <a href="schedule"><i class="fa fa-calendar"></i> Schedule </a></li>
@@ -95,22 +153,104 @@
                 </ul>
                 
                 <ul data-submenu-title="Plans">
-                   <li><a><i class="im im-icon-Haunted-House"></i> Residential Plans</a>
+                   <li class="<%= resimn %>"><a><i class="im im-icon-Haunted-House"></i> Residential Plans</a>
+                   
                         <ul>
-                            <li><a href="existing-residential-plan">My Existing Plans</a></li>
-                            <li><a href="residential-tenant"> Tenants Plans</a></li>
-                            <li><a href="residential-owner"> Owners Plan</a></li>
-                            <li><a href="residential-seller"> Seller Plans</a></li>
-                            <li><a href="residential-buyer"> Buyers Plan</a></li>
+                            <% var sidemn=sideselection;
+                                if( sideselection!='existing-residential-plan' ){ 
+                                    sidemn='inactive'; 
+                                   
+                                }else{
+                                    sidemn='active';
+                                    
+                                }%>
+                                <li class="<%= sidemn %>">
+                                    <a href="existing-residential-plan">My Existing Plans</a></li>
+                                    <% var sidemn=sideselection;
+                                    if( sideselection!='residential-tenant' ){ 
+                                        sidemn='inactive'; 
+                                        
+                                    }else{
+                                        sidemn='active';
+                                        
+                                    }%>
+                                    <li class="<%= sidemn %>"><a href="residential-tenant"> Tenants Plans</a></li>
+                                    <% var sidemn=sideselection;
+                                    if( sideselection!='residential-owner' ){ 
+                                        sidemn='inactive'; 
+                                        
+                                    }else{
+                                        sidemn='active';
+                                       
+                                    }%>
+                                    <li class="<%= sidemn %>"><a href="residential-owner"> Owners Plan</a></li>
+                                    <% var sidemn=sideselection;
+                                    if( sideselection!='residential-buyer' ){ 
+                                        sidemn='inactive'; 
+                                        
+                                    }else{
+                                        sidemn='active'; 
+                                        
+                                    }%>
+                                    <li class="<%= sidemn %>"><a href="residential-seller"> Seller Plans</a></li>
+                                    <% var sidemn=sideselection;
+                                    if( sideselection!='residential-buyer' ){ 
+                                        sidemn='inactive'; 
+                                        
+                                    }else{
+                                        sidemn='active';
+                                         
+                                    }%>
+                                    <li class="<%= sidemn %>"><a href="residential-buyer"> Buyers Plan</a></li>
                         </ul>
                    </li>
-                   <li><a><i class="im im-icon-Embassy"></i> Commercial Plans</a>
+                   <li class="<%= commmn %>"><a><i class="im im-icon-Embassy"></i> Commercial Plans</a>
                         <ul>
-                            <li><a href="existing-commercial-plan">My Existing Plans</a></li>
-                            <li><a href="commercial-tenant"> Tenants Plans</a></li>
-                            <li><a href="commercial-owner"> Owners Plan</a></li>
-                            <li><a href="commercial-seller"> Seller Plans</a></li>
-                            <li><a href="commercial-buyer"> Buyers Plan</a></li>
+                            <% var sidemn=sideselection;
+                                if( sideselection!='existing-commercial-plan' ){ 
+                                    sidemn='inactive'; 
+                                    
+                                }else{
+                                    sidemn='active';
+                                    
+                                }%>
+                                <li class="<%= sidemn %>"><a href="existing-commercial-plan">My Existing Plans</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='commercial-tenant' ){ 
+                                    sidemn='inactive'; 
+                                    
+                                }else{
+                                    sidemn='active'; 
+                                    
+                                }%>
+                                <li class="<%= sidemn %>"><a href="commercial-tenant"> Tenants Plans</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='commercial-owner' ){ 
+                                    sidemn='inactive'; 
+                                    
+                                }else{
+                                    sidemn='active'; 
+                                    
+                                }%>
+                                <li class="<%= sidemn %>"><a href="commercial-owner"> Owners Plan</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='commercial-seller' ){ 
+                                    sidemn='inactive'; 
+                                    
+                                }else{
+                                    sidemn='active'; 
+                                    
+                                }%>
+                                <li class="<%= sidemn %>"><a href="commercial-seller"> Seller Plans</a></li>
+                                <% var sidemn=sideselection;
+                                if( sideselection!='commercial-buyer' ){ 
+                                    sidemn='inactive'; 
+                                    
+                                }else{
+                                    sidemn='active'; 
+                                   
+                                }%>
+                                <li class="<%= sidemn %>"><a href="commercial-buyer"> Buyers Plan</a></li>
                         </ul>
                         
                    </li>
