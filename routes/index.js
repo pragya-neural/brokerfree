@@ -168,4 +168,61 @@ router.post('/post-property',[
 router.get('/verification', function(req, res, next) {
   res.render('verification', { title:'Post Property' ,exits:''});
 });
+
+router.get('/propertysaved', function(req, res, next) {
+	res.render('propertysaved', { title:'Post Property ', sideselection: 'property'});
+  });
+
+router.get('/dashboard', function(req, res, next) {
+	res.render('dashboard', { title:'Post Property ', sideselection: 'dashboard'});
+  });
+
+router.get('/my-profile', function(req, res, next) {
+	res.render('my-profile', { title:'Post Property ', sideselection: 'my-profile'});
+  });
+
+router.get('/my-property', function(req, res, next) {
+	res.render('my-property', { title:'Post Property ', sideselection: 'my-properties'});
+  });
+
+router.get('/existing-residential-plan', function(req, res, next) {
+	res.render('existing-residential-plan', { title:'Post Property ', sideselection: 'existing-residential-plan'});
+  });
+
+router.get('/residential-tenant', function(req, res, next) {
+	res.render('residential-tenant', { title:'Post Property ', sideselection: 'residential-tenant'});
+  });
+
+router.get('/residential-owner', function(req, res, next) {
+	res.render('residential-owner', { title:'Post Property ', sideselection: 'residential-owner'});
+  });
+
+router.get('/residential-seller', function(req, res, next) {
+	res.render('residential-seller', { title:'Post Property ', sideselection: 'residential-seller'});
+  });
+
+router.get('/residential-buyer', function(req, res, next) {
+	res.render('residential-buyer', { title:'Post Property ', sideselection: 'residential-buyer'});
+  });
+
+router.get('/existing-commercial-plan', function(req, res, next) {
+	res.render('existing-commercial-plan', { title:'Post Property ', sideselection: 'existing-commercial-plan'});
+  });
+
+router.get('/commercial-tenant', function(req, res, next) {
+	res.render('commercial-tenant', { title:'Post Property ', sideselection: 'commercial-tenant'});
+  });
+
+router.get('/commercial-owner', function(req, res, next) {
+	res.render('commercial-owner', { title:'Post Property ', sideselection: 'commercial-owner'});
+  });
+
+router.get('/commercial-seller', function(req, res, next) {
+	res.render('commercial-seller', { title:'Post Property ', sideselection: 'commercial-seller'});
+  });
+
+router.get('/commercial-buyer', function(req, res, next) {
+	res.render('commercial-buyer', { title:'Post Property ', sideselection: 'commercial-buyer'});
+  });
+
 module.exports = router;
