@@ -107,6 +107,7 @@ router.get('/tenant-plan', function(req, res, next) {
 	res.render('buyer-plan', { title:'Post Property '});
   });
   
+  
   router.get('/search', function(req, res, next) {
 	res.render('search', { title:'Search Property '});
   });
