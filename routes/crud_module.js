@@ -18,6 +18,7 @@ var conn = require('./connection');
 
     function  fatch_single_row_data(field,tbl_name,where,cb){
         var query='select '+field+' from '+tbl_name+' where '+where+'';
+    
         conn.query(query, function (err, results, fields) { 
             if (err) throw err;
             Object.keys(results).forEach(function(key) {

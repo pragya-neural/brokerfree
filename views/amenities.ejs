@@ -29,12 +29,12 @@
 
 							<div class="col-md-4">
 								<h5>Bathroom(s) <span>*</span></h5>
-								<input type="text" name="bathroom" id="bathroom" placeholder="No of Bathroom">
+								<input type="text" name="bathroom" id="bathroom" placeholder="No of Bathroom" value="<%=obj.all_amenities.total_bathroom%>">
 							</div>
 
 							<div class="col-md-4">
 								<h5>Balcony <span>(optional)</span></h5>
-								<input type="text" name="balcony" id="balcony" placeholder="No of Balcony">
+								<input type="text" name="balcony" id="balcony" placeholder="No of Balcony" value="<%=obj.all_amenities.total_balcony%>">
 								<input type="hidden" name="property_id" value="<%=obj.property_id%>">
 							</div>
 
@@ -42,8 +42,10 @@
 								<h5>Water Supply <span></span></h5>
 								<select name="water_supply" id="water_supply">
 									<option value="">Select</option>
-									<% for(var a=0;a<obj.water.length;a++){ %>
-									<option value="<%=obj.water[a].water_supply_id%>"><%=obj.water[a].option_value%></option>
+									<% for(var a=0;a<obj.water.length;a++){
+									var selected=(obj.water[a].water_supply_id==obj.all_amenities.water_supply_id)?"selected":"";
+									%>
+									<option value="<%=obj.water[a].water_supply_id%>" <%=selected%>><%=obj.water[a].option_value%></option>
 									<% } %>
 								</select>
 							</div>
@@ -55,8 +57,8 @@
 								<h5>Gym <span>*</span></h5>
 								<select name="gym" id="gym">
 									<option value="">Select</option>
-									<option value="1">Yes</option>
-									<option value="0">No</option>
+									<option value="1" <% if(obj.all_amenities.gym_type==1){ %> selected <% } %>>Yes</option>
+									<option value="0" <% if(obj.all_amenities.gym_type==0){ %> selected <% } %>>No</option>
 								</select>
 							</div>
 
@@ -64,8 +66,8 @@
 								<h5>Power Backup <span>*</span></h5>
 								<select  name="power" id="power">
 									<option value="">Select</option>
-									<option value="1">Yes</option>
-									<option value="0">No</option>
+									<option value="1" <% if(obj.all_amenities.power_backup==1){ %> selected <% } %>>Yes</option>
+									<option value="0" <% if(obj.all_amenities.power_backup==0){ %> selected <% } %>>No</option>
 								</select>
 							</div>
 
@@ -73,38 +75,46 @@
 								<h5>Gated Security <span></span></h5>
 								<select  name="security" id="security">
 									<option value="">Select</option>
-									<option value="1">Yes</option>
-									<option value="0">No</option>
+									<option value="1" <% if(obj.all_amenities.gated_security==1){ %> selected <% } %>>Yes</option>
+									<option value="0" <% if(obj.all_amenities.gated_security==0){ %> selected <% } %>>No</option>
 								</select>
 							</div>
 							
 						</div>
 						
 						<div class="row with-forms">
-
 							<div class="col-md-4">
 								<h5>Who will show the house?<span>*</span></h5>
 								<select name="whoshow" id="whoshow">
 									<option value="">Select</option>
-									<% for(var a=0;a<obj.whoshow.length;a++){ %>
-									<option value="<%=obj.whoshow[a].who_show_house_id%>"><%=obj.whoshow[a].option_value%></option>
+									<% for(var a=0;a<obj.whoshow.length;a++){ 
+									var selected=(obj.whoshow[a].who_show_house_id==obj.all_amenities.who_show_house_id)?"selected":"";
+									%>
+									<option value="<%=obj.whoshow[a].who_show_house_id%>" <%=selected%>><%=obj.whoshow[a].option_value%></option>
 									<% } %>
 								</select>
 							</div>
 
 							<div class="col-md-4">
 								<h5>Secondary Number  <span></span></h5>
-								<input type="text" name="sec_number" id="sec_number" placeholder="Secondary Number ">
+								<input type="text" name="sec_number" id="sec_number" placeholder="Secondary Number" value="<%=obj.all_amenities.secondary_no%>">
 							</div>
 							
 						</div>
 						<!-- Row / End -->
-						
+						<%=obj.other_ami%>
 							<!-- Checkboxes -->
 						<h5 class="margin-top-30 margin-bottom-10">Select the amenities available<span></span></h5>
 						<div class="checkboxes in-row margin-bottom-20">
-							<%for(var a=0;a<obj.amenities.length;a++){%>
-							<input id="check<%=a%>" type="checkbox" name="amenities" value="<%=obj.amenities[a].amenities_head_id%>">
+							<%for(var a=0;a<obj.amenities.length;a++){
+							if(obj.other_ami.indexOf(obj.amenities[a].amenities_head_id) != -1){
+							var chk ="checked";	
+							}
+							else{
+								var chk ="";		
+							}
+							%>
+							<input id="check<%=a%>" type="checkbox" <%=chk%> name="amenities" value="<%=obj.amenities[a].amenities_head_id%>">
 							<label for="check<%=a%>"><%=obj.amenities[a].amenities_head%></label>
 							<% } %>
 						</div>

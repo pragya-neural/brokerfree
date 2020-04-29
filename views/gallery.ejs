@@ -29,7 +29,7 @@
 							<form action="/property/update-property-images/<%=obj.property_id%>" enctype="multipart/form-data" id="update_property_image" method="post">
 							<input type="file"  name="update_property_image" multiple accept=".jpeg,.png,.jpg,.pdf">
 						</div>
-						
+						<button type="submit" id="sbt_btn" class="button preview pull-right">Upload</button>
 					</div>
 					<!-- Section / End -->
 					<div class="col-md-12 propety">
@@ -46,8 +46,8 @@
 						
 						<!-- Row -->
 						<div class="row with-forms">
-
-							<button type="submit" id="sbt_btn" class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></button>
+							
+							<a href="/property/nearby-details/<%=obj.property_id%>"  class="button preview pull-right">Submit <i class="fa fa-arrow-circle-right"></i></a>
 						
 						</div>
 						<!-- Row / End -->

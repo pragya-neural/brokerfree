@@ -250,11 +250,11 @@ router.post('/update-property-images/:pid',checkLogin,function(req, res, next) {
       photoarray.push(val) 
       }
     crud_module.bulkInsert('property_gallery',photoarray,function(result){
-      res.redirect("/property/nearby-details/"+enc_pro_id);
+      res.redirect("/property/gallery/"+enc_pro_id);
     });
     }
     else{
-      res.redirect("/property/nearby-details/"+enc_pro_id); 
+      res.redirect("/property/gallery/"+enc_pro_id); 
     }
   });
   
@@ -271,24 +271,33 @@ router.post('/update-property-images/:pid',checkLogin,function(req, res, next) {
 router.get('/nearby-details/:pid',[checkLogin,checkproperty], function(req, res, next) {
   var pid = req.params.pid;
   var where="del_status='active'";
+  var where_id = "property_id="+pid;
+  crud_module.all_data_select('landmark_id,landmark_distance_id','nearby_details',where_id,'nearby_details_id ASC',function(neraby){
+  crud_module.all_data_select('any_other_landmark','any_other_landmark',where_id,'any_other_landmark_id ASC',function(other_nearby){ 
   crud_module.all_data_select('landmark_id,landmark','landmarks',where,'landmark_id ASC',function(landmark){
   crud_module.all_data_select('landmark_distance_id,distance_details','landmark_distances',where,'landmark_distance_id ASC',function(distances){
   var obj={};
   obj.landmark=landmark;
   obj.distances=distances;
+  obj.other_nearby=other_nearby;
+  obj.neraby=neraby;
   obj.property_id=pid;
   res.render('nearby-details', { title: 'Near By Details', sideselection: 'nearby' ,obj:obj});
 });
 });
 });
+});
+})
 
 router.post('/add-nearby-details',checkLogin,function(req, res, next) {
   var enc_pro_id = req.body.property_id;
+  var where = "property_id="+enc_pro_id;
   if(req.body.other==1){
-    var data={"property_id":enc_pro_id,"any_other_landmark":req.body.other_nearby}
+    var data={"property_id":enc_pro_id,"any_other_landmark":req.body.other_nearby};
+    crud_module.delete_rows('any_other_landmark',where,function(){
     crud_module.data_insert_return_id('any_other_landmark',data,function(result){
-
     });
+  });
   }
   
   var landmark = req.body.landmark;
@@ -299,8 +308,10 @@ router.post('/add-nearby-details',checkLogin,function(req, res, next) {
       var val = {'creation_date':new Date(),'property_id':enc_pro_id,'landmark_id':landmark[a],'landmark_distance_id':distances[a]};
       nearby.push(val) 
     }
+    crud_module.delete_rows('nearby_details',where,function(){
     crud_module.bulkInsert('nearby_details',nearby,function(result){
     });
+  });
   }
   else{
     res.redirect("/property/nearby-details/"+enc_pro_id);
@@ -310,7 +321,10 @@ router.post('/add-nearby-details',checkLogin,function(req, res, next) {
 
 router.get('/amenities/:pid',[checkLogin,checkproperty],function(req, res, next) {
   var pid = req.params.pid;
+  var where_id = "property_id="+pid;
   var where="1=1";
+  crud_module.fatch_single_row_data('*','basic_amenities',where_id,function(all_amenities){
+  crud_module.all_data_select('amenities_head_id','other_amenities',where_id,'other_amenities_id ASC',function(other_ami){
   crud_module.all_data_select('*','amenities_head',where,'amenities_head_id asc',function(amenities){
   crud_module.all_data_select('*','water_supply',where,'water_supply_id asc',function(water){
   crud_module.all_data_select ('*','who_show_house_options',where,'who_show_house_id ASC',function(whoshow){
@@ -319,10 +333,14 @@ router.get('/amenities/:pid',[checkLogin,checkproperty],function(req, res, next)
   obj.property_id=pid;
   obj.water=water;
   obj.whoshow=whoshow;
+  obj.all_amenities=all_amenities;
+  obj.other_ami=other_ami;
   res.render('amenities', { title: 'Basic Amenities', sideselection: 'amenity',obj:obj });
   });
 })
 });  
+});
+});
 });
 
 //update amenities details
