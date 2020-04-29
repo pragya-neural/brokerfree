@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
     host:'localhost',
     user:'root',
     password:'',
-    database:'brokerfree'
+    database:'nobrokarr_live'
 });
 
 connection.connect(function(err){
