@@ -110,50 +110,45 @@
 
 				<!--Tabs -->
 				<div class="sign-in-form style-1">
-
 					<ul class="tabs-nav">
 						<li class=""><a href="#tab1">Log In</a></li>
 						<li><a href="#tab2">Register</a></li>
 					</ul>
-
 					<div class="tabs-container alt">
-
 						<!-- Login -->
 						<div class="tab-content" id="tab1" style="display: none;">
-							<form method="post" class="" action="/auth">
-
+							<form method="post" id="login_tab" action="/auth">
 								<p class="form-row form-row-wide">
-									<label for="mobileno2">mobileno:
+									<label for="mobileno2">Mobileno:
 										<i class="im im-icon-Male"></i>
 										<input type="text" class="input-text" name="mobileno2" id="mobileno2" value="" />
 									</label>
 								</p>
-
+								<span class="login_username" style="color: black;"></span>
 								<p class="form-row form-row-wide">
 									<label for="password">Password:
 										<i class="im im-icon-Lock-2"></i>
 										<input class="input-text" type="password" name="password" id="password"/>
 									</label>
-									<span class="lost_password">
+									<span class="login_password" style="color: black;"></span>
+									<span class="lost_password" style="float: right;">
 										<a href="lost-password" >Lost Your Password?</a>
 									</span>
 								</p>
-
 								<div class="form-row">
-									<input type="submit" class="button border margin-top-5" name="login" value="Login" />
-									<div class="checkboxes margin-top-10">
+									<button type="submit" id="login" class="button border margin-top-5">Login</button>
+									<!--<div class="checkboxes margin-top-10">
 										<input id="remember-me" type="checkbox" name="check">
 										<label for="remember-me">Remember Me</label>
-									</div>
+									</div>-->
 								</div>
-								
 							</form>
 						</div>
 
 						<!-- Register -->
 						<div class="tab-content" id="tab2" style="display: none;">
 
-							<form method="post" class="register" action="/register">
+							<form method="post" class="register" action="/register" id="register">
 								
 							<p class="form-row form-row-wide">
 								<label for="username2">Name:
@@ -161,37 +156,37 @@
 									<input type="text" class="input-text" name="username" id="username2" value="" />
 								</label>
 							</p>
-								
+							<span class="reg_username" style="color: black;"></span>	
 							<p class="form-row form-row-wide">
 								<label for="email2">Email Address:
 									<i class="im im-icon-Mail"></i>
 									<input type="text" class="input-text" name="email2" id="email2" value="" />
 								</label>
 							</p>
-
+							<span class="reg_email" style="color: black;"></span>
 							<p class="form-row form-row-wide">
 								<label for="mobileno">Mobile No:
 									<i class="im im-icon-Mail"></i>
 									<input type="text" class="input-text" name="mobileno" id="mobileno" value="" />
 								</label>
 							</p>
-
+							<span class="reg_mob" style="color: black;"></span>
 							<p class="form-row form-row-wide">
 								<label for="password1">Password:
 									<i class="im im-icon-Lock-2"></i>
 									<input class="input-text" type="password" name="password1" id="password1"/>
 								</label>
 							</p>
-
+							<span class="reg_password" style="color: black;"></span>
 							<p class="form-row form-row-wide">
 								<label for="password2">Repeat Password:
 									<i class="im im-icon-Lock-2"></i>
 									<input class="input-text" type="password" name="password2" id="password2"/>
 								</label>
 							</p>
-
-							<input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
-	
+							<span class="reg_cpassword" style="color: black;"></span>
+							<span class="reg_ecpassword" style="color: black;"></span>
+							<button type="submit" id="reg_btn" class="button border fw margin-top-10">Register</button>
 							</form>
 						</div>
 

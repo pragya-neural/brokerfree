@@ -13,11 +13,41 @@ var checkLogin = function (req, res, next) {
 		res.redirect("/property");
 	}
 }
+//check email address
+var checkemail = function (req, res, next) {
+  var email = req.body.USEREMAIL;
+  var where = "email_id='"+email+"'";
+  crud_module.num_rows('users',where,function(tcount){
+    if(tcount==0){
+      next(); 
+    }
+    else{
+      res.send('email_error');
+    }
+  });
+}
+//check mobile
+var checkmobile = function (req, res, next) {
+  var mob = req.body.mobile;
+  var where = "user_login='"+mob+"'";
+  crud_module.num_rows('users',where,function(tcount){
+    if(tcount==0){
+      next(); 
+    }
+    else{
+      res.send('mob_error');
+    }
+  });
+}
 
 app.use(checkLogin);
 /* GET home page. */
 router.get('/',checkLogin, function(req, res, next) {
   res.render('index', { title: 'Nobrokerr' });
+});
+// check email address
+router.post('/email-ajax-check',[checkemail,checkmobile],function(req, res, next) {
+  res.send('success');
 });
 
 /* POST register page. */
@@ -58,11 +88,14 @@ router.post('/auth', function(request, response) {
 				request.session.username = username;
 				request.session.uid = results[0].user_id;
 				request.session.name = results[0].name;
-				response.redirect('/property');
+        //response.redirect('/property');
+        response.send('login');
+        response.end();
 			} else {
-				response.send('Incorrect Username and/or Password!');
+        response.send('Incorrect Username and/or Password!');
+        response.end();
 			}			
-			response.end();
+			
 		});
 	} else {
 		response.send('Please enter Username and Password!');

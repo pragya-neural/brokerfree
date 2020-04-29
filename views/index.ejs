@@ -111,50 +111,45 @@
 
 				<!--Tabs -->
 				<div class="sign-in-form style-1">
-
 					<ul class="tabs-nav">
 						<li class=""><a href="#tab1">Log In</a></li>
 						<li><a href="#tab2">Register</a></li>
 					</ul>
-
 					<div class="tabs-container alt">
-
 						<!-- Login -->
 						<div class="tab-content" id="tab1" style="display: none;">
-							<form method="post" class="" action="/auth">
-
+							<form method="post" id="login_tab" action="/auth">
 								<p class="form-row form-row-wide">
-									<label for="mobileno2">mobileno:
+									<label for="mobileno2">Mobileno:
 										<i class="im im-icon-Male"></i>
 										<input type="text" class="input-text" name="mobileno2" id="mobileno2" value="" />
 									</label>
 								</p>
-
+								<span class="login_username" style="color: black;"></span>
 								<p class="form-row form-row-wide">
 									<label for="password">Password:
 										<i class="im im-icon-Lock-2"></i>
 										<input class="input-text" type="password" name="password" id="password"/>
 									</label>
-									<span class="lost_password">
+									<span class="login_password" style="color: black;"></span>
+									<span class="lost_password" style="float: right;">
 										<a href="lost-password" >Lost Your Password?</a>
 									</span>
 								</p>
-
 								<div class="form-row">
-									<input type="submit" class="button border margin-top-5" name="login" value="Login" />
-									<div class="checkboxes margin-top-10">
+									<button type="submit" id="login" class="button border margin-top-5">Login</button>
+									<!--<div class="checkboxes margin-top-10">
 										<input id="remember-me" type="checkbox" name="check">
 										<label for="remember-me">Remember Me</label>
-									</div>
+									</div>-->
 								</div>
-								
 							</form>
 						</div>
 
 						<!-- Register -->
 						<div class="tab-content" id="tab2" style="display: none;">
 
-							<form method="post" class="register" action="/register">
+							<form method="post" class="register" action="/register" id="register">
 								
 							<p class="form-row form-row-wide">
 								<label for="username2">Name:
@@ -162,37 +157,37 @@
 									<input type="text" class="input-text" name="username" id="username2" value="" />
 								</label>
 							</p>
-								
+							<span class="reg_username" style="color: black;"></span>	
 							<p class="form-row form-row-wide">
 								<label for="email2">Email Address:
 									<i class="im im-icon-Mail"></i>
 									<input type="text" class="input-text" name="email2" id="email2" value="" />
 								</label>
 							</p>
-
+							<span class="reg_email" style="color: black;"></span>
 							<p class="form-row form-row-wide">
 								<label for="mobileno">Mobile No:
 									<i class="im im-icon-Mail"></i>
 									<input type="text" class="input-text" name="mobileno" id="mobileno" value="" />
 								</label>
 							</p>
-
+							<span class="reg_mob" style="color: black;"></span>
 							<p class="form-row form-row-wide">
 								<label for="password1">Password:
 									<i class="im im-icon-Lock-2"></i>
 									<input class="input-text" type="password" name="password1" id="password1"/>
 								</label>
 							</p>
-
+							<span class="reg_password" style="color: black;"></span>
 							<p class="form-row form-row-wide">
 								<label for="password2">Repeat Password:
 									<i class="im im-icon-Lock-2"></i>
 									<input class="input-text" type="password" name="password2" id="password2"/>
 								</label>
 							</p>
-
-							<input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
-	
+							<span class="reg_cpassword" style="color: black;"></span>
+							<span class="reg_ecpassword" style="color: black;"></span>
+							<button type="submit" id="reg_btn" class="button border fw margin-top-10">Register</button>
 							</form>
 						</div>
 
@@ -293,8 +288,6 @@
 
 	</div>
 </div>
-
-
 <!-- Content
 ================================================== -->
 <div class="container">
@@ -356,10 +349,6 @@
 	</div>
 </div>
 <!-- Category Boxes / End -->
-
-
-
-
 <!-- Fullwidth Section -->
 <section class="fullwidth margin-top-65 padding-top-75 padding-bottom-70" data-background-color="#f8f8f8">
 
@@ -410,7 +399,6 @@
 
 </section>
 <!-- Fullwidth Section / End -->
-
 <section class="fullwidth padding-top-75 padding-bottom-30" data-background-color="#fff">
 	<!-- Info Section -->
 	<div class="container">
@@ -469,9 +457,6 @@
 	<!-- Categories Carousel / End -->
 
 </section>
-
-
-
 <!-- Info Section -->
 <section class="fullwidth padding-top-75 padding-bottom-70" data-background-color="#f9f9f9">
 <div class="container">
@@ -490,11 +475,7 @@
 </div>
 </section>
 <!-- Info Section / End -->
-
-
 <!-- Recent Blog Posts --><!-- Recent Blog Posts / End -->
-
-
 <!-- Footer
 ================================================== -->
 <div id="footer" class="sticky-footer">
@@ -557,16 +538,10 @@
 
 </div>
 <!-- Footer / End -->
-
-
 <!-- Back To Top Button -->
 <div id="backtotop"><a href="#"></a></div>
-
-
 </div>
 <!-- Wrapper / End -->
-
-
 <!-- Scripts
 ================================================== -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="scripts/jquery-3.4.1.min.js"></script>
@@ -594,8 +569,6 @@
 <!-- Leaflet Geocoder + Search Autocomplete // Docs: https://github.com/perliedman/leaflet-control-geocoder -->
 <script src="scripts/leaflet-autocomplete.js"></script>
 <script src="scripts/leaflet-control-geocoder.js"></script>
-
-
 <!-- Typed Script -->
 <script type="text/javascript" src="scripts/typed.js"></script>
 <script>
@@ -608,7 +581,135 @@ strings: ["Lease","Sell"," Rent"],
 	loop: true,
 	showCursor: true
 });
+</script>
+<script>
+	$('document').ready(function(){
+		$('#login').on('click',function(e){
+			e.preventDefault();
+			var username = $('#mobileno2').val();
+			var password = $('#password').val();
 
+			if(username==''){
+			$('#mobileno2').focus();
+			$('.login_username').delay(2000).fadeOut('slow');
+			$('.login_username').html('Enter Mobile Number');
+			return false;
+			}
+			else if(password==''){
+			$('#password').focus();
+			$('.login_password').delay(2000).fadeOut('slow');
+			$('.login_password').html('Enter Password')	;
+			return false;
+			}
+			else{
+				var datastr={mobileno2:username,password:password};
+				jQuery.ajax({
+					url: '/auth',
+					type: 'post',
+					data: datastr,
+					success: function(data){
+					if(data === 'login'){
+						setTimeout(function () {
+						url = "/property";
+						$(location).attr("href", url)
+						}, 500);
+					}
+					else{
+					//$('.login_password').delay(3000).hide('slow');
+					$('.login_password').html('Incorrect Username and/or Password!')	;	
+					}		
+					}  
+				});
+			}
+		});
+
+		$('#reg_btn').on('click',function(e){
+			e.preventDefault();
+			var name = $('#username2').val();
+			var email = $('#email2').val();
+			var mobile = $('#mobileno').val();
+			var password = $('#password1').val();
+			var cpassword = $('#password2').val();
+
+			if(name==''){
+			$('#username2').focus();
+			$('.reg_username').delay(2000).fadeOut('slow');
+			$('.reg_username').html('Enter your name');
+			return false;
+			}
+			else if(email==''){
+			$('#email2').focus();
+			$('.reg_email').delay(2000).fadeOut('slow');
+			$('.reg_email').html('Enter email address')	;
+			return false;
+			}
+			else if(mobile==''){
+			$('#mobileno').focus();
+			$('.reg_mob').delay(2000).fadeOut('slow');
+			$('.reg_mob').html('Enter Mobile Number')	;
+			return false;
+			}
+			else if(password==''){
+			$('#password1').focus();
+			$('.reg_password').delay(2000).fadeOut('slow');
+			$('.reg_password').html('Enter Password')	;
+			return false;
+			}
+			else if(cpassword==''){
+			$('#password2').focus();
+			$('.reg_cpassword').delay(2000).fadeOut('slow');
+			$('.reg_cpassword').html('Enter Confirm Password')	;
+			return false;
+			}
+			else if(password !== cpassword){
+			$('#password2').focus();
+			$('#password2').val('');
+			$('.reg_ecpassword').delay(2000).fadeOut('slow');
+			$('.reg_epassword').text('Both Password should be same');
+			return false;
+			}
+			else{
+				var email=$('#email2').val();
+    			var u_email=email.trim();
+				var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+				if (filter.test(u_email)) {
+					var datastr={USEREMAIL:u_email,mobile:mobile};
+					jQuery.ajax({
+						url: '/email-ajax-check',
+              			type: 'post',
+						data: datastr,
+						success: function(responce){
+						if(responce=='email_error'){
+							$('#email2').focus();
+							$('.reg_email').delay(2000).fadeOut('slow');
+							$('.reg_email').html('Email id is already exist');
+							$('#email2').val('');
+							return false;
+						}
+						else if(responce=='mob_error'){
+							$('#mobileno').focus();
+							$('.reg_mob').delay(2000).fadeOut('slow');
+							$('.reg_mob').html('Mobile Number is already exist');
+							$('#mobileno').val('');
+							return false;
+						}
+						else{
+						$('#register').submit();	
+						}
+						}  	
+					});
+				}
+				else{
+				$('#email2').focus();
+				$('.reg_email').delay(2000).fadeOut('slow');
+				$('.reg_email').html('Enter email address')	;
+				$('#email2').val()	;
+				return false;
+				}
+				
+			}
+		});
+	});
 </script>
 </body>
 </html>

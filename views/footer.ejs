@@ -71,100 +71,6 @@
 </div>
 <!-- Wrapper / End -->
 
-<!-- Sign In Popup -->
-			<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-
-				<div class="small-dialog-header">
-					<h3>Sign In</h3>
-				</div>
-
-				<!--Tabs -->
-				<div class="sign-in-form style-1">
-
-					<ul class="tabs-nav">
-						<li class=""><a href="#tab1">Log In</a></li>
-						<li><a href="#tab2">Register</a></li>
-					</ul>
-
-					<div class="tabs-container alt">
-
-						<!-- Login -->
-						<div class="tab-content" id="tab1" style="display: none;">
-							<form method="post" class="login">
-
-								<p class="form-row form-row-wide">
-									<label for="username">Username:
-										<i class="im im-icon-Male"></i>
-										<input type="text" class="input-text" name="username" id="username" value="" />
-									</label>
-								</p>
-
-								<p class="form-row form-row-wide">
-									<label for="password">Password:
-										<i class="im im-icon-Lock-2"></i>
-										<input class="input-text" type="password" name="password" id="password"/>
-									</label>
-									<span class="lost_password">
-										<a href="#" >Lost Your Password?</a>
-									</span>
-								</p>
-
-								<div class="form-row">
-									<a href="login-dashboard.php"><input type="button" class="button border margin-top-5" name="login" value="Login" /></a>
-									<div class="checkboxes margin-top-10">
-										<input id="remember-me" type="checkbox" name="check">
-										<label for="remember-me">Remember Me</label>
-									</div>
-								</div>
-								
-							</form>
-						</div>
-
-						<!-- Register -->
-						<div class="tab-content" id="tab2" style="display: none;">
-
-							<form method="post" class="register">
-								
-							<p class="form-row form-row-wide">
-								<label for="username2">Username:
-									<i class="im im-icon-Male"></i>
-									<input type="text" class="input-text" name="username" id="username2" value="" />
-								</label>
-							</p>
-								
-							<p class="form-row form-row-wide">
-								<label for="email2">Email Address:
-									<i class="im im-icon-Mail"></i>
-									<input type="text" class="input-text" name="email" id="email2" value="" />
-								</label>
-							</p>
-
-							<p class="form-row form-row-wide">
-								<label for="password1">Password:
-									<i class="im im-icon-Lock-2"></i>
-									<input class="input-text" type="password" name="password1" id="password1"/>
-								</label>
-							</p>
-
-							<p class="form-row form-row-wide">
-								<label for="password2">Repeat Password:
-									<i class="im im-icon-Lock-2"></i>
-									<input class="input-text" type="password" name="password2" id="password2"/>
-								</label>
-							</p>
-
-							<input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
-	
-							</form>
-						</div>
-
-					</div>
-				</div>
-			</div>
-			<!-- Sign In Popup / End -->
-
-
-
 <!-- Scripts
 ================================================== -->
 </script><script type="text/javascript" src="scripts/jquery-3.4.1.min.js"></script>
@@ -179,8 +85,134 @@
 <script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
 <script type="text/javascript" src="scripts/tooltips.min.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
+<script>
+	$('document').ready(function(){
+		$('#login').on('click',function(e){
+			e.preventDefault();
+			var username = $('#mobileno2').val();
+			var password = $('#password').val();
 
+			if(username==''){
+			$('#mobileno2').focus();
+			$('.login_username').delay(2000).fadeOut('slow');
+			$('.login_username').html('Enter Mobile Number');
+			return false;
+			}
+			else if(password==''){
+			$('#password').focus();
+			$('.login_password').delay(2000).fadeOut('slow');
+			$('.login_password').html('Enter Password')	;
+			return false;
+			}
+			else{
+				var datastr={mobileno2:username,password:password};
+				jQuery.ajax({
+					url: '/auth',
+					type: 'post',
+					data: datastr,
+					success: function(data){
+					if(data === 'login'){
+						setTimeout(function () {
+						url = "/property";
+						$(location).attr("href", url)
+						}, 500);
+					}
+					else{
+					//$('.login_password').delay(3000).hide('slow');
+					$('.login_password').html('Incorrect Username and/or Password!')	;	
+					}		
+					}  
+				});
+			}
+		});
 
+		$('#reg_btn').on('click',function(e){
+			e.preventDefault();
+			var name = $('#username2').val();
+			var email = $('#email2').val();
+			var mobile = $('#mobileno').val();
+			var password = $('#password1').val();
+			var cpassword = $('#password2').val();
 
+			if(name==''){
+			$('#username2').focus();
+			$('.reg_username').delay(2000).fadeOut('slow');
+			$('.reg_username').html('Enter your name');
+			return false;
+			}
+			else if(email==''){
+			$('#email2').focus();
+			$('.reg_email').delay(2000).fadeOut('slow');
+			$('.reg_email').html('Enter email address')	;
+			return false;
+			}
+			else if(mobile==''){
+			$('#mobileno').focus();
+			$('.reg_mob').delay(2000).fadeOut('slow');
+			$('.reg_mob').html('Enter Mobile Number')	;
+			return false;
+			}
+			else if(password==''){
+			$('#password1').focus();
+			$('.reg_password').delay(2000).fadeOut('slow');
+			$('.reg_password').html('Enter Password')	;
+			return false;
+			}
+			else if(cpassword==''){
+			$('#password2').focus();
+			$('.reg_cpassword').delay(2000).fadeOut('slow');
+			$('.reg_cpassword').html('Enter Confirm Password')	;
+			return false;
+			}
+			else if(password !== cpassword){
+			$('#password2').focus();
+			$('#password2').val('');
+			$('.reg_ecpassword').delay(2000).fadeOut('slow');
+			$('.reg_epassword').text('Both Password should be same');
+			return false;
+			}
+			else{
+				var email=$('#email2').val();
+    			var u_email=email.trim();
+				var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+				if (filter.test(u_email)) {
+					var datastr={USEREMAIL:u_email,mobile:mobile};
+					jQuery.ajax({
+						url: '/email-ajax-check',
+              			type: 'post',
+						data: datastr,
+						success: function(responce){
+						if(responce=='email_error'){
+							$('#email2').focus();
+							$('.reg_email').delay(2000).fadeOut('slow');
+							$('.reg_email').html('Email id is already exist');
+							$('#email2').val('');
+							return false;
+						}
+						else if(responce=='mob_error'){
+							$('#mobileno').focus();
+							$('.reg_mob').delay(2000).fadeOut('slow');
+							$('.reg_mob').html('Mobile Number is already exist');
+							$('#mobileno').val('');
+							return false;
+						}
+						else{
+						$('#register').submit();	
+						}
+						}  	
+					});
+				}
+				else{
+				$('#email2').focus();
+				$('.reg_email').delay(2000).fadeOut('slow');
+				$('.reg_email').html('Enter email address')	;
+				$('#email2').val()	;
+				return false;
+				}
+				
+			}
+		});
+	});
+</script>
 </body>
 </html>
