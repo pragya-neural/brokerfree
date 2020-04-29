@@ -1,0 +1,513 @@
+<%- include('header') %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="gradient">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Search </h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li>Search</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+<div class="row">
+<div class="col-sm-6 col-lg-6 margin-bottom-15">
+			<select data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+				<option>Gaur City 1</option>
+				<option>Gaur City 2</option>
+				<option>Gaur City 3</option>
+				<option>Gaur City 4</option>
+			</select>
+</div>
+<!-- <div class="col-sm-6 col-lg-6">You can save this search <a href="#"><u>Save Search</u></a></div> -->
+</div>
+
+
+
+	<div class="row">
+		<!-- Sidebar
+		================================================== -->
+		<div class="col-lg-3 col-md-4">
+			<div class="sidebar">
+				<!-- Widget -->
+				<div class="widget">
+					<h3 class="margin-top-0">Filters</h3>
+						<div class="style-1">
+							<!-- Tabs Navigation -->
+							<ul class="tabs-nav">
+								<li class="active"><a href="#tab1b">Filters</a></li>
+								<li><a href="#tab2b">Premium Filters</a></li>
+							</ul>
+			
+							<!-- Tabs Content -->
+							<div class="tabs-container">
+								<div class="tab-content" id="tab1b">
+									
+								
+									<!-- Checkboxes -->
+										<div class="checkboxes one-in-row margin-bottom-15">
+									
+											<input id="check-a" type="checkbox" name="check">
+											<label for="check-a">Apartment</label>
+
+											<input id="check-b" type="checkbox" name="check2">
+											<label for="check-b">Independent House/ Villa</label>
+
+											<input id="check-c" type="checkbox" name="check3">
+											<label for="check-c">Gated Community Villa</label>
+
+											<input id="check-d" type="checkbox" name="check4">
+											<label for="check-d">Standalone Building</label>
+									
+										</div>
+										
+										<!-- Area Range -->
+                                        <div class="style-2">
+
+				<!-- Toggle 1 -->
+				<div class="toggle-wrap">
+					<span class="trigger "><a href="#">Price Range<i class="sl sl-icon-plus"></i></a></span>
+					<div class="toggle-container" style="display: none;">
+						<div class="range-slider">
+							<input class="distance-radius" type="range" min="1" max="15000" step="1" value="" data-title="Rent Range (Per Months)">
+							<div class="row">
+							<div class="col-sm-6 col-lg-6"><input name="from" type="text" value="0"></div>
+							<div class="col-sm-6 col-lg-6"><input name="to" type="text" value="15000"></div></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Toggle 2 -->
+				<div class="toggle-wrap">
+					<span class="trigger"><a href="#">Apartment Type<i class="sl sl-icon-plus"></i></a></span>
+					<div class="toggle-container" style="display: none;">
+						<div class="checkboxes one-in-row margin-bottom-15">
+							<input id="check-e" type="checkbox" name="check5">
+							<label for="check-e">1 BHK</label>	
+							
+							<input id="check-f" type="checkbox" name="check6">
+							<label for="check-f">2 BHK</label>
+							
+							<input id="check-g" type="checkbox" name="check7">
+							<label for="check-g">3 BHK</label>
+							
+							<input id="check-h" type="checkbox" name="check8">
+							<label for="check-h">4 BHK</label>
+							
+							<input id="check-i" type="checkbox" name="check9">
+							<label for="check-i">4+ BHK</label>												
+						</div>
+								
+					</div>
+				</div>
+<!----toggle 3 --->
+<div class="toggle-wrap">
+					<span class="trigger"><a href="#">Near By Locations<i class="sl sl-icon-plus"></i> </a></span>
+					<div class="toggle-container" style="display: none;">
+						<div class="checkboxes one-in-row margin-bottom-15">
+												<input id="check-j" type="checkbox" name="check10">
+												<label for="check-j">Police Station</label>	
+												
+												<input id="check-k" type="checkbox" name="check11">
+												<label for="check-k">Hospital</label>
+												
+												<input id="check-l" type="checkbox" name="check12">
+												<label for="check-l">Metro Station</label>
+												
+												<input id="check-m" type="checkbox" name="check13">
+												<label for="check-m">Shopping Mall</label>
+												
+												<input id="check-n" type="checkbox" name="check14">
+												<label for="check-n">Bus Stand</label>
+												
+                                                <input id="check-o" type="checkbox" name="check15">
+												<label for="check-o">Railway Station</label>
+												
+                                                <input id="check-p" type="checkbox" name="check16">
+												<label for="check-p">Airport</label>
+												
+                                                <input id="check-q" type="checkbox" name="check8">
+												<label for="check-q">Post Office</label>
+												
+                                                <input type="text" name="check" value="Any Land Mark">							
+											</div>
+					</div>
+				</div>
+                <!--- toggle 4-->
+                <div class="toggle-wrap">
+					<span class="trigger"><a href="#">Availability<i class="sl sl-icon-plus"></i> </a></span>
+					<div class="toggle-container" style="display: none;">
+						<div class="checkboxes one-in-row margin-bottom-15">
+							<input id="check-r" type="checkbox" name="check">
+							<label for="check-r">Within 15 Days</label>	
+							
+							<input id="check-s" type="checkbox" name="check">
+							<label for="check-s">Immediate Days</label>
+							
+							<input id="check-t" type="checkbox" name="check">
+							<label for="check-t">Within 30 days</label>
+							
+							<input id="check-u" type="checkbox" name="check">
+							<label for="check-u">After 30 days</label>	
+						</div>
+					</div>
+				</div>
+                <!----toggle 5 --->
+<div class="toggle-wrap">
+					<span class="trigger"><a href="#">Preferred Tenants<i class="sl sl-icon-plus"></i> </a></span>
+					<div class="toggle-container" style="display: none;">
+						<!-- Checkboxes -->
+						<div class="checkboxes one-in-row margin-bottom-15">
+							<input id="check-v" type="checkbox" name="check">
+							<label for="check-v">Family</label>	
+							
+							<input id="check-w" type="checkbox" name="check">
+							<label for="check-w">Bachelors</label>
+							
+							<input id="check-x" type="checkbox" name="check">
+							<label for="check-x">Company</label>	
+						</div>
+						<!-- Checkboxes / End -->
+					</div>
+				</div>
+                <!----toggle 6 --->
+<div class="toggle-wrap">
+					<span class="trigger"><a href="#">Furnishing<i class="sl sl-icon-plus"></i> </a></span>
+					<div class="toggle-container" style="display: none;">
+						<!-- Checkboxes -->
+							<div class="checkboxes one-in-row margin-bottom-15">
+								<input id="check-y" type="checkbox" name="check">
+								<label for="check-y">Full</label>	
+								
+								<input id="check-z" type="checkbox" name="check">
+								<label for="check-z">Semi</label>
+								
+								<input id="check-aa" type="checkbox" name="check">
+								<label for="check-aa">No</label>	
+							</div>
+							<!-- Checkboxes / End -->
+					</div>
+				</div>
+			</div>
+            								
+										
+								</div>
+
+								<div class="tab-content" id="tab2b">
+								   <h5><b>Gated Societies</b></h5>
+									<!-- Checkboxes -->
+									<div class="checkboxes one-in-row margin-bottom-15">
+										<input id="check-ab" type="checkbox" name="check">
+										<label for="check-ab">Gated Societies</label>					
+									</div>
+									<!-- Checkboxes / End -->
+									
+									<h5><b>Show only</b></h5>
+									<!-- Checkboxes -->
+									<div class="checkboxes one-in-row margin-bottom-15">
+										<input id="check-ac" type="checkbox" name="check">
+										<label for="check-ac">Non Web Allowed</label>					
+									</div>
+									<!-- Checkboxes / End -->
+									
+									<h5><b>Floor Preference</b></h5>
+									<!-- Checkboxes -->
+									<div class="checkboxes one-in-row margin-bottom-15">
+										<input id="check-ad" type="checkbox" name="check">
+										<label for="check-ad">Only Ground</label>	
+										
+										<input id="check-ae" type="checkbox" name="check">
+										<label for="check-ae">Not On Ground</label>	
+									</div>
+									<!-- Checkboxes / End -->
+									
+									<h5><b>Property Age</b></h5>
+									<!-- Checkboxes -->
+									<div class="checkboxes one-in-row margin-bottom-15">
+										<input id="check-af" type="checkbox" name="check">
+										<label for="check-af"> < 1 Year</label>	
+										
+										<input id="check-ag" type="checkbox" name="check">
+										<label for="check-ag">< 3 Year</label>
+										
+										<input id="check-ah" type="checkbox" name="check">
+										<label for="check-ah">< 5 Year</label>
+										
+										<input id="check-ai" type="checkbox" name="check">
+										<label for="check-ai">< 10 Year</label>	
+									</div>
+									<!-- Checkboxes / End -->
+									
+									<!-- Area Range -->
+									<!--<h5><b>Price</b></h5>
+									<div class="range-slider">
+										<input class="distance-radius" type="range" min="1" max="15000" step="1" value="4000" data-title="Rent Range (Per Months)">
+									</div> -->
+							 </div>
+							</div>
+
+						</div>	
+						
+
+
+					<!-- More Search Options -->
+					<a href="#" class="more-search-options-trigger margin-bottom-5 margin-top-20" data-open-title="Advanced Filters" data-close-title="Advanced Filters"></a>
+					
+					<div class="more-search-options relative">
+
+						<h5><b>Parking</b></h5>
+							<!-- Checkboxes -->
+							<div class="checkboxes one-in-row margin-bottom-15">
+								<input id="check-aj" type="checkbox" name="check">
+								<label for="check-aj"> 2 Wheel</label>	
+								
+								<input id="check-ak" type="checkbox" name="check">
+								<label for="check-ak">4 Wheel</label>
+							</div>
+							<!-- Checkboxes / End -->
+						<h5><b>Bathroom</b></h5>
+							<!-- Checkboxes -->
+							<div class="checkboxes one-in-row margin-bottom-15">
+								<input id="check-al" type="checkbox" name="check">
+								<label for="check-al">1 or more</label>	
+								
+								<input id="check-am" type="checkbox" name="check">
+								<label for="check-am"> 2 or more</label>
+							    
+								<input id="check-an" type="checkbox" name="check">
+								<label for="check-an"> 3 or more</label>
+							</div>
+							<!-- Checkboxes / End -->
+
+					</div>
+					<!-- More Search Options / End -->
+
+					<button class="button fullwidth margin-top-25">Update</button>
+					<br>
+				</div>
+				<!-- Widget / End -->
+
+			</div>
+		</div>
+		<!-- Sidebar / End -->
+		
+		
+		<div class="col-lg-9 col-md-8 ">
+
+				<!-- Section -->
+					<div class="add-listing-section">
+						<div class="add-listing-headline">
+							<h4><a href="single-property-details.php"><b>1 BHK For Rent In Standalone, Electronic City</b></a></h4>
+							<span>Electronics City Phase 1 Near Wipro Avenue 9  &nbsp;&nbsp;<a href=""><i class="fa fa-map-marker"></i>Explore Nearby </a></span>
+						</div>
+						<div class="row with-forms margin-top-0">
+						<div class="col-md-12 prperty">
+							<div class="col-md-4">
+								<center><h5><b>875 sqft</b></h5>
+								<span>Build Up</span></center>
+							</div>
+							<div class="col-md-4">
+								<center><h5><b><i class="fa fa-inr"></i> 20,000</b></h5>
+								<span>Deposite</span></center>
+							</div>
+							<div class="col-md-4">
+								<center><h5><b><i class="fa fa-inr"></i> 6,800+</b></h5>
+								<span>Rent (Non-negotiable)</span></center>
+							</div>
+						</div>
+						</div>
+						<div class="row with-forms margin-top-0">
+							<div class="col-md-4">
+								<img src="img/pp.jpg" class="l-img-property"/>
+							</div>
+							<div class="col-md-8">
+								<div class="col-md-6">
+									<ul class="l-property">
+										<li>Semifurnished</li>
+										<li>3 Bedroom </li>
+										<li>2 Balcony</li>
+										<li> Furnished</li>
+									</ul>
+							
+								</div>
+								<div class="col-md-6">
+									<ul>
+										<li>Semifurnished</li>
+										<li> > 10 Year</li>
+										<li>All</li>
+										<li> Ready to Move</li>
+									</ul>
+							
+								</div>
+								<div class="col-md-12">
+									High quality interiors with quality equipments. Society managed by international firm jll. Operational club with gym. Adjacent market with banks, restaurant.
+								</div>
+							</div>
+							
+							<div class="col-md-12 line-property">
+								<div class="col-md-8">
+									<h6>Posted on Today By owner </h6>
+									<span><b>Mr. XYZ</b></span>
+								</div>
+								<div class="col-md-4">
+									<button class="button pull-right margin-top-10">  Get Owner Details</button>
+								</div>
+							</div>
+						</div>
+						
+
+					</div>
+					
+					<!-- Section -->
+					<div class="add-listing-section">
+						<div class="add-listing-headline">
+							<h4><a href="single-property-details.php"><b>1 BHK For Rent In Standalone, Electronic City</b></a></h4>
+							<span>Electronics City Phase 1 Near Wipro Avenue 9  &nbsp;&nbsp;<a href=""><i class="fa fa-map-marker"></i>Explore Nearby </a></span>
+						</div>
+						<div class="row with-forms margin-top-0">
+						<div class="col-md-12 prperty">
+							<div class="col-md-4">
+								<center><h5><b>875 sqft</b></h5>
+								<span>Build Up</span></center>
+							</div>
+							<div class="col-md-4">
+								<center><h5><b><i class="fa fa-inr"></i> 20,000</b></h5>
+								<span>Deposite</span></center>
+							</div>
+							<div class="col-md-4">
+								<center><h5><b><i class="fa fa-inr"></i> 6,800+</b></h5>
+								<span>Rent (Non-negotiable)</span></center>
+							</div>
+						</div>
+						</div>
+						<div class="row with-forms margin-top-0">
+							<div class="col-md-4">
+								<img src="img/pp.jpg" class="l-img-property"/>
+							</div>
+							<div class="col-md-8">
+								<div class="col-md-6">
+									<ul class="l-property">
+										<li>Semifurnished</li>
+										<li>3 Bedroom </li>
+										<li>2 Balcony</li>
+										<li> Furnished</li>
+									</ul>
+							
+								</div>
+								<div class="col-md-6">
+									<ul>
+										<li>Semifurnished</li>
+										<li> > 10 Year</li>
+										<li>All</li>
+										<li> Ready to Move</li>
+									</ul>
+							
+								</div>
+								<div class="col-md-12">
+									High quality interiors with quality equipments. Society managed by international firm jll. Operational club with gym. Adjacent market with banks, restaurant.
+								</div>
+							</div>
+							
+							<div class="col-md-12 line-property">
+								<div class="col-md-8">
+									<h6>Posted on Today By owner </h6>
+									<span><b>Mr. XYZ</b></span>
+								</div>
+								<div class="col-md-4">
+									<button class="button pull-right margin-top-10">  Get Owner Details</button>
+								</div>
+							</div>
+						</div>
+						
+
+					</div>
+					
+
+				<!-- Section -->
+					<div class="add-listing-section">
+						<div class="add-listing-headline">
+							<h4><a href="single-property-details.php"><b>1 BHK For Rent In Standalone, Electronic City</b></a></h4>
+							<span>Electronics City Phase 1 Near Wipro Avenue 9  &nbsp;&nbsp;<a href=""><i class="fa fa-map-marker"></i>Explore Nearby </a></span>
+						</div>
+						<div class="row with-forms margin-top-0">
+						<div class="col-md-12 prperty">
+							<div class="col-md-4">
+								<center><h5><b>875 sqft</b></h5>
+								<span>Build Up</span></center>
+							</div>
+							<div class="col-md-4">
+								<center><h5><b><i class="fa fa-inr"></i> 20,000</b></h5>
+								<span>Deposite</span></center>
+							</div>
+							<div class="col-md-4">
+								<center><h5><b><i class="fa fa-inr"></i> 6,800+</b></h5>
+								<span>Rent (Non-negotiable)</span></center>
+							</div>
+						</div>
+						</div>
+						<div class="row with-forms margin-top-0">
+							<div class="col-md-4">
+								<img src="img/pp.jpg" class="l-img-property"/>
+							</div>
+							<div class="col-md-8">
+								<div class="col-md-6">
+									<ul class="l-property">
+										<li>Semifurnished</li>
+										<li>3 Bedroom </li>
+										<li>2 Balcony</li>
+										<li> Furnished</li>
+									</ul>
+							
+								</div>
+								<div class="col-md-6">
+									<ul>
+										<li>Semifurnished</li>
+										<li> > 10 Year</li>
+										<li>All</li>
+										<li> Ready to Move</li>
+									</ul>
+							
+								</div>
+								<div class="col-md-12">
+									High quality interiors with quality equipments. Society managed by international firm jll. Operational club with gym. Adjacent market with banks, restaurant.
+								</div>
+							</div>
+							
+							<div class="col-md-12 line-property">
+								<div class="col-md-8">
+									<h6>Posted on Today By owner </h6>
+									<span><b>Mr. XYZ</b></span>
+								</div>
+								<div class="col-md-4">
+									<button class="button pull-right margin-top-10">  Get Owner Details</button>
+								</div>
+							</div>
+						</div>
+						
+
+					</div>
+					
+			<div class="clearfix"></div>
+
+		</div>
+
+
+		
+	</div>
+</div><br><br>
+<%- include('footer'); %>
