@@ -181,7 +181,7 @@ router.get('/resale-details/:pid',[checkLogin,checkproperty],function(req, res, 
   where_id = "property_id="+pid;
   crud_module .fatch_single_row_data('*','resale_rental_details',where_id,function(resale){
   crud_module.all_data_select('furnishing_id,furnishing','furnishing',where,'furnishing_id DESC',function(furnish){
-  crud_module.all_data_select('parking_id,parking','parking',where,'parking_id DESC',function(parking){
+  crud_module.all_data_select('parking_id,parking','parking',where,'parking_id ASC',function(parking){
   crud_module.all_data_select('kitchen_type_id,kitchen_type','kitchen_type',where,'kitchen_type_id DESC',function(kitchen_type){
     var obj={};
     obj.furnish=furnish;
@@ -276,12 +276,21 @@ router.get('/nearby-details/:pid',[checkLogin,checkproperty], function(req, res,
   crud_module.all_data_select('any_other_landmark','any_other_landmark',where_id,'any_other_landmark_id ASC',function(other_nearby){ 
   crud_module.all_data_select('landmark_id,landmark','landmarks',where,'landmark_id ASC',function(landmark){
   crud_module.all_data_select('landmark_distance_id,distance_details','landmark_distances',where,'landmark_distance_id ASC',function(distances){
+  
+  var landmark_array=new Array();
+  var distance_array=new Array();
+  for(var k=0;k<neraby.length;k++){
+    landmark_array.push(neraby[k].landmark_id);
+    distance_array.push(neraby[k].landmark_distance_id);
+  }
   var obj={};
   obj.landmark=landmark;
   obj.distances=distances;
   obj.other_nearby=other_nearby;
   obj.neraby=neraby;
   obj.property_id=pid;
+  obj.landmark_array=landmark_array;
+  obj.distance_array=distance_array;
   res.render('nearby-details', { title: 'Near By Details', sideselection: 'nearby' ,obj:obj});
 });
 });
@@ -303,6 +312,9 @@ router.post('/add-nearby-details',checkLogin,function(req, res, next) {
   var landmark = req.body.landmark;
   var distances = (req.body.distances).filter(function(x) { return x !=''; });
   var nearby =  new Array();
+  console.log(landmark.length);
+  console.log(distances.length);
+  console.log(distances);
   if(landmark.length === distances.length){
     for(var a=0;a<landmark.length;a++){
       var val = {'creation_date':new Date(),'property_id':enc_pro_id,'landmark_id':landmark[a],'landmark_distance_id':distances[a]};
@@ -328,13 +340,18 @@ router.get('/amenities/:pid',[checkLogin,checkproperty],function(req, res, next)
   crud_module.all_data_select('*','amenities_head',where,'amenities_head_id asc',function(amenities){
   crud_module.all_data_select('*','water_supply',where,'water_supply_id asc',function(water){
   crud_module.all_data_select ('*','who_show_house_options',where,'who_show_house_id ASC',function(whoshow){
+  var other_amm = new Array();
+  for(var k=0;k<other_ami.length;k++){
+    other_amm.push(other_ami[k].amenities_head_id);
+  }
+     
   var obj={};
   obj.amenities=amenities;
   obj.property_id=pid;
   obj.water=water;
   obj.whoshow=whoshow;
   obj.all_amenities=all_amenities;
-  obj.other_ami=other_ami;
+  obj.other_ami=other_amm;
   res.render('amenities', { title: 'Basic Amenities', sideselection: 'amenity',obj:obj });
   });
 })
@@ -367,38 +384,56 @@ router.post('/update-amenities',checkLogin,function(req, res, next) {
   crud_module.update_data('basic_amenities',data,where,function(){
   crud_module.delete_rows('other_amenities',where,function(){
   crud_module.bulkInsert('other_amenities',amenities_array,function(){
-    res.redirect("/property/addition-info/"+enc_pro_id);
+  res.redirect("/property/addition-info/"+enc_pro_id);
   });
 });
 });
 });
 
-router.get('/addition-info/:pid', function(req, res, next) {
+router.get('/addition-info/:pid',[checkLogin,checkproperty], function(req, res, next) {
   var pid = req.params.pid;
+  var where_id = "property_id="+pid;
   var where="active_status='active'";
+  crud_module.all_data_select('*','property_certification',where_id,'property_certification_id ASC',function(all_cerfit){
   crud_module.all_data_select('certification_type_id,certification_name','property_certification_type',where,'certification_type_id ASC',function(certification_type){
   obj={};
   obj.certification_type=certification_type;
   obj.property_id=pid;
+  obj.all_cerfit=all_cerfit;
   res.render('addition-info', { title: 'Additional Information', sideselection: 'additional',obj:obj });
 });
 });
+})
 
 //update schedule details
-router.post('/add_additional_info',function(req, res, next) {
+router.post('/add_additional_info',checkLogin,function(req, res, next) {
   var enc_pro_id = req.body.property_id;
-  console.log(req.body);
-  res.redirect("/property/schedule/"+enc_pro_id);
+  var where = "property_id="+enc_pro_id;
+  var certificate = req.body.certificate;
+  var info_array =new Array();
+  for(var j=0;j<certificate.length;j++){
+    var val = {'property_id':enc_pro_id,'certification_type_id':j+1,'certification_type_value':certificate[j]};
+    info_array.push(val);
+  }
+  crud_module.delete_rows('property_certification',where,function(){
+  crud_module.bulkInsert('property_certification',info_array,function(){
+    res.redirect("/property/schedule/"+enc_pro_id);
+  })
+  });
 });
 
 router.get('/schedule/:pid',[checkLogin,checkproperty], function(req, res, next) {
   var pid = req.params.pid;
+  var where_id = "property_id="+pid;
   var where="1=1";
+  crud_module.fatch_single_row_data('*','meeting_schedule',where_id,function(all_schedule){
   crud_module.all_data_select('available_schedule_id,available_schedule','available_schedule',where,'available_schedule_id ASC',function(schedule){
   var obj={};
   obj.schedule=schedule;
   obj.property_id=pid;
+  obj.all_schedule=all_schedule;
   res.render('schedule', { title: 'Time Schedule', sideselection: 'time' ,obj:obj });
+});
 });
 });
 
@@ -407,10 +442,10 @@ router.post('/update-schedule',checkLogin,function(req, res, next) {
   var enc_pro_id = req.body.property_id;
   var today = new Date();
   var data={
-    "creation_date":today,
-    "available_id":req.body.availability,
-    "start_time":req.body.s_date,
-    "end_time":req.body.e_date
+    'creation_date':today,
+    'available_id':req.body.availability,
+    'start_time':req.body.s_date,
+    'end_time':req.body.e_date
     };
   var complete ={
     "active_status":"complete"

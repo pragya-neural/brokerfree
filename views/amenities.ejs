@@ -30,8 +30,9 @@
 							<div class="col-md-4">
 								<h5>Bathroom(s) <span>*</span></h5>
 								<input type="text" name="bathroom" id="bathroom" placeholder="No of Bathroom" value="<%=obj.all_amenities.total_bathroom%>">
+								<span class="error bathroom"></span>
 							</div>
-
+							
 							<div class="col-md-4">
 								<h5>Balcony <span>(optional)</span></h5>
 								<input type="text" name="balcony" id="balcony" placeholder="No of Balcony" value="<%=obj.all_amenities.total_balcony%>">
@@ -60,8 +61,9 @@
 									<option value="1" <% if(obj.all_amenities.gym_type==1){ %> selected <% } %>>Yes</option>
 									<option value="0" <% if(obj.all_amenities.gym_type==0){ %> selected <% } %>>No</option>
 								</select>
+								<span class="error gym"></span>
 							</div>
-
+							
 							<div class="col-md-4">
 								<h5>Power Backup <span>*</span></h5>
 								<select  name="power" id="power">
@@ -69,8 +71,9 @@
 									<option value="1" <% if(obj.all_amenities.power_backup==1){ %> selected <% } %>>Yes</option>
 									<option value="0" <% if(obj.all_amenities.power_backup==0){ %> selected <% } %>>No</option>
 								</select>
+								<span class="error power"></span>
 							</div>
-
+							
 							<div class="col-md-4">
 								<h5>Gated Security <span></span></h5>
 								<select  name="security" id="security">
@@ -93,8 +96,9 @@
 									<option value="<%=obj.whoshow[a].who_show_house_id%>" <%=selected%>><%=obj.whoshow[a].option_value%></option>
 									<% } %>
 								</select>
+								<span class="error whoshow"></span>
 							</div>
-
+							
 							<div class="col-md-4">
 								<h5>Secondary Number  <span></span></h5>
 								<input type="text" name="sec_number" id="sec_number" placeholder="Secondary Number" value="<%=obj.all_amenities.secondary_no%>">
@@ -102,7 +106,7 @@
 							
 						</div>
 						<!-- Row / End -->
-						<%=obj.other_ami%>
+						
 							<!-- Checkboxes -->
 						<h5 class="margin-top-30 margin-bottom-10">Select the amenities available<span></span></h5>
 						<div class="checkboxes in-row margin-bottom-20">
@@ -131,7 +135,37 @@
 				$('document').ready(function(){
 				$('#sbt_btn').on('click',function(e){
 				e.preventDefault();
+				var bathroom = $('#bathroom').val();
+				var gym = $("#gym option:selected").val();
+				var power = $("#power option:selected").val();
+				var whoshow = $("#whoshow option:selected").val();
+				if(bathroom==''){
+					$('#bathroom').focus();
+					$('.bathroom').html('Select number of bathroom');
+                    $('.bathroom').delay(2000).fadeOut('slow');
+                    return false;	
+				}
+				else if(gym==''){
+					$('#gym').focus();
+					$('.gym').html('Select Gym ');
+                    $('.gym').delay(2000).fadeOut('slow');
+                    return false;	
+				}
+				else if(power==''){
+					$('#power').focus();
+					$('.power').html('Select Power option');
+                    $('.power').delay(2000).fadeOut('slow');
+                    return false;		
+				}
+				else if(whoshow==''){
+					$('#whoshow').focus();
+					$('.whoshow').html('Select Who show the room');
+                    $('.whoshow').delay(2000).fadeOut('slow');
+                    return false;		
+				}
+				else{
 				$('#update_amenities_details').submit();
+				}
 				});
 				});
 			</script> 

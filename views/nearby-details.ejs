@@ -26,11 +26,21 @@
 						
 						<form action="/property/add-nearby-details" method="post" id="add_nearby_details">
 						<!-- Row -->
-						<%for(var a=0;a<obj.landmark.length;a++){ %>
+						<% var next=0;%>
+						<%for(var a=0;a<obj.landmark.length;a++){ 
+							if(obj.landmark_array.indexOf(obj.landmark[a].landmark_id) != -1){
+								var chk ="checked";	
+								var d_id = obj.distance_array[next];
+								next++;
+								}
+								else{
+									var chk ="";		
+								}
+								%>
 						<div class="row with-forms">
 							<div class="col-md-3">
 								<div class="checkboxes in-row margin-bottom-20">
-								 <input id="check-a<%=a%>" type="checkbox" name="landmark" value="<%=obj.landmark[a].landmark_id%>">
+								 <input id="check-a<%=a%>" type="checkbox" <%=chk%> name="landmark" value="<%=obj.landmark[a].landmark_id%>">
 								 <label for="check-a<%=a%>"><%=obj.landmark[a].landmark%></label>
 								</div>
 							</div>
@@ -38,13 +48,15 @@
 							<div class="col-md-6">
 							    <select name="distances" id="distances<%=a%>">
 									<option value="">Select Distance</option>
-									<% for(var b=0;b<obj.distances.length;b++){ %>
-									<option value="<%=obj.distances[b].landmark_distance_id%>"><%=obj.distances[b].distance_details%></option>
+									<% for(var b=0;b<obj.distances.length;b++){
+									var selected = (obj.distances[b].landmark_distance_id==d_id)?'selected':'';	
+									 %>
+									<option value="<%=obj.distances[b].landmark_distance_id%>" <%=selected%>><%=obj.distances[b].distance_details%></option>
 									<% } %>
 								</select>
 							</div> 
 						</div>
-						<%    } %>
+						<%  d_id=0;  } %>
 						<!-- Row / End -->
 						<div class="row with-forms">
 							<div class="col-md-3">

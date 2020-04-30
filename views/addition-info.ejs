@@ -30,10 +30,10 @@
 							<!-- Phone -->
 							<div class="col-md-6">
 								<h5><%=obj.certification_type[a].certification_name%></h5>
-								<select name="<%=obj.certification_type[a].certification_type_id%>">
+								<select name="certificate">
 									<option value="">Select Certificate</option>
-									<option value="yes">Yes</option>
-									<option value="dont know">Dont know</option>
+									<option value="yes" <%if(obj.all_cerfit.length>0){if(obj.all_cerfit[a].certification_type_value=='yes'){%> selected<% }} %>>Yes</option>
+									<option value="donot know" <%if(obj.all_cerfit.length>0){if(obj.all_cerfit[a].certification_type_value=='donot know'){%> selected<% }} %>>Don't know</option>
 								</select>
 							</div>
 							<% } %>

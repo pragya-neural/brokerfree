@@ -27,8 +27,10 @@
 								<h5>Availability <span>*</span></h5>
 								<select name="availability" id="availability">
 									<option value="">Select Availability</option>
-									<% for(var a=0 ;a<obj.schedule.length;a++){ %>
-									<option value="<%=obj.schedule[a].available_schedule_id%>"><%=obj.schedule[a].available_schedule%></option>
+									<% for(var a=0 ;a<obj.schedule.length;a++){ 
+									var selected = (obj.schedule[a].available_schedule_id==obj.all_schedule.available_id)?'selected':'';
+									%>
+									<option value="<%=obj.schedule[a].available_schedule_id%>" <%=selected%>><%=obj.schedule[a].available_schedule%></option>
 									<% } %>
 								</select>
 								<input type="hidden" name="property_id" value="<%=obj.property_id%>">
@@ -39,12 +41,12 @@
 
 							<div class="col-md-6">
 								<h5>Start Time <span>*</span></h5>
-								<input type="time" name="s_date" id="s_date">
+								<input type="time" name="s_date" id="s_date" value="<%=obj.all_schedule.start_time%>">
 							</div>
 
 							<div class="col-md-6">
 								<h5>End Time<span>*</span></h5>
-								<input type="time" name="e_date" id="e_date">
+								<input type="time" name="e_date" id="e_date" value="<%=obj.all_schedule.end_time%>">
 							</div>
 							
 						</div>
