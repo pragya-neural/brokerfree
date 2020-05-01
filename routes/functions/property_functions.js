@@ -27,8 +27,6 @@ function send_mail() {
     const message = {
       from: 'info@nobrokarr.com', // Sender address
       to: 'ravishankar.k@neuralinfo.org',         // List of recipients
-      bcc:'ravinricnb@gmail.com',
-      cc:'ravinribpl@gmail.com',
       subject: 'Test mail', // Subject line
       html: '<b>Have the most fun you can in a car.</b>' // Plain text body
   };
