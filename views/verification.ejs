@@ -40,29 +40,28 @@
 					<p>To complete User registration process please verify your email. Enter OTP (One time Password) send on mail.</p>
 				<div id="contact-message"></div> 
 
-					<form method="post" action="#" name="contactform" id="contactform" autocomplete="on">
+					<form method="post" action="verify-account" name="verfy_form" id="verfy_form" autocomplete="on">
 
 					<div class="row">
 						<div class="col-md-12">
 							<div>
-								<input name="email" type="email" id="email" placeholder="Email OTP" required="required" />
+								<input name="mail_otp" type="text" id="mail_otp" placeholder="Email OTP" required="required" />
+								<span class="mail_otp"></span>
 							</div>
 						</div>
 					</div>
 					
 					<p>  Please Take a moment to verify your mobile Number.
-						OTP send on (+91xxxxxxxx98)<small style="color:#f91942;">This help us confirm your identity and secure your account</small></p>
+						OTP send on (<%=locals.usermob%>)<small style="color:#f91942;">This help us confirm your identity and secure your account</small></p>
 			  <div class="row">
 						<div class="col-md-12">
 							<div>
-								<input name="phone" type="text" id="phone" placeholder="Mobile OTP" required="required" />
+								<input name="mob_otp" type="text" id="mob_otp" placeholder="Mobile OTP" required="required" />
+								<span class="mob_otp"></span>
 							</div>
 						</div>
 					</div>
-
-
-					<a href="/property"><input type="button" class="submit button pull-right" id="submit" value="Move to dashboard" /></a>
-
+					<input type="submit" class="submit button pull-right" id="vsubmit" value="Submit" />
 					</form>
 			</section>
 		</div>
@@ -77,5 +76,24 @@
 
 </div><br><br>
 <!-- Container / End -->
-
+<script>
+	$('document').ready(function(){
+		$('#vsubmit').on('click',function(e){
+		e.preventDefault();
+		var mail_otp = $('#mail_otp').val();
+		var mob_otp = $('#mob_otp').val();
+		if(mail_otp==''){
+			$('#mail_otp').focus();
+			$('.mail_otp').text('Enter Email OTP');	
+		}
+		else if(mob_otp==''){
+			$('#mob_otp').focus();
+			$('.mob_otp').text('Enter Mobile OTP');	
+		}
+		else{
+			$('#verfy_form').submit();
+		}
+		});
+	});
+</script>
 <%- include('footer'); %>

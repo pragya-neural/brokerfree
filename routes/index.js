@@ -7,11 +7,12 @@ var md5 = require('md5');
 var connection = require('./connection');
 var crud_module = require('./crud_module');
 var property_functions = require('./functions/property_functions');
+var mailers = require('./functions/mailers');
 var checkLogin = function (req, res, next) {
   if (!req.session.loggedin) {
 		next();
 	} else {
-		res.redirect("/property");
+		res.redirect("/dashboard");
 	}
 }
 //check email address
@@ -56,6 +57,7 @@ router.post('/register', function(req, res, next) {
   var today = new Date();
   var encryptedString = md5(req.body.password1);
   var username = req.body.mobileno;
+  var email = req.body.email2;
   var users={
     "creation_date":today,
     "user_login":req.body.mobileno,
@@ -69,11 +71,17 @@ router.post('/register', function(req, res, next) {
     if (err) throw err;
 	var insert_id = results['insertId'];
 	if (insert_id > 0) {
+    var email_code = Math.floor(1000 + Math.random() * 9000);
+    var mob_code = '12345';
 		req.session.loggedin = true;
 		req.session.username = username;
 		req.session.uid = insert_id;
-		req.session.name = req.body.username;
-		res.redirect('/verification');
+    req.session.name = req.body.username;
+    req.session.email_code = email_code;
+    req.session.mob_code = mob_code;
+    req.session.usermob = username;
+    mailers.sign_up_mail(email,email_code);
+    res.redirect('/verification');
 	}
 });
   
@@ -205,6 +213,7 @@ router.post('/post-property',[
 });
 
 router.get('/verification', function(req, res, next) {
+  console.log(res);
   res.render('verification', { title:'Post Property' ,exits:''});
 });
 
