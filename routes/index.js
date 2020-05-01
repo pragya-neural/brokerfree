@@ -6,6 +6,7 @@ var Cryptr  = require('cryptr');
 var md5 = require('md5');
 var connection = require('./connection');
 var crud_module = require('./crud_module');
+var property_functions = require('./functions/property_functions');
 var checkLogin = function (req, res, next) {
   if (!req.session.loggedin) {
 		next();
@@ -261,6 +262,11 @@ router.get('/commercial-seller', function(req, res, next) {
 
 router.get('/commercial-buyer', function(req, res, next) {
 	res.render('commercial-buyer', { title:'Post Property ', sideselection: 'commercial-buyer'});
+  });
+
+  router.get('/send_mail',checkLogin, function(req, res, next) {
+    property_functions.send_mail();
+    res.render('index', { title: 'Nobrokerr' });
   });
 
 module.exports = router;
