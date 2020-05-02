@@ -1,0 +1,71 @@
+<%- include('header') %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Create Password</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>Create Password</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Container / Start -->
+<div class="container">
+
+	<div class="row">
+
+		<!-- Contact Details -->
+		<div class="col-md-6">
+			<img src="img/new-pwd.png" class="margin-top-45"/>
+		</div>
+
+		<!-- Contact Form -->
+		<div class="col-md-6 margin-top-45">
+
+			<section id="contact">
+				<h4 class="headline">Create New Password</h4>
+					<p>Create a secure password using our generator tool. Help prevent a ... You should never share your passwords via email or text message. </p>
+				<div id="contact-message"></div> 
+
+					<form method="post" action="#" name="contactform" id="contactform" autocomplete="on">
+
+					<div class="row">
+						<div class="col-md-12">
+							<div>
+								<input name="password" type="password" id="password" placeholder="New Password" required="required" />
+								<input name="cpassword" type="password" id="cpassword" placeholder="Confirm  Password" required="required" />
+							</div>
+						</div>
+					</div>
+
+
+					<input type="button" class="submit button pull-right" id="submit" value="Create Password" />
+
+					</form>
+			</section>
+		</div>
+		<!-- Contact Form / End -->
+		
+		<!-- Contact Details -->
+		<div class="col-md-3">
+
+		</div>
+
+	</div>
+
+</div><br><br>
+<!-- Container / End -->
+<%- include('footer'); %>

@@ -73,6 +73,7 @@ var conn = require('./connection');
         let keys = Object.keys(objectArray[0]);
         let values = objectArray.map( obj => keys.map( key => obj[key]));
         let sql = 'INSERT INTO ' + table + ' (' + keys.join(',') + ') VALUES ?';
+       
         conn.query(sql, [values], function (error, results, fields) {
           if (error) cb(error);
           cb(results);

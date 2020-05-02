@@ -246,7 +246,7 @@ router.post('/update-property-images/:pid',checkLogin,function(req, res, next) {
       var new_file_name = Math.floor((Math.random() * 10000) + 1)+'_'+Date.now()+'_'+singleImg.originalFilename;
           newPath+= new_file_name;
           readAndWriteFile(singleImg, newPath);
-      var val = {'upload_date':new Date(),'property_id':enc_pro_id,'image_name':new_file_name};
+      var val = {'upload_date':new Date().toISOString().split('T')[0],'property_id':enc_pro_id,'image_name':new_file_name};
       photoarray.push(val) 
       }
     crud_module.bulkInsert('property_gallery',photoarray,function(result){
@@ -363,8 +363,9 @@ router.get('/amenities/:pid',[checkLogin,checkproperty],function(req, res, next)
 //update amenities details
 router.post('/update-amenities',checkLogin,function(req, res, next) {
   var enc_pro_id = req.body.property_id;
+  
   var data={
-    "creation_date":new Date(),
+    "creation_date": new Date().toISOString().split('T')[0],
     "total_bathroom":req.body.bathroom,
     "total_balcony":req.body.balcony,
     "water_supply_id":req.body.water_supply,
@@ -440,9 +441,8 @@ router.get('/schedule/:pid',[checkLogin,checkproperty], function(req, res, next)
 //update schedule details
 router.post('/update-schedule',checkLogin,function(req, res, next) {
   var enc_pro_id = req.body.property_id;
-  var today = new Date();
   var data={
-    'creation_date':today,
+    'creation_date':new Date().toISOString().split('T')[0],
     'available_id':req.body.availability,
     'start_time':req.body.s_date,
     'end_time':req.body.e_date

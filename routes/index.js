@@ -273,6 +273,14 @@ router.get('/commercial-buyer', function(req, res, next) {
 	res.render('commercial-buyer', { title:'Post Property ', sideselection: 'commercial-buyer'});
   });
 
+router.get('/lost-password', function(req, res, next) {
+  res.render('lost-password', { title:'Lost Password '});
+  });
+
+router.get('/create-new-pwd', function(req, res, next) {
+  res.render('create-new-pwd', { title:'Reset Password '});
+  });
+
   router.get('/send_mail',checkLogin, function(req, res, next) {
     property_functions.send_mail();
     res.render('index', { title: 'Nobrokerr' });
