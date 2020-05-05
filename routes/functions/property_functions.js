@@ -1,4 +1,7 @@
 var crud_module = require('../crud_module');
+var path = require('path');
+var ejs = require('ejs');
+var nodemailer = require("nodemailer");
 var mailers = require('./mailers');
 function get_incomplete_property(req,res,cb){
 var uid = req.session.uid;
@@ -23,12 +26,14 @@ function send_mail() {
             rejectUnauthorized: false
         }
     });
-  
+    process.chdir("./views/mailers/");
+    const template = process.cwd()+'/registration.ejs';
+    ejs.renderFile(template, (err, html) => {  
     const message = {
       from: 'info@nobrokarr.com', // Sender address
       to: 'ravishankar.k@neuralinfo.org',         // List of recipients
       subject: 'Test mail', // Subject line
-      html: '<b>Have the most fun you can in a car.</b>' // Plain text body
+      html: html // Plain text body
   };
   transport.sendMail(message, function(err, info) {
       if (err) {
@@ -37,8 +42,8 @@ function send_mail() {
         console.log(info);
       }
   });
-  }
-
+  });
+}
 
 module.exports.get_incomplete_property=get_incomplete_property;
 module.exports.send_mail=send_mail;

@@ -58,6 +58,7 @@ router.post('/register', function(req, res, next) {
   var encryptedString = md5(req.body.password1);
   var username = req.body.mobileno;
   var email = req.body.email2;
+  var auth_key = md5(Math.floor(1000 + Math.random() * 9000));
   var users={
     "creation_date":today,
     "user_login":req.body.mobileno,
@@ -65,22 +66,21 @@ router.post('/register', function(req, res, next) {
     "name":req.body.username,
     "email_id":req.body.email2,
     "mobile_no":req.body.mobileno,
+    "auth_key": auth_key,
     "user_type":"registered"
 }
   connection.query('INSERT INTO users SET ?',users, function (err, results, fields) { 
     if (err) throw err;
 	var insert_id = results['insertId'];
 	if (insert_id > 0) {
-    var email_code = Math.floor(1000 + Math.random() * 9000);
-    var mob_code = '12345';
-		req.session.loggedin = true;
-		req.session.username = username;
-		req.session.uid = insert_id;
-    req.session.name = req.body.username;
-    req.session.email_code = email_code;
-    req.session.mob_code = mob_code;
-    req.session.usermob = username;
-    mailers.sign_up_mail(email,email_code);
+		//req.session.loggedin = true;
+		//req.session.username = username;
+		//req.session.uid = insert_id;
+    //req.session.name = req.body.username;
+    //req.session.email_code = email_code;
+    //req.session.mob_code = mob_code;
+    //req.session.usermob = username;
+    mailers.sign_up_mail(email);
     res.redirect('/verification');
 	}
 });
@@ -286,4 +286,5 @@ router.get('/create-new-pwd', function(req, res, next) {
     res.render('index', { title: 'Nobrokerr' });
   });
 
+  
 module.exports = router;
