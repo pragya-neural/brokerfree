@@ -12,7 +12,7 @@ let transport = nodemailer.createTransport({
       }
   });
 
-function sign_up_mail(to_id,code){
+function sign_up_mail(to_id){
       const message = {
         from: 'info@nobrokarr.com', // Sender address
         to: to_id,         // List of recipients

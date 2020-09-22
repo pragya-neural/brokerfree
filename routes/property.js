@@ -22,7 +22,6 @@ var checkproperty = function (req, res, next) {
   crud_module.num_rows('property',where,function(tcount){
     if(tcount==0){
       res.redirect("/");
-      
     }
   });
   next();

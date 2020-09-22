@@ -45,7 +45,15 @@ var checkmobile = function (req, res, next) {
 app.use(checkLogin);
 /* GET home page. */
 router.get('/',checkLogin, function(req, res, next) {
-  res.render('index', { title: 'Nobrokerr' });
+  where = "active_status='active'";
+	crud_module.all_data_select('*','bhk_type',where,'bhk_type_id',function(bhk_type){
+	crud_module.all_data_select('*','property_type',where,'property_type_id',function(property_type){
+	var obj={};
+	obj.bhk_type=bhk_type;
+	obj.property_type=property_type;
+	res.render('index', { title: 'Nobrokarr',obj:obj });
+  });
+  });
 });
 // check email address
 router.post('/email-ajax-check',[checkemail,checkmobile],function(req, res, next) {
@@ -150,9 +158,15 @@ router.get('/tenant-plan', function(req, res, next) {
   });
   
   
-  router.get('/search', function(req, res, next) {
-	res.render('search', { title:'Search Property '});
+  router.post('/search', function(req, res, next) {
+	var property_type = req.body.property_type;
+	var bhk_type = req.body.bhk_type;
+	property_functions.get_search_property(property_type,bhk_type,function(pro){
+  var obj={};
+  obj.pro_list=pro;
+	res.render('search', { title:'Search Property',obj:obj});
   });
+});
   
 router.get('/logout', function(req, res, next) {
 	req.session.loggedin = false;

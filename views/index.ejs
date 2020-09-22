@@ -3,7 +3,7 @@
 
 <!-- Basic Page Needs
 ================================================== -->
-<title>No Brokerr</title>
+<title><%=title%></title>
 <link rel="shortcut icon" href="images/house-logo.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -220,7 +220,7 @@
 						
 					</h2>
 					<h4>Find your requirement</h4>
-<div class="highlighted-categories">
+					<div class="highlighted-categories">
 						<!-- Box -->
 						<a class="highlighted-category buy-search">
 					    	<h4>Buy</h4>
@@ -235,39 +235,33 @@
 						<a class="highlighted-category">
 					    	<h4>Commercial</h4>
 						</a>	
-
-							
-				  </div>
-			  <div class="main-search-input">
+					</div>
+					<form action="/search" method="post">
+					<div class="main-search-input">
 						<div class="main-search-input-item">
-							<select data-placeholder="Property Status" class="chosen-select" >
-								<option>Under Construction</option>	
-								<option>Ready to Move</option>
+							<select data-placeholder="Property Type" class="chosen-select" name="property_type">
+								<%for(var a=0;a<obj.property_type.length;a++){%>
+								<option value="<%=obj.property_type[a].property_type_id %>"><%=obj.property_type[a].property_type%></option>
+								<% } %>
 							</select>
 						</div>
 						<div class="main-search-input-item">
-							<select data-placeholder="BHK Type" class="chosen-select">
-								<option>5 BHK</option>	
-								<option>4 BHK</option>
-								<option>3 BHK</option>
-								<option>2 BHK</option>
-								<option>1 BHK</option>
-								<option>VILLA</option>
+							<select data-placeholder="BHK Type" class="chosen-select" name="bhk_type">
+								<option value="">Select BHK Type</option>
+								<%for(var a=0;a<obj.bhk_type.length;a++){%>
+								<option value="<%=obj.bhk_type[a].bhk_type_id %>"><%=obj.bhk_type[a].bhk_type%></option>
+								<% } %>
 							</select>
 						</div>
-
 						<div class="main-search-input-item location">
 							<div id="autocomplete-container">
 								<input id="autocomplete-input" type="text" placeholder="Location">
 							</div>
 							<a href="#"><i class="fa fa-map-marker"></i></a>
 						</div>
-
-						
-
-						<button class="button" onClick="window.location.href='search'">Search</button>
-
+						<button type="submit" class="button" >Search</button>
 					</div>
+					</form>
 				</div>
 			</div>
 			
