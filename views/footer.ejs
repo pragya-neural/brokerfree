@@ -54,7 +54,7 @@
 		<!-- Copyright -->
 		<div class="row">
 			<div class="col-md-12">
-				<div class="copyrights">© 2020 NoBrokerr. All Rights Reserved.</div>
+				<div class="copyrights">© <span class="fyear"> </span> NoBrokarr. All Rights Reserved.</div>
 			</div>
 		</div>
 
@@ -215,5 +215,9 @@
 		});
 	});
 </script>
+<script>
+	var d = new Date();
+	$('.fyear').html(d.getFullYear());
+	</script>
 </body>
 </html>

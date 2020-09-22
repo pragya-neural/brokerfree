@@ -310,7 +310,7 @@
 				<%for(var a=0;a<obj.pro_list.length;a++){ %>
 					<div class="add-listing-section">
 						<div class="add-listing-headline">
-							<h4><a href="single-property-details.php"><b>1 BHK For Rent In Standalone, Electronic City</b></a></h4>
+							<h4><a href="single-property-details.php"><b><%= obj.pro_list[a].apartment_name %></b></a></h4>
 							<span>Electronics City Phase 1 Near Wipro Avenue 9  &nbsp;&nbsp;<a href=""><i class="fa fa-map-marker"></i>Explore Nearby </a></span>
 						</div>
 						<div class="row with-forms margin-top-0">
@@ -331,7 +331,7 @@
 						</div>
 						<div class="row with-forms margin-top-0">
 							<div class="col-md-4">
-								<img src="img/pp.jpg" class="l-img-property"/>
+								<img src="uploads/<%= obj.pro_list[a].image_name%>" class="l-img-property"/>
 							</div>
 							<div class="col-md-8">
 								<div class="col-md-6">
@@ -350,7 +350,6 @@
 										<li>All</li>
 										<li> Ready to Move</li>
 									</ul>
-							
 								</div>
 								<div class="col-md-12">
 									High quality interiors with quality equipments. Society managed by international firm jll. Operational club with gym. Adjacent market with banks, restaurant.
@@ -377,4 +376,6 @@
 		
 	</div>
 </div><br><br>
+
+
 <%- include('footer'); %>
